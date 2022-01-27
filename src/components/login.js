@@ -1,24 +1,30 @@
 // Creacion de formulario de inicio de Sesión de forma dinámica
-export const formLogin = () => {
-    const form = `
-          <div id="inicio" class="cajaInterna2">
-              <form id="formIngreso">
-                  <div class="seccionIngreso">
-                      <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                      <i class="ph-envelope"></i>
-                  </div>
-                  <div class="seccionIngreso">
-                      <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-                      <i id="botonContraseña" class="ph-eye-closed"></i>
-                  </div>
-                  <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
-                  <p class="texto">O bien ingresa con</p>
-                  <div class="logosInicio">
-                      <img id="imgFacebook" src="imagenes/FacebookOriginal.png">
-                      <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
-                  </div>
-                  <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
-              </form>
-          </div>`;
-    return form;
-  };
+export const login = () => {
+  const form = `
+    <section>
+      <div id ='logo-scoobygram' class='logo-scoobygram'>
+        <img src="../src/images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
+      </div>
+      <form id='form-login'>
+        <div class="login-input">
+          <input type="text" id="email-login" class="data-login" placeholder="ingresa@correo.com" required>
+      </div>
+      <div class="login-input">
+          <input type="password" id="password-login" class="data-login" placeholder="Ingrese contraseña" required>
+      </div>
+      <div class = "login-input">
+        <a>Olvidé contraseña</a>
+      </div>
+      <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
+      <p>O inicie la sesión</p>
+      <div class="logos-login">
+          <img id="imgFacebook" src="../src/images/icons/logo_google.png">
+          <img id="imgGoogle" src="../src/images/icons/logo_facebook.png">
+      </div>     
+      </form>
+    </section>
+          `;
+  return form;
+};
+
+login()
