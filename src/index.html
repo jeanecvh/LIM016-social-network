@@ -5,8 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ScoobyGram</title>
+  <link rel="stylesheet" href="../src/lib/style/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script type="module" src="main.js"></script>
+  <section class="contain-form">
+    <h1 id="h1Form">Formulario de registro</h1>
+  <form class="form" id="form">       
+          <!-- Grupo: Nombre -->
+  <div class="form_group" id="group_name">
+    <label for="name" class="form_label">Nombre y Apellido</label>
+    <div class="form_group_input">
+      <input type="text" class="form_input" name="name" id="name" placeholder="Barry Whithe" autocomplete="off">
+      <i class="form_validate fas fa-times-circle"></i>
+    </div>
+    <p class="form_input_err">El usuario solo puede contener letras.</p>
+  </div>
+         <!-- Grupo: Correo Electronico -->
+			<div class="form_group" id="group_email">
+				<label for="email" class="form_label">Correo Electrónico</label>
+				<div class="form_group_input ">
+					<input type="email" class="form_input" name="email" id="email" placeholder="correo@correo.com"autocomplete="off">
+					<i class="form_validate fas fa-times-circle"></i>
+				</div>
+				<p class="form_input_err">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+			</div>
+      <!-- Grupo: Contraseña -->
+			<div class="form_group" id="group_password">
+				<label for="password" class="form_label">Contraseña</label>
+				<div class="form_group_input">
+					<input type="password" class="form_input" name="password" id="password" autocomplete="on">
+					<i class="form_validate fas fa-times-circle"></i>
+				</div>
+				<p class="form_input_err">La contraseña tiene que ser de 8 a 15 dígitos.</p>
+			</div>
+
+			<!-- Grupo: Contraseña 2 -->
+			<div class="form_group" id="group_password2">
+				<label for="password2" class="form_label">Repetir Contraseña</label>
+				<div class="form_group_input">
+					<input type="password" class="form_input" name="password2" id="password2"autocomplete="on">
+					<i class="form_validate fas fa-times-circle"></i>
+				</div>
+				<p class="form_input_err">Ambas contraseñas deben ser iguales.</p>
+			</div>
+      <!-- imput-->
+      <div class="form_alert" id="formAlert">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+			</div>
+
+			<div class="form_group_btn_send">
+				<button type="submit" class="form_btn">Enviar</button>
+				<p class="form_message_valid" id="messageFormValid">Formulario enviado exitosamente!</p>
+			</div>
+  </form>
+</section>
+<script type="module" src="../src/view-controller/validateForm.js"></script>
+  <!-- <script type="module" src="main.js"></script>-->
+  <script src="https://kit.fontawesome.com/bd46000ee7.js" crossorigin="anonymous"></script>
 </body>
 </html>
