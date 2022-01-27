@@ -16,7 +16,7 @@ const campos = {
 const validarteForm = (e) => {
 	switch (e.target.name) { //e es objeto que representa el evento, y uno de sus atributos es el target, que viene a ser el elemento que recibió el evento
 			case "name":
-			if(reguex.name.test(e.target.value)){
+			if(e.target.value.replace(reguex.name)){
                 
                  document.getElementById('group_name').classList.remove('form_group_fail');
                  console.log('acepr')
@@ -39,9 +39,11 @@ const validarteForm = (e) => {
 }
 
 
+
+
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validarteForm);
-	input.addEventListener('blur', validarteForm);
+ //input.addEventListener('blur', validarteForm);
 });
 
 formRegister.addEventListener('submit', (e) => {
