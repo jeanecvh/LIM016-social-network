@@ -50,30 +50,18 @@ export const formTemplateRegister = () => {
         <button type="submit" class="form-btn">Enviar</button>
         <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
-<<<<<<< HEAD
     </form>
-  </section>
     `
     ;   
-     const divFormRegister = document.createElement('article');
-     divFormRegister.setAttribute('id', 'artRegistro');
-     divFormRegister.classList.add('artRegistro');
-     divFormRegister.innerHTML = viewForm;
-
-    return divFondo;
-    
-=======
-    </form>`;
-
     const divFormRegister = document.createElement('section');
     divFormRegister.setAttribute('class', 'contain-form');
     divFormRegister.classList.add('contain-form');
     divFormRegister.innerHTML = viewForm;
     return divFormRegister;
   };
->>>>>>> upstream/main
 
-  };
+
+ 
 
  /*
 const formRegister = document.getElementById('form');
