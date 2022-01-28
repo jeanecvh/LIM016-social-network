@@ -1,10 +1,6 @@
 export const formTemplateRegister = () => {
   const viewForm =
-    /*const viewForm = document.createElement('div');
-    viewForm.classList.add('sectionLogin');
-    viewForm.innerHTML = */
     `
-    <section class="contain-form">
     <h1 id="h1Form">Formulario de registro</h1>
     <form class="form" id="form">
       <!-- Grupo: Nombre -->
@@ -54,6 +50,7 @@ export const formTemplateRegister = () => {
         <button type="submit" class="form-btn">Enviar</button>
         <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
+<<<<<<< HEAD
     </form>
   </section>
     `
@@ -65,6 +62,16 @@ export const formTemplateRegister = () => {
 
     return divFondo;
     
+=======
+    </form>`;
+
+    const divFormRegister = document.createElement('section');
+    divFormRegister.setAttribute('class', 'contain-form');
+    divFormRegister.classList.add('contain-form');
+    divFormRegister.innerHTML = viewForm;
+    return divFormRegister;
+  };
+>>>>>>> upstream/main
 
   };
 
