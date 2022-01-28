@@ -6,3 +6,4 @@ const init = () => {
     componentsViews(window.location.hash)); 
 }
 window.addEventListener('load', init);
+

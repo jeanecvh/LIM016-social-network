@@ -50,8 +50,9 @@ export const formTemplateRegister = () => {
         <button type="submit" class="form-btn">Enviar</button>
         <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
-    </form>`;
-
+    </form>
+    `
+    ;   
     const divFormRegister = document.createElement('section');
     divFormRegister.setAttribute('class', 'contain-form');
     divFormRegister.classList.add('contain-form');
@@ -60,7 +61,9 @@ export const formTemplateRegister = () => {
   };
 
 
-  /*
+ 
+
+ /*
 const formRegister = document.getElementById('form');
 const inputs = document.querySelectorAll('#form-input'); // obtengo un arreglo de cada input
 
