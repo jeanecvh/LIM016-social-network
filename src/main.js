@@ -1,4 +1,8 @@
 import { componentsViews } from './view-controller/router.js';
 
-window.addEventListener('load', componentsViews);
-window.addEventListener('hashchange', componentsViews);
+const init = () => {
+    componentsViews(window.location.hash) 
+    window.addEventListener('hashchange', () => 
+    componentsViews(window.location.hash)); 
+}
+window.addEventListener('load', init);
