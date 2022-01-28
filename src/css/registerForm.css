@@ -1,0 +1,114 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #E5E5E5;
+}
+
+main {
+	max-width: 800px;
+	width: 90%;
+	margin: auto;
+	padding: 40px;
+}
+.form_label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
+}
+.form_group_input{ 
+	position: relative;  /* me servira para mas adelante colocar solo el boton en position absolut y se me meta dentro del imput */
+}
+.form_input {
+	width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+    transition: .3s ease all;
+}
+.form_input:focus {
+	border: 3px solid #FFB547;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+.form_input_err {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+.form_input_err_active {
+	display: block;
+}
+.form_validate {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+.form_alert {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+.form_alert_active {
+	display: block;
+}
+.form_group_btn_send {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.form_btn {
+	height: 40px;
+	line-height: 40px;
+	width: 30%;
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+    margin-top: 15px;
+}
+
+.form_btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+.form_message_valid {
+	font-size: 14px;
+	color: #00BCB4;
+	display: none;
+}
+
+.form_message_valid-active {
+	display: block;
+}
+/* ----- -----  Estilos para Validacion ----- ----- */
+.form_group_valid .form_validate{
+	color: #1ed12d;
+	opacity: 1;
+}
+.form_group_fail .form_label {
+	color: #bb2929;
+    
+}
+.form_group_fail .form_validate{
+	color: #bb2929;
+    opacity: 1;   
+    
+}
+.form_group_fail .form_input {
+	border: 3px solid #bb2929;
+}
