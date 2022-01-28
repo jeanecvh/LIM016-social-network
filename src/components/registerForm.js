@@ -52,11 +52,11 @@ export const formTemplateRegister = () => {
       </div>
     </form>`;
 
-    const divFormLogin = document.createElement('section');
-    divFormLogin.setAttribute('class', 'contain-form');
-    divFormLogin.classList.add('contain-form');
-    divFormLogin.innerHTML = viewForm;
-    return divFormLogin;
+    const divFormRegister = document.createElement('section');
+    divFormRegister.setAttribute('class', 'contain-form');
+    divFormRegister.classList.add('contain-form');
+    divFormRegister.innerHTML = viewForm;
+    return divFormRegister;
   };
 
 
