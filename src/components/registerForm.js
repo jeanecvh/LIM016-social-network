@@ -8,63 +8,69 @@ export const formTemplateRegister = () => {
     <h1 id="h1Form">Formulario de registro</h1>
     <form class="form" id="form">
       <!-- Grupo: Nombre -->
-      <div class="form_group" id="group_name">
-        <label for="name" class="form_label">Nombre y Apellido</label>
-        <div class="form_group_input">
-          <input type="text" class="form_input" name="name" id="name" placeholder="Barry Whithe" autocomplete="off">
-          <i class="form_validate fas fa-times-circle"></i>
+      <div class="form-group" id="group-name">
+        <label for="name" class="form-label">Nombre y Apellido</label>
+        <div class="form-group-input">
+          <input type="text" class="form-input" name="name" id="name" placeholder="Barry Whithe" autocomplete="off">
+          <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form_input_err">El usuario solo puede contener letras.</p>
+        <p class="form-input-err">El usuario solo puede contener letras.</p>
       </div>
       <!-- Grupo: Correo Electronico -->
-      <div class="form_group" id="group_email">
-        <label for="email" class="form_label">Correo Electrónico</label>
-        <div class="form_group_input ">
-          <input type="email" class="form_input" name="email" id="email" placeholder="correo@correo.com"
+      <div class="form-group" id="group-email">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <div class="form-group-input ">
+          <input type="email" class="form-input" name="email" id="email" placeholder="correo@correo.com"
             autocomplete="off">
-          <i class="form_validate fas fa-times-circle"></i>
+          <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form_input_err">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+        <p class="form-input-err">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
       </div>
       <!-- Grupo: Contraseña -->
-      <div class="form_group" id="group_password">
-        <label for="password" class="form_label">Contraseña</label>
-        <div class="form_group_input">
-          <input type="password" class="form_input" name="password" id="password" autocomplete="on">
-          <i class="form_validate fas fa-times-circle"></i>
+      <div class="form-group" id="group-password">
+        <label for="password" class="form-label">Contraseña</label>
+        <div class="form-group-input">
+          <input type="password" class="form-input" name="password" id="password" autocomplete="on">
+          <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form_input_err">La contraseña tiene que ser de 8 a 15 dígitos.</p>
+        <p class="form-input-err">La contraseña tiene que ser de 8 a 15 dígitos.</p>
       </div>
 
       <!-- Grupo: Contraseña 2 -->
-      <div class="form_group" id="group_password2">
-        <label for="password2" class="form_label">Repetir Contraseña</label>
-        <div class="form_group_input">
-          <input type="password" class="form_input" name="password2" id="password2" autocomplete="on">
-          <i class="form_validate fas fa-times-circle"></i>
+      <div class="form-group" id="group-password2">
+        <label for="password2" class="form-label">Repetir Contraseña</label>
+        <div class="form-group-input">
+          <input type="password" class="form-input" name="password2" id="password2" autocomplete="on">
+          <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form_input_err">Ambas contraseñas deben ser iguales.</p>
+        <p class="form-input-err">Ambas contraseñas deben ser iguales.</p>
       </div>
       <!-- imput-->
-      <div class="form_alert" id="formAlert">
+      <div class="form-alert" id="formAlert">
         <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
       </div>
 
-      <div class="form_group_btn_send">
-        <button type="submit" class="form_btn">Enviar</button>
-        <p class="form_message_valid" id="messageFormValid">Formulario enviado exitosamente!</p>
+      <div class="form-group-btn-send">
+        <button type="submit" class="form-btn">Enviar</button>
+        <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
     </form>
   </section>
     `
     ;   
-    return viewForm;
+     const divFormRegister = document.createElement('article');
+     divFormRegister.setAttribute('id', 'artRegistro');
+     divFormRegister.classList.add('artRegistro');
+     divFormRegister.innerHTML = viewForm;
+
+    return divFondo;
+    
+
   };
 
-
-  /*
+ /*
 const formRegister = document.getElementById('form');
-const inputs = document.querySelectorAll('#form_input'); // obtengo un arreglo de cada input
+const inputs = document.querySelectorAll('#form-input'); // obtengo un arreglo de cada input
 
 const reguex = { // corregir nombre de regex
   name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -84,12 +90,12 @@ const campos = {
     case 'name':
       if (reguex.name.test(e.target.value)) {
         document
-          .getElementById('group_name')
-          .classList.remove('form_group_fail');
+          .getElementById('group-name')
+          .classList.remove('form-group-fail');
         console.log('acepr');
-        document.getElementById('group_name').classList.add('form_group_valid');
+        document.getElementById('group-name').classList.add('form-group-valid');
       } else {
-        document.getElementById('group_name').classList.add('form_group_fail');
+        document.getElementById('group-name').classList.add('form-group-fail');
         console.log('nfknfnewk');
       }
       break;
