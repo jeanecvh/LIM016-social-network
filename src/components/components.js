@@ -1,7 +1,7 @@
-import { formLogin } from './login.js'
+import { login } from './login.js'
 import { formTemplateRegister } from './registerForm.js'
 
 export const components = {
-    Login: formLogin,
+    Login: login,
     Registro: formTemplateRegister
 }
