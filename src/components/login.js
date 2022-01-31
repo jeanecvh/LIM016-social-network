@@ -1,3 +1,5 @@
+import { loginWithGoogle } from '../firebase/auth.js';
+
 export const login = () => {
   const form = `
       <div id ='logo-scoobygram' class='logo-scoobygram'>
@@ -36,10 +38,9 @@ export const login = () => {
 
 export const loginGoogle = () => {
   const googleId = document.getElementById('imgGoogle');
- // console.log('setting addEventListener to: ', googleId);
+  
   googleId.addEventListener('click' , async (e)=>{
     try{
-     // console.log('execution google sing up');
       await loginWithGoogle();
     }catch (error){}
   })
