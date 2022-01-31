@@ -1,8 +1,8 @@
-// Creacion de formulario de inicio de Sesión de forma dinámica
+
 export const login = () => {
   const form = `
       <div id ='logo-scoobygram' class='logo-scoobygram'>
-        <img src="../images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
+        <img src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
       </div>
       <form id='form-login'>
         <div class="login-input">
@@ -17,8 +17,8 @@ export const login = () => {
       <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
       <p>O inicie la sesión</p>
       <div class="logos-login">
-          <img id="imgFacebook" src="../images/icons/logo_google.png">
-          <img id="imgGoogle" src="../images/icons/logo_facebook.png">
+          <img id="imgFacebook" src="./images/icons/logo_google.png">
+          <img id="imgGoogle" src="./images/icons/logo_facebook.png">
       </div>     
       </form>`;
 
