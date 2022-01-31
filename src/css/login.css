@@ -68,20 +68,24 @@
     border-radius: 40px;
     text-decoration: none; 
     color: #ffffff;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 55px;
+    padding-right: 55px;
     background-color: #689F38;
     font-weight: bold;
 }
 
 .text-color{
     color: #FFB547;
-    font-weight: bold;
+    
 }
 
 .forget-password{
     margin: 5% 2% 2% 2%;
-    padding: 1%
+    padding: 1%;
+    display: flex;
+    justify-content: center;
 }
 @media only screen and (max-width: 600px) {
     body{
@@ -99,4 +103,22 @@
         height: 100%;
     }
 
+}
+
+.icon-eye{
+    position: absolute;
+    transform: translateY(80%);
+    left: 85%;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.644);
+    transition: .6 ease all;
+    background-color: black;
+}
+
+.icon-eye:hover{
+    color: #1e2f23;
+}
+
+.wrapp-input{
+    position: relative;
 }

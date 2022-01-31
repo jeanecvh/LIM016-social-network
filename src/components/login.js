@@ -12,9 +12,18 @@ export const login = () => {
           <input class ='login-input' type="text" id="email-login" class="data-login" placeholder="Usuario" required>
         </div>
         <div class="div-form-login div-form-login-input input-password">
-            <input class ='login-input' type="password" id="password-login" class="data-login" placeholder="Contraseña" required>
+            <div class= 'forget-password wrapp-input'>
+              <input class ='login-input' type="password" id="password" class="data-login" placeholder="Contraseña" required>
+              <span class="icon-eye" >
+                <i class="fas fa-eye-slash"></i>
+              </span>
+            </div>
             <div class= 'forget-password'>
               <a class='text-color' href='/#'>Olvidé contraseña</a>
+            </div>
+            <div class= 'forget-password'>
+              <input type="checkbox" name="remember" id="remember" class="form-check-input"/>
+              <label class='text-color' for="remember-me">Recordarme</label>
             </div>
         </div>
         <div class = "div-form-login">
@@ -33,6 +42,15 @@ export const login = () => {
     divFormLogin.setAttribute('id', 'login');
     divFormLogin.classList.add('login');
     divFormLogin.innerHTML = formLogin;
-
+    
+    const iconEye = divFormLogin.querySelector('.icon-eye');
+      iconEye.addEventListener('click', async () => {
+      console.log('aaaaaaa','CLICKED');
+      console.log(this);
+      });
+  
   return divFormLogin;
 };
+
+
+  
