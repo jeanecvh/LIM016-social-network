@@ -1,7 +1,10 @@
+import { loginWithGoogle } from '../firebase/auth.js';
+
+
 // Creacion de formulario de inicio de Sesión de forma dinámica
-export const login = () => {
+export const formLogin = () => {
   
-  const formLogin = `
+  const form = `
       <div id ='logo-scoobygram' class='logo-scoobygram'>
         <img src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
       </div>
@@ -18,8 +21,8 @@ export const login = () => {
       <button type="submit" id="btn-login" class="btn-login">INGRESAR</button>
       <p>O inicie la sesión</p>
       <div class="logos-login">
-          <img id="imgFacebook" src="./images/icons/logo_google.png">
-          <img id="imgGoogle" src="./images/icons/logo_facebook.png">
+          <img id="imgGoogle" src="./images/icons/logo_google.png">
+          <img id="imgFacebook" src="./images/icons/logo_facebook.png">
       </div>     
 
       </form>
@@ -29,7 +32,19 @@ export const login = () => {
   const divFormLogin = document.createElement('section');
   divFormLogin.setAttribute('id', 'login');
   divFormLogin.classList.add('login');
-  divFormLogin.innerHTML = formLogin;
+  divFormLogin.innerHTML = form;
+  
+  
 
   return divFormLogin;
 };
+
+export const login = () => {
+  const googleId = document.getElementById('imgGoogle');
+  
+  googleId.addEventListener('click' , async (e)=>{
+    try{
+      await loginWithGoogle();
+    }catch (error){}
+  })
+}
