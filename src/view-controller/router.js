@@ -1,4 +1,5 @@
 import { components } from '../components/components.js';
+import {loginGoogle} from '../components/login.js';
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
@@ -9,6 +10,7 @@ export const componentsViews = (hash) => {
         case '#/': 
         case '#/login':
             main.appendChild(components.Login());
+            loginGoogle();
             break;
         case '#/registro':
             main.appendChild(components.Registro());
