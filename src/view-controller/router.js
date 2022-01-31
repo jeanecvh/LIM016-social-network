@@ -1,5 +1,5 @@
 import { components } from '../components/components.js';
-
+/*
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
     main.innerHTML = ''
@@ -17,4 +17,4 @@ export const componentsViews = (hash) => {
             main.innerHTML = 'Página No Encontrada';
             break;
     }
-}
+}*/

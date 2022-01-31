@@ -14,9 +14,6 @@ export const login = () => {
         <div class="div-form-login div-form-login-input input-password">
             <div class= 'forget-password wrapp-input'>
               <input class ='login-input' type="password" id="password" class="data-login" placeholder="Contraseña" required>
-              <span class="icon-eye" >
-                <i class="fas fa-eye-slash"></i>
-              </span>
             </div>
             <div class= 'forget-password'>
               <a class='text-color' href='/#'>Olvidé contraseña</a>
@@ -43,11 +40,15 @@ export const login = () => {
     divFormLogin.classList.add('login');
     divFormLogin.innerHTML = formLogin;
     
-    const iconEye = divFormLogin.querySelector('.icon-eye');
+    /*const iconEye = divFormLogin.querySelector('.icon-eye');
       iconEye.addEventListener('click', async () => {
       console.log('aaaaaaa','CLICKED');
-      console.log(this);
+      .then(res => res(console.log(this));
       });
+      <span class="icon-eye" >
+                <i class="fas fa-eye-slash"></i>
+              </span>
+      */
   
   return divFormLogin;
 };
