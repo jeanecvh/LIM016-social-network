@@ -41,10 +41,9 @@ export const formLogin = () => {
 
 export const login = () => {
   const googleId = document.getElementById('imgGoogle');
-  console.log('setting addEventListener to: ', googleId);
+  
   googleId.addEventListener('click' , async (e)=>{
     try{
-      console.log('execution google sing up');
       await loginWithGoogle();
     }catch (error){}
   })
