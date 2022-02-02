@@ -1,3 +1,5 @@
+import { loginWithGoogle } from '../firebase/auth.js';
+
 export const formTemplateRegister = () => {
   const viewForm =
     `
@@ -50,8 +52,9 @@ export const formTemplateRegister = () => {
         <button type="submit" class="form-btn">Enviar</button>
         <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
-    </form>`;
-
+    </form>
+    `
+    ;   
     const divFormRegister = document.createElement('section');
     divFormRegister.setAttribute('class', 'contain-form');
     divFormRegister.classList.add('contain-form');
@@ -60,7 +63,9 @@ export const formTemplateRegister = () => {
   };
 
 
-  /*
+ 
+/*
+ 
 const formRegister = document.getElementById('form');
 const inputs = document.querySelectorAll('#form-input'); // obtengo un arreglo de cada input
 
@@ -75,9 +80,9 @@ const campos = {
   password: false,
   correo: false,
 };
-*/
+
 //e es objeto que representa el evento, y uno de sus atributos es el target, que viene a ser el elemento que recibió el evento
-/*const validarteForm = (e) => { 
+const validarteForm = (e) => { 
   switch (e.target.name) {
     case 'name':
       if (reguex.name.test(e.target.value)) {
@@ -107,4 +112,5 @@ inputs.forEach((input) => {
 
 formRegister.addEventListener('submit', (e) => {
   e.preventDefault(); // aca cambiar para mandar los datos a firebase
-});*/
+});
+*/

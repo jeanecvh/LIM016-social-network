@@ -1,20 +1,22 @@
-// Creacion de formulario de inicio de Sesión de forma dinámica
+import { loginWithGoogle } from '../firebase/auth.js';
+
 export const login = () => {
   const formLogin = `
-      <div id ='logo-scoobygram' class='logo-scoobygram'>
+      <div class = 'view-desktop views'></div>
+      <form id='form-login' class ='form-login view-phone'>
+        <div id ='logo-scoobygram' class='logo-scoobygram'>
         <img class ='logo-img'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
       </div>
       <div id = "text-login" class = "text-login">
         <p>INICIAR SESIÓN </p>
       </div>
-      <form id='form-login' class ='form-login'>
         <div class="div-form-login div-form-login-input">
           <input class ='login-input' type="text" id="email-login" class="data-login" placeholder="Usuario" required>
         </div>
-        <div class="div-form-login div-form-login-input input-password">
-            <div class= 'forget-password wrapp-input'>
+        <div class= 'div-form-login div-form-login-input'>
               <input class ='login-input' type="password" id="password" class="data-login" placeholder="Contraseña" required>
             </div>
+      
             <div class= 'forget-password'>
               <a class='text-color' href='/#'>Olvidé contraseña</a>
             </div>
@@ -27,12 +29,12 @@ export const login = () => {
           <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
         </div>
         <div class = "div-form-login">
-          <p class = 'text-color'>O inicie la sesión</p>
+          <p class = 'text-color'>O inicie la sesión con</p>
         </div>
         <div class="logos-login div-form-login">
-            <img id="imgFacebook" src="./images/icons/logo_google.png">
-            <img id="imgGoogle" src="./images/icons/logo_facebook.png">
-        </div>     
+            <img id="imgGoogle" src="./images/icons/logo_google.png">
+        </div>
+   
       </form>`;
 
     const divFormLogin = document.createElement('section');
@@ -53,5 +55,12 @@ export const login = () => {
   return divFormLogin;
 };
 
+export const loginGoogle = () => {
+  const googleId = document.getElementById('imgGoogle');
+  googleId.addEventListener('click' , async (e)=>{
+    try{
+      await loginWithGoogle();
+    }catch (error){}
+  })
+}
 
-  
