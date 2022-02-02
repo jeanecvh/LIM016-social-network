@@ -1,10 +1,11 @@
 import { loginWithGoogle } from '../firebase/auth.js';
+import {userCreate, emailVerificate} from "../firebase/auth.js"
 
 export const formTemplateRegister = () => {
   const viewForm =
     `
     <h1 id="h1Form">Formulario de registro</h1>
-    <form class="form" id="form">
+    <form class="form" id="form" name ="form">
       <!-- Grupo: Nombre -->
       <div class="form-group" id="group-name">
         <label for="name" class="form-label">Nombre y Apellido</label>
@@ -49,7 +50,7 @@ export const formTemplateRegister = () => {
       </div>
 
       <div class="form-group-btn-send">
-        <button type="submit" class="form-btn">Enviar</button>
+        <button type="submit" class="form-btn" id = "form-btn">Enviar</button>
         <p class="form-message-valid" id="messageFormValid">Formulario enviado exitosamente!</p>
       </div>
     </form>
@@ -62,10 +63,31 @@ export const formTemplateRegister = () => {
     return divFormRegister;
   };
 
+  async function loginSubmit(){        
+    let userName =document.getElementById("name").value;
+    console.log(userName)
+    let userEmail = document.getElementById("email").value;
+    console.log(userEmail)
+    let userPassword = document.getElementById("password").value;
+    try {
+    const login = await  userCreate(userEmail, userPassword)
+      console.log(login.user.email ,'que tal')
+      emailVerificate()
+      return login.user
+    }
+    catch(err){
+    console.log(err)}      
+}
 
+export const register= () => {
+      const form = document.getElementById('form-btn');
+      form.addEventListener('click', (e) => {
+        e.preventDefault()
+        loginSubmit()
+  });
+  }
  
-/*
- 
+ /*
 const formRegister = document.getElementById('form');
 const inputs = document.querySelectorAll('#form-input'); // obtengo un arreglo de cada input
 

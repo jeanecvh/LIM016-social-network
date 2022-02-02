@@ -51,7 +51,6 @@ export const login = () => {
                 <i class="fas fa-eye-slash"></i>
               </span>
       */
-  
   return divFormLogin;
 };
 
@@ -59,8 +58,8 @@ export const loginGoogle = () => {
   const googleId = document.getElementById('imgGoogle');
   googleId.addEventListener('click' , async (e)=>{
     try{
-      await loginWithGoogle();
+      await loginWithGoogle();  
     }catch (error){}
-  })
-}
+  });
+};
 
