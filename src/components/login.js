@@ -19,7 +19,7 @@ export const login = () => {
       <p>O inicie la sesión</p>
       <div class="logos-login">
           <img id="imgGoogle" src="./images/icons/logo_google.png">
-          <img id="imgFacebook" src="./images/icons/logo_facebook.png"
+         
       </div>     
 
       </form>
@@ -42,6 +42,9 @@ export const loginGoogle = () => {
   googleId.addEventListener('click' , async (e)=>{
     try{
       await loginWithGoogle();
+      
     }catch (error){}
-  })
-}
+  });
+};
+
+
