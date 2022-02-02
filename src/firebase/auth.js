@@ -4,12 +4,20 @@ import {
     signOut,
     signInWithPopup,
     getAuth,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
   } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
   // Inicializar authentication
 export const auth = getAuth(app);
+export const lala = () => sendEmailVerification(auth.currentUser)
+//correo de verificacion
+
+
+// crear usuario con correo y contraseña
+export const userCreate = (email, password) =>createUserWithEmailAndPassword(auth, email, password)
 
 //inicializamos el proveedor de auth de Google
 const provider = new GoogleAuthProvider();
