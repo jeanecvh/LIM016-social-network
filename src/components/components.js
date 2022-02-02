@@ -5,3 +5,4 @@ export const components = {
     Login: login,
     Registro: formTemplateRegister
 }
+
