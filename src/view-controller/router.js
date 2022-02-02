@@ -12,6 +12,7 @@ export const componentsViews = (hash) => {
         case '#/login':
             main.appendChild(components.Login());
             loginGoogle();
+            
             break;
         case '#/registro':
             main.appendChild(components.Registro());
