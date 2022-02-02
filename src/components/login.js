@@ -1,5 +1,4 @@
-import { loginWithGoogle } from '../firebase/auth.js';
-
+import {loginWithGoogle} from "../firebase/auth.js"
 export const login = () => {
   const form = `
       <div id ='logo-scoobygram' class='logo-scoobygram'>
@@ -38,7 +37,6 @@ export const login = () => {
 
 export const loginGoogle = () => {
   const googleId = document.getElementById('imgGoogle');
-  
   googleId.addEventListener('click' , async (e)=>{
     try{
       await loginWithGoogle();

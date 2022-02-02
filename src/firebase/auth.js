@@ -4,12 +4,19 @@ import {
     signInWithPopup,
     getAuth,
     GoogleAuthProvider,
-    
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+  } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
 // Inicializar authentication
 export const auth = getAuth(app);
+export const lala = () => sendEmailVerification(auth.currentUser)
+//correo de verificacion
+
+
+// crear usuario con correo y contraseña
+export const userCreate = (email, password) =>createUserWithEmailAndPassword(auth, email, password)
 
 //inicializamos el proveedor de auth de Google y facebook
 const providerGoogle = new GoogleAuthProvider();
