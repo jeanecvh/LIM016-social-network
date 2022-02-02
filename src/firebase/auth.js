@@ -1,7 +1,6 @@
 import { app } from "./config.js";
 
 import {
-    signOut,
     signInWithPopup,
     getAuth,
     GoogleAuthProvider,
@@ -28,14 +27,16 @@ export const loginWithGoogle = async () => {
 
     try {
         
-        const response = await signInWithPopup(auth, provider);
-        console.log(response);
+        const response = await signInWithPopup(auth, provider);/*incia una ventana emergente  y en la funcion
+         mostramos en proveedor con el que vamos a iniciar sesion*/
+        //console.log(response);
         return response.user;
     } catch (error) {
         throw new Error(error);
     }
 }
 // cierre de sesion
+/*
 export const logut = () => {
     signOut(auth);
-}
+}*/
