@@ -11,9 +11,8 @@ import {
 
   // Inicializar authentication
 export const auth = getAuth(app);
-export const lala = () => sendEmailVerification(auth.currentUser)
 //correo de verificacion
-
+export const emailVerificate = () => sendEmailVerification(auth.currentUser)
 
 // crear usuario con correo y contraseña
 export const userCreate = (email, password) =>createUserWithEmailAndPassword(auth, email, password)

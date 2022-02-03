@@ -4,6 +4,7 @@ import {register} from "../components/registerForm.js"
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
+    const header = document.getElementById('header');
     main.innerHTML = ''
     // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
@@ -15,6 +16,7 @@ export const componentsViews = (hash) => {
             break;
         case '#/registro':
             main.appendChild(components.Registro());
+            header.appendChild(components.Header())
             register()
             break;
         default:

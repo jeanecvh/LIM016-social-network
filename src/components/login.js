@@ -30,11 +30,8 @@ export const login = () => {
   divFormLogin.classList.add('login');
   divFormLogin.innerHTML = form;
   
-  
-
   return divFormLogin;
 };
-
 export const loginGoogle = () => {
   const googleId = document.getElementById('imgGoogle');
   googleId.addEventListener('click' , async (e)=>{
