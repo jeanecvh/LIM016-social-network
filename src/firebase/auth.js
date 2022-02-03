@@ -6,6 +6,7 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     sendEmailVerification,
+    signInWithEmailAndPassword,
   } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
@@ -34,6 +35,16 @@ export const loginWithGoogle = async () => {
         throw new Error(error);
     }
 };
+//Ingreso de usuario con email y contraseña
+export const loginWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+
+
+
+
+
+
+
 
 // cierre de sesion
 /*

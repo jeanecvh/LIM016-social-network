@@ -1,29 +1,34 @@
-import { loginWithGoogle } from '../firebase/auth.js';
+import {
+  loginWithGoogle,
+  loginWithEmailAndPassword,
+} from "../firebase/auth.js";
 
 export const login = () => {
   const formLogin = `
       <div class = 'view-desktop views'></div>
       <form id='form-login' class ='form-login view-phone'>
         <div id ='logo-scoobygram' class='logo-scoobygram'>
-        <img class ='logo-img'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
-      </div>
-      <div id = "text-login" class = "text-login">
-        <p>INICIAR SESIÓN </p>
-      </div>
-        <div class="div-form-login div-form-login-input">
-          <input class ='login-input' type="text" id="email-login" class="data-login" placeholder="Usuario" required>
+          <img class ='logo-img'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
         </div>
-        <div class= 'div-form-login div-form-login-input'>
-              <input class ='login-input' type="password" id="password" class="data-login" placeholder="Contraseña" required>
-            </div>
-      
-            <div class= 'forget-password'>
-              <a class='text-color' href='/#'>Olvidé contraseña</a>
-            </div>
-            <div class= 'forget-password'>
-              <input type="checkbox" name="remember" id="remember" class="form-check-input"/>
-              <label class='text-color' for="remember-me">Recordarme</label>
-            </div>
+        <div id = "text-login" class = "text-login">
+          <p>INICIAR SESIÓN </p>
+        </div>
+        <div class="div-form-login div-form-login-input">
+          <input class ='login-input data-login' type="text" id="email-login" placeholder="Usuario" required>
+        </div>
+        <div class= 'div-form-login div-form-login-input '>
+          <input class ='login-input data-login' type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <div class= div-wrongpassword>
+  
+          <p> <i class="fas fa-exclamation-triangle"></i> Usuario o contraseña incorrecto</p>
+        </div>
+        <div class= 'forget-password'>
+          <a class='text-color' href='/#'>Olvidé contraseña</a>
+        </div>
+        <div class= 'forget-password'>
+          <input type="checkbox" name="remember" id="remember" class="form-check-input"/>
+          <label class='text-color' for="remember-me">Recordarme</label>
         </div>
         <div class = "div-form-login">
           <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
@@ -37,12 +42,12 @@ export const login = () => {
    
       </form>`;
 
-    const divFormLogin = document.createElement('section');
-    divFormLogin.setAttribute('id', 'login');
-    divFormLogin.classList.add('login');
-    divFormLogin.innerHTML = formLogin;
-    
-    /*const iconEye = divFormLogin.querySelector('.icon-eye');
+  const divFormLogin = document.createElement("section");
+  divFormLogin.setAttribute("id", "login");
+  divFormLogin.classList.add("login");
+  divFormLogin.innerHTML = formLogin;
+
+  /*const iconEye = divFormLogin.querySelector('.icon-eye');
       iconEye.addEventListener('click', async () => {
       console.log('aaaaaaa','CLICKED');
       .then(res => res(console.log(this));
@@ -55,11 +60,50 @@ export const login = () => {
 };
 
 export const loginGoogle = () => {
-  const googleId = document.getElementById('imgGoogle');
-  googleId.addEventListener('click' , async (e)=>{
-    try{
-      await loginWithGoogle();  
-    }catch (error){}
+  const googleId = document.getElementById("imgGoogle");
+  googleId.addEventListener("click", async (e) => {
+    try {
+      await loginWithGoogle();
+    } catch (error) {}
   });
 };
+
+async function loginUser() {
+  const emailValue = document.getElementById("email-login").value;
+  const passwordValue = document.getElementById("password").value;
+
+  try {
+    const login = await loginWithEmailAndPassword(emailValue, passwordValue);
+    console.log(emailValue, passwordValue, "Buenas");
+    return login;
+  } catch (error) {
+    if (error = 'auth/wrong-password'){
+      console.log('ta mal')
+      document.querySelector('.div-wrongpassword').style.display = "block";
+    } 
+  }
+};
+
+/*
+const messageErrors = () => {
+ const passwordValue = document.getElementById("password").value;
+  passwordValue.addEventListener("keyup", () =>{  
+  if (passwordValue == null){
+    document.querySelector('.div-wrongpassword').style.display = "block"
+  } else {
+        e.document.querySelector('.div-wrongpassword').style.display = "none"
+    }
+  })
+} 
+*/
+
+export const loginBotton = () => {
+  const bottonLogin = document.getElementById("btn_login");
+  bottonLogin.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("funciona");
+    loginUser();
+  });
+};
+
 
