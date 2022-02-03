@@ -90,7 +90,7 @@ main {
 	font-size: 0.9em;
 	margin-top: 1em;
 	color: #00BCB4;
-	display: none;
+	display: block;
 }
 
 .form-message-valid-active {

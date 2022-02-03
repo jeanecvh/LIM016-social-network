@@ -7,3 +7,4 @@ export const components = {
     Registro: formTemplateRegister,
     Header: headerTemplate
 }
+

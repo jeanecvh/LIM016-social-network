@@ -67,6 +67,7 @@ export const formTemplateRegister = () => {
     let userPassword = document.getElementById("password").value;
     try {
     const login = await  userCreate(userEmail, userPassword)
+
       emailVerificate()
       return login.user
     }
@@ -98,6 +99,7 @@ export const formTemplateRegister = () => {
   email : false,
   password : false,
 };
+
  const validateInputs = ()=> {
    const inputName = document.getElementById('name')
    const inputEmail = document.getElementById('email')
@@ -175,3 +177,4 @@ export const formTemplateRegister = () => {
      }
    })
  }
+
