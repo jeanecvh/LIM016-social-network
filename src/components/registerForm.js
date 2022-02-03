@@ -1,4 +1,5 @@
-import {userCreate, lala} from "../firebase/auth.js"
+import { loginWithGoogle } from '../firebase/auth.js';
+import {userCreate, emailVerificate} from "../firebase/auth.js"
 
 export const formTemplateRegister = () => {
   const viewForm =
@@ -71,14 +72,14 @@ export const formTemplateRegister = () => {
     try {
     const login = await  userCreate(userEmail, userPassword)
       console.log(login.user.email ,'que tal')
-      lala()
+      emailVerificate()
       return login.user
     }
     catch(err){
     console.log(err)}      
 }
 
-  export const register= () => {
+export const register= () => {
       const form = document.getElementById('form-btn');
       form.addEventListener('click', (e) => {
         e.preventDefault()
@@ -101,9 +102,9 @@ const campos = {
   password: false,
   correo: false,
 };
-*/
+
 //e es objeto que representa el evento, y uno de sus atributos es el target, que viene a ser el elemento que recibió el evento
-/*const validarteForm = (e) => { 
+const validarteForm = (e) => { 
   switch (e.target.name) {
     case 'name':
       if (reguex.name.test(e.target.value)) {
@@ -133,4 +134,5 @@ inputs.forEach((input) => {
 
 formRegister.addEventListener('submit', (e) => {
   e.preventDefault(); // aca cambiar para mandar los datos a firebase
-});*/
+});
+*/

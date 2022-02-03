@@ -6,21 +6,19 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     sendEmailVerification,
+    signInWithEmailAndPassword,
   } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
-// Inicializar authentication
+  // Inicializar authentication
 export const auth = getAuth(app);
-export const lala = () => sendEmailVerification(auth.currentUser)
+
 //correo de verificacion
-
-
+export const emailVerificate = () => sendEmailVerification(auth.currentUser)
 // crear usuario con correo y contraseña
 export const userCreate = (email, password) =>createUserWithEmailAndPassword(auth, email, password)
-
-//inicializamos el proveedor de auth de Google y facebook
+//inicializamos el proveedor de auth de Google 
 const providerGoogle = new GoogleAuthProvider();
-
 
 auth.languageCode = 'es';// configuramos el lenguaje de nestro proveedor a español
 
@@ -37,6 +35,13 @@ export const loginWithGoogle = async () => {
         throw new Error(error);
     }
 };
+//Ingreso de usuario con email y contraseña
+export const loginWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+
+
+
+
 
 
 
@@ -46,3 +51,4 @@ export const loginWithGoogle = async () => {
 export const logut = () => {
     signOut(auth);
 }*/
+
