@@ -12,6 +12,7 @@ import {
 
   // Inicializar authentication
 export const auth = getAuth(app);
+
 //correo de verificacion
 export const emailVerificate = () => sendEmailVerification(auth.currentUser)
 // crear usuario con correo y contraseña
@@ -27,10 +28,10 @@ export const loginWithGoogle = async () => {
 
         const response = await signInWithPopup(auth, providerGoogle);/*incia una ventana emergente  y en la funcion
          mostramos en proveedor con el que vamos a iniciar sesion*/
-        console.log(response);
+        //console.log(response);
         return response.user;
     } catch (error) {
-        console.log('prueba : ', error );
+      //  console.log('prueba : ', error );
         throw new Error(error);
     }
 };
