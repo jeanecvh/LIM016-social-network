@@ -1,4 +1,4 @@
-import {userDataBase} from "../firebase/firestore.js"
+import { userDataBase} from "../firebase/firestore.js"
 import {
   loginWithGoogle,
   loginWithEmailAndPassword,
@@ -56,7 +56,7 @@ export const loginGoogle = () => {
   const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async (e) => {
     try {
-      await loginWithGoogle();
+      const user = await loginWithGoogle();
       const userToCreate = {
         nombre: user.displayName,
         correo: user.email,
@@ -64,12 +64,12 @@ export const loginGoogle = () => {
         id: user.uid
       };
       await userDataBase(userToCreate);
-     
-    } catch (error) {}
+
+    } catch (error) { }
   });
 };
 
- async function loginUser() {
+async function loginUser() {
   const emailValue = document.getElementById("email-login").value;
   const passwordValue = document.getElementById("password").value;
 
@@ -78,10 +78,10 @@ export const loginGoogle = () => {
     console.log(emailValue, passwordValue, "Buenas");
     return login;
   } catch (error) {
-    if (error = 'auth/wrong-password'){
+    if (error = 'auth/wrong-password') {
       console.log('ta mal')
       document.querySelector('.div-wrongpassword').style.display = "block";
-    } 
+    }
   }
 };
 
