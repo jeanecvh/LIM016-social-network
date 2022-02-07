@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    width: 100%;
+	background-color: #40e0d0;
+   
+}
+.logo{
+    padding: 0vw;
+    margin-top: 0.5em;
+    width:15em;
+}
