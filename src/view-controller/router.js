@@ -1,5 +1,6 @@
 import { components } from '../components/components.js';
 import {loginGoogle} from '../components/login.js';
+import {register} from "../components/registerForm.js"
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
@@ -15,6 +16,7 @@ export const componentsViews = (hash) => {
             break;
         case '#/registro':
             main.appendChild(components.Registro());
+            register()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
