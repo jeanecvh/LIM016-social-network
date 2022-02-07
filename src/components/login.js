@@ -1,4 +1,6 @@
 import {loginWithGoogle} from "../firebase/auth.js"
+import {userDataBase} from "../firebase/firestore.js"
+
 export const login = () => {
   const form = `
       <div id ='logo-scoobygram' class='logo-scoobygram'>
@@ -38,8 +40,18 @@ export const login = () => {
 export const loginGoogle = () => {
   const googleId = document.getElementById('imgGoogle');
   googleId.addEventListener('click' , async (e)=>{
+    e.preventDefault();
     try{
-      await loginWithGoogle();
+      const user = await loginWithGoogle();
+      const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+      await userDataBase(userToCreate);
+     
+     
       
     }catch (error){}
   });

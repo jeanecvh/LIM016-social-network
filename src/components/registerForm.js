@@ -1,5 +1,5 @@
-import {userCreate, lala} from "../firebase/auth.js"
-
+import {userCreate,emailVerificate} from "../firebase/auth.js"
+import {userDataBase} from "../firebase/firestore.js"
 export const formTemplateRegister = () => {
   const viewForm =
     `
@@ -63,15 +63,20 @@ export const formTemplateRegister = () => {
   };
 
   async function loginSubmit(){        
-    let userName =document.getElementById("name").value;
-    console.log(userName)
-    let userEmail = document.getElementById("email").value;
-    console.log(userEmail)
-    let userPassword = document.getElementById("password").value;
+    const userName =document.getElementById("name").value;
+    const userEmail = document.getElementById("email").value;
+    const userPassword = document.getElementById("password").value;
     try {
-    const login = await  userCreate(userEmail, userPassword)
-      console.log(login.user.email ,'que tal')
-      lala()
+    const login = await  userCreate(userEmail, userPassword);
+      console.log(login.user ,'que tal')
+      emailVerificate();
+      const userToCreate = {
+        nombre: userName,
+        correo: userEmail,
+        foto: '',
+        id: login.user.uid
+      };
+      userDataBase(userToCreate);
       return login.user
     }
     catch(err){
@@ -81,10 +86,11 @@ export const formTemplateRegister = () => {
   export const register= () => {
       const form = document.getElementById('form-btn');
       form.addEventListener('click', (e) => {
-        e.preventDefault()
-        loginSubmit()
+        e.preventDefault();
+        loginSubmit();
+     
   });
-  }
+  };
  
  /*
 const formRegister = document.getElementById('form');
