@@ -7,12 +7,13 @@ body {
 	background: #E5E5E5;
 }
 
-main {
-	max-width: 800px;
+
+	/*max-width: 800px;
 	width: 90%;
 	margin: auto;
-	padding: 40px;
-}
+	padding: 40px;*/
+
+
 .form-label {
 	display: block;
 	font-weight: 700;
@@ -45,7 +46,7 @@ main {
 .form-input-err-active {
 	display: block;
 }
-.form-validate {
+.form-validate {	
 	position: absolute;
 	right: 10px;
 	bottom: 15px;
@@ -55,11 +56,11 @@ main {
 }
 .form-alert {
 	height: 45px;
-	line-height: 45px;
 	background: #F66060;
 	padding: 0 15px;
 	border-radius: 3px;
-	display: none;
+	display: none;	
+	margin-top: 20px;
 }
 .form-alert-active {
 	display: block;
@@ -87,9 +88,10 @@ main {
 	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 }
 .form-message-valid {
-	font-size: 14px;
+	font-size: 0.9em;
+	margin-top: 1em;
 	color: #00BCB4;
-	display: none;
+	display: block;
 }
 
 .form-message-valid-active {
