@@ -2,26 +2,28 @@ import {userCreate, emailVerificate} from "../firebase/auth.js"
 
 export const formTemplateRegister = () => {
   const viewForm =
-    `<h1 id="h1Form">Formulario de registro</h1>
+    `<div class="fondGif">
+     <div class="formFond">
     <form class="form" id="form" name ="form">
+    <h1 id="h1Form" class="h1Form">Formulario de registro</h1>
       <!-- Grupo: Nombre -->
       <div class="form-group" id="group-name">
         <label for="name" class="form-label">Nombre y Apellido</label>
         <div class="form-group-input">
-          <input type="text" class="form-input" name="name" id="name" placeholder="Barry Whithe" autocomplete="off">
+          <input type="text" class="form-input" name="name" id="name" autocomplete="off">
           <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form-input-err" id="errName">El usuario solo puede contener letras, no numeros, no caracteres especiales.</p>
+        <p class="form-input-err" id="errName">No puede contener numeros, ni caracteres especiales.</p>
       </div>
       <!-- Grupo: Correo Electronico -->
       <div class="form-group" id="group-email">
         <label for="email" class="form-label">Correo Electrónico</label>
         <div class="form-group-input ">
-          <input type="email" class="form-input" name="email" id="email" placeholder="correo@correo.com"
+          <input type="email" class="form-input" name="email" id="email"
             autocomplete="off">
           <i class="form-validate fas fa-times-circle"></i>
         </div>
-        <p class="form-input-err" id="errEmail">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+        <p class="form-input-err" id="errEmail">Ingresa un formato de correo valido.</p>
       </div>
       <!-- Grupo: Contraseña -->
       <div class="form-group" id="group-password">
@@ -44,7 +46,7 @@ export const formTemplateRegister = () => {
       </div>
       <!-- imput-->
       <div class="form-alert" id="formAlert">
-        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        <p class="submitErr"><i class="fas fa-exclamation-triangle"></i><b>* Error: </b>Por favor rellena el formulario correctamente. </p>
       </div>
 
       <div class="form-group-btn-send">
@@ -52,6 +54,8 @@ export const formTemplateRegister = () => {
         <p class="form-message-valid" id="messageFormValid">Se ha enviado un correo de verificacion!</p>
       </div>
     </form>
+    </div>
+    </div>
     `
     ;   
     const divFormRegister = document.createElement('section');

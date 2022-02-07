@@ -1,6 +1,7 @@
 import { components } from '../components/components.js';
 import {loginGoogle, loginBotton} from '../components/login.js';
 import {register} from "../components/registerForm.js"
+
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
     const header = document.getElementById('header');
@@ -19,6 +20,10 @@ export const componentsViews = (hash) => {
             header.appendChild(components.Header())
             register()
             break;
+            case '#/verificacion':
+                main.appendChild(components.Message());
+                header.appendChild(components.Header());
+                break;
         default:
             main.innerHTML = 'Página No Encontrada';
             break;
