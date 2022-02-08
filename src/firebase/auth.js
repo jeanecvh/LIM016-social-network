@@ -7,6 +7,7 @@ import {
     createUserWithEmailAndPassword,
     sendEmailVerification,
     signInWithEmailAndPassword,
+    sendPasswordResetEmail,
   } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
@@ -37,6 +38,9 @@ export const loginWithGoogle = async () => {
 };
 //Ingreso de usuario con email y contraseña
 export const loginWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+//Envía un correo electrónico de restablecimiento de contraseña
+export const recoverPasswordWithEmail = (email) => sendPasswordResetEmail(auth, email);
 
 
 
