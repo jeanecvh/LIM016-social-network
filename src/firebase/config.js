@@ -1,5 +1,7 @@
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+import {  getFirestore } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";//SDK base de datos
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEajTYXfRgqkLT_p34wSXFpBSf9o9lnSQ",
@@ -13,3 +15,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+//inicializamos firestore
+export const db = getFirestore(app);

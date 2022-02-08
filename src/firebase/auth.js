@@ -29,10 +29,10 @@ export const loginWithGoogle = async () => {
 
         const response = await signInWithPopup(auth, providerGoogle);/*incia una ventana emergente  y en la funcion
          mostramos en proveedor con el que vamos a iniciar sesion*/
-        console.log(response);
+        //console.log(response);
         return response.user;
     } catch (error) {
-        console.log('prueba : ', error );
+      //  console.log('prueba : ', error );
         throw new Error(error);
     }
 };

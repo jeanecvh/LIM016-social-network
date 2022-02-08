@@ -1,7 +1,9 @@
+import { userDataBase} from "../firebase/firestore.js"
 import {
   loginWithGoogle,
   loginWithEmailAndPassword,
 } from "../firebase/auth.js";
+
 
 export const login = () => {
   const formLogin = `
@@ -46,24 +48,23 @@ export const login = () => {
   divFormLogin.classList.add("login");
   divFormLogin.innerHTML = formLogin;
 
-  /*const iconEye = divFormLogin.querySelector('.icon-eye');
-      iconEye.addEventListener('click', async () => {
-      console.log('aaaaaaa','CLICKED');
-      .then(res => res(console.log(this));
-      });
-      <span class="icon-eye" >
-                <i class="fas fa-eye-slash"></i>
-              </span>
-      */
   return divFormLogin;
 };
-
 export const loginGoogle = () => {
+
   const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async (e) => {
     try {
-      await loginWithGoogle();
-    } catch (error) {}
+      const user = await loginWithGoogle();
+      const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+      await userDataBase(userToCreate);
+
+    } catch (error) { }
   });
 };
 
@@ -75,25 +76,12 @@ async function loginUser() {
     console.log(emailValue, passwordValue, "Buenas");
     return login;
   } catch (error) {
-    if (error = 'auth/wrong-password'){
+    if (error = 'auth/wrong-password') {
       console.log('ta mal')
       document.querySelector('.div-wrongpassword').style.display = "block";
-    } 
+    }
   }
 };
-
-/*
-const messageErrors = () => {
- const passwordValue = document.getElementById("password").value;
-  passwordValue.addEventListener("keyup", () =>{  
-  if (passwordValue == null){
-    document.querySelector('.div-wrongpassword').style.display = "block"
-  } else {
-        e.document.querySelector('.div-wrongpassword').style.display = "none"
-    }
-  })
-} 
-*/
 
 export const loginBotton = () => {
   const bottonLogin = document.getElementById("btn_login");
