@@ -16,7 +16,7 @@ export const login = () => {
           <p>INICIAR SESIÓN </p>
         </div>
         <div class="div-form-login div-form-login-input">
-          <input class ='login-input data-login' type="text" id="email-login" placeholder="Usuario" required>
+          <input class ='login-input data-login' type="text" id="email-login" placeholder="Correo" required>
         </div>
         <div class= 'div-form-login div-form-login-input '>
           <input class ='login-input data-login' type="password" id="password" placeholder="Contraseña" required>

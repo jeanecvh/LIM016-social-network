@@ -1,6 +1,6 @@
 
 main {
-	height: 100vh;
+	height: 100vh;}
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -36,14 +36,14 @@ main {
 
 .h1Form{
 	font-size: 1.2em;
-	color: #bb2929;
+	color: rgb(255 181 71);
 	width: 14em; 
 	font-family: 'roboto';
 	text-transform:uppercase;
 }
 .form-group{
 	font-size: 3.8vw;
-	color: rgb(255, 181, 71);
+	color: rgb(6 6 6 / 62%);
 	margin-top: 0.5em;
 	font-family: 'roboto';
 }
@@ -60,9 +60,9 @@ main {
 }
 .form-input {
 	width: 100%;
-	background: #dfdddd;
+	background: #ffb5474a;
 	border: 3px solid transparent;
-	border-radius: 4.5vw;
+	border-radius: 1.5vw;
 	height: 30px;
 	line-height: 45px;
 	padding: 0 40px 0 20px;
@@ -128,10 +128,10 @@ main {
 	color: rgb(255, 255, 255);
 	text-decoration: none; 
 	border: none;
-	border-radius: 2.5vw;
+	border-radius: 1.5vw;
 	cursor: pointer;
 	transition: .1s ease all;
-   background-color: #b6df4f;
+	background-color: #00bcb4;
 	font-size: 1em;
 	padding: 1vh 2vh;
 	margin-top: 30px;

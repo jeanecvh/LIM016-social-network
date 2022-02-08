@@ -19,6 +19,7 @@ export const componentsViews = (hash) => {
         case '#/registro':
             main.appendChild(components.Registro());
             register();
+            header.appendChild(components.Header());
             break;
         case '#/resetPassword':
             main.appendChild(components.ResetPassword());
