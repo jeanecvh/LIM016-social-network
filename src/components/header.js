@@ -2,7 +2,7 @@ export const headerTemplate = () => {
     const header =
       `<header>
 <div class="logo-container">
-    <img src="../src/images/logos/logoSG.png" alt="logo" class="logo"/>
+    <img src="./images/logos/Logo_ScoobyGram.png" alt="logo" class="logo"/>
 </div>
 </header>`
 

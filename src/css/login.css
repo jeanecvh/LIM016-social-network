@@ -1,17 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-*::before,
-*::after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-
-body{
-    margin: 0%;
-    padding: 0%;
-}
-
 .text-login p{
     font-size: x-large;
     color: #FFB547;
@@ -45,24 +32,10 @@ body{
     
 }
 
-.forget-password{
-    margin: 1.5%;
-    padding: 1%;
-    display: flex;
-    justify-content: center;
-}
-
-.div-wrongpassword{
-    display: none;
-    width: 50%;
-    padding-left: 8%;
-    color: #ff6961;
-    font-weight: bold;
-}
-
 @media only screen and (min-width: 1170px) {
     body{
         overflow: hidden;
+         min-height: 100vh;
     }
     #login {  display: grid;
         grid-template-columns: 1fr 1fr;
@@ -71,34 +44,33 @@ body{
           "view-desktop view-phone"
           "view-desktop view-phone"
           "view-desktop view-phone";
-      }
+          width: 100%;
+          height: 100vh;
+    }
       
-      .logo-img{
+    .logo-img{
         width: 60%;
         margin-left: 21%;
-}
-      .view-desktop { 
+    }
+    .view-desktop { 
           grid-area: view-desktop;
           background-image: url('../images/background/scoobygif776X.gif');
           min-height: auto;
           background-size: cover;
           background-repeat: no-repeat;
-
-         }
+    }
       
-      .view-phone{ 
+    .view-phone{ 
         grid-area: view-phone; 
         display: flex;
         flex-direction: column;
         align-items: center;
-    
     }  
     .div-form-login{
         margin: 1%;
     } 
 
-    .login-input
-{
+    .login-input{
     background: transparent;
     border: 3px;
     height: 50px;
@@ -113,33 +85,39 @@ body{
     -webkit-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
-}
+    }
 
-::placeholder{
-    color: rgb(78, 78, 78);
-}
-.login-input:hover, .login-input:focus {
-    background: #9ccc65;
-    outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-color: #8BC34A;
-}
+    ::placeholder{
+        color: rgb(78, 78, 78);
+    }
+    .login-input:hover, .login-input:focus {
+        background: #9ccc65;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-color: #8BC34A;
+    }
 
-.text-color {
-    font-weight: bolder;
-}
+    .text-color {
+        font-weight: bolder;
+    }
+    .div-wrongpassword{
+        display: none;
+        width: 50%;
+        padding-left: 6%;
+        color: #ff6961;
+        font-weight: bold;
+        margin: -2%;
+    }
+
+    .forget-password{
+        margin: 2%;
+    }   
 }
 
 @media only screen and (max-width: 600px) {
-
-    body{
-        margin: 0%;
-        padding: 0%;
-    }
-
     #main{
-        margin: 0%;
+        margin: 5%;
         padding: 0%;
     }
     #login{
@@ -187,11 +165,11 @@ body{
     .login-input
     {
         background: transparent;
-        border: 3px;
+        border: 1px;
         height: 50px;
-        color: rgb(78, 78, 78)!important;
-        border: 5px solid transparent;
-        background: #8bc34aaf;
+        color: rgb(241 234 234)!important;
+        border: 2px solid transparent;
+        background: #f4f7f252;
         border-radius: 40px;
         padding-left: 20px;
         padding-right: 20px;
@@ -201,14 +179,15 @@ body{
     }
     
     ::placeholder{
-        color: rgb(78, 78, 78);
+        color: rgba(255, 255, 255, 0.781);
+        font-weight: bold;
     }
     .login-input:hover, .login-input:focus {
-        background: #9ccc65;
+        background: #f9f6f621;
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #8BC34A;
+        border-color: #689f38;
     }
     .btn_login{
         background: transparent;
@@ -221,8 +200,8 @@ body{
         color: #ffffff;
         padding-top: 13px;
         padding-bottom: 13px;
-        padding-left: 55px;
-        padding-right: 55px;
+        padding-left: 30px;
+        padding-right: 30px;
         background-color: #689F38;
         font-weight: bold;
     }
@@ -237,6 +216,13 @@ body{
         padding: 1%;
         display: flex;
         justify-content: center;
+    }
+
+    .div-wrongpassword {
+        display: none;
+        color: #ff6961;
+        font-weight: bold;
+        font-size: medium;
     }
 
 }
