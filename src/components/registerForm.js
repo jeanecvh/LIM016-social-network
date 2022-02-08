@@ -62,7 +62,7 @@ export const formTemplateRegister = () => {
     return divFormRegister;
   };
 
-  async function loginSubmit(){        
+ export  async function loginSubmit(){        
     const userName =document.getElementById("name").value;
     const userEmail = document.getElementById("email").value;
     const userPassword = document.getElementById("password").value;
