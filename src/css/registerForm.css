@@ -1,3 +1,6 @@
+
+main {
+	height: 100vh;
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -43,7 +46,6 @@
 	color: rgb(255, 181, 71);
 	margin-top: 0.5em;
 	font-family: 'roboto';
-	
 }
 
 .form-label {
