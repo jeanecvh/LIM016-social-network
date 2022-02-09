@@ -17,8 +17,9 @@ export const componentsViews = (hash) => {
             loginBotton();
             break;
         case '#/register':
-            header.appendChild(components.Header(main.appendChild(components.Registro())));
+            main.appendChild(components.Registro());
             register();
+            main.appendChild(components.Header());
             break;
         case '#/resetPassword':
             main.appendChild(components.ResetPassword());

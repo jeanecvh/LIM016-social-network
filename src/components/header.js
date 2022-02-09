@@ -7,7 +7,7 @@ export const headerTemplate = (section) => {
 </header>
 ${section}`
 
-const divHeader = document.createElement('div');
+const divHeader = document.createElement('header');
 divHeader.innerHTML = header;
 
 return divHeader}
