@@ -24,7 +24,7 @@ export const resetPassword = () => {
             <button type="submit" id="btn-recover-password" class="reset-button">Recuperar Contraseña</button>
         </div>
         <div class="div-form-forget-password div-form-forget-password-href">
-            <a class = 'text-color href-create-account' href="/#/registro">Crear cuenta nueva</a>
+            <a class = 'text-color href-create-account' href="/#/register">Crear cuenta nueva</a>
             <a class = 'text-color' href="/#/login">Volver al inicio de sesión</a>
         </div>
     </form>`;

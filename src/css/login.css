@@ -1,4 +1,83 @@
 
+#login {  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "view-desktop view-phone"
+      "view-desktop view-phone"
+      "view-desktop view-phone";
+      width: 100%;
+      height: 100vh;
+}
+  
+.logo-img{
+    width: 60%;
+    margin-left: 21%;
+}
+.view-desktop { 
+      grid-area: view-desktop;
+      background-image: url('../images/background/scoobygif776X.gif');
+      min-height: auto;
+      background-size: cover;
+      background-repeat: no-repeat;
+}
+  
+.view-phone{ 
+    grid-area: view-phone; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%;
+}  
+.div-form-login{
+    margin: 1%;
+} 
+
+.login-input{
+    background: transparent;
+    border: 3px;
+    height: 50px;
+    width: 60vmin;
+    color: rgb(78, 78, 78)!important;
+    border: 3px solid transparent;
+    background: #4ab8c347;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    box-shadow: 5px 2px 5px #999;
+    margin: 2% 0;
+    border-color: #00800014;
+}
+
+::placeholder{
+    color: rgb(78, 78, 78);
+}
+.login-input:hover, .login-input:focus {
+    background: #00BCB4;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #04837c;
+}
+
+.text-color {
+    font-weight: bolder;
+}
+.div-wrongpassword{
+    display: none;
+    width: 50%;
+    padding-left: 6%;
+    color: #ff6961;
+    font-weight: bold;
+    margin: -2%;
+}
+
+.forget-password{
+    margin: 2%;
+}   
 .text-login p{
     font-size: x-large;
     color: #FFB547;
@@ -12,19 +91,21 @@
 
 .btn_login{
     background: transparent;
-    background: #9ccc6579;
+    background: #00BCB4;
     border: 5px solid transparent;
     border: 3px;
     font-size: 20px;
-    border-radius: 40px;
-    text-decoration: none; 
+    border-radius: 20px;
+    text-decoration: none;
     color: #ffffff;
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 55px;
     padding-right: 55px;
-    background-color: #689F38;
+    background-color: #00BCB4;
     font-weight: bold;
+    cursor: pointer;
+    box-shadow: 5px 2px 5px #999;
 }
 
 .text-color{
@@ -32,95 +113,12 @@
     
 }
 
-@media only screen and (min-width: 1170px) {
-    body{
-        overflow: hidden;
-         min-height: 100vh;
-    }
-    #login {  display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-flow: row;
-        grid-template-areas:
-          "view-desktop view-phone"
-          "view-desktop view-phone"
-          "view-desktop view-phone";
-          width: 100%;
-          height: 100vh;
-    }
-      
-    .logo-img{
-        width: 60%;
-        margin-left: 21%;
-    }
-    .view-desktop { 
-          grid-area: view-desktop;
-          background-image: url('../images/background/scoobygif776X.gif');
-          min-height: auto;
-          background-size: cover;
-          background-repeat: no-repeat;
-    }
-      
-    .view-phone{ 
-        grid-area: view-phone; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }  
-    .div-form-login{
-        margin: 1%;
-    } 
 
-    .login-input{
-    background: transparent;
-    border: 3px;
-    height: 50px;
-        /* width: 440px; */
-        /* font-size: large; */
-    color: rgb(78, 78, 78)!important;
-    border: 5px solid transparent;
-    background: #8bc34aaf;
-    border-radius: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    -webkit-transition: .3s;
-    -o-transition: .3s;
-    transition: .3s;
-    }
 
-    ::placeholder{
-        color: rgb(78, 78, 78);
-    }
-    .login-input:hover, .login-input:focus {
-        background: #9ccc65;
-        outline: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border-color: #8BC34A;
-    }
-
-    .text-color {
-        font-weight: bolder;
-    }
-    .div-wrongpassword{
-        display: none;
-        width: 50%;
-        padding-left: 6%;
-        color: #ff6961;
-        font-weight: bold;
-        margin: -2%;
-    }
-
-    .forget-password{
-        margin: 2%;
-    }   
-}
-
-@media only screen and (max-width: 600px) {
-    #main{
-        margin: 5%;
-        padding: 0%;
-    }
+@media only screen and (max-width: 768px) {
     #login{
+        display: grid;
+        grid-template-columns: 1fr;
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.10)), url('../images/background/scoobyGifResponsive1.gif');
         width: 100%;
         min-height: 100%;
@@ -146,6 +144,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 6%;
     }
     
     .div-form-login{
@@ -166,16 +165,18 @@
     {
         background: transparent;
         border: 1px;
-        height: 50px;
+        height: 50vm;
         color: rgb(241 234 234)!important;
         border: 2px solid transparent;
         background: #f4f7f252;
-        border-radius: 40px;
+        border-radius: 20px;
         padding-left: 20px;
         padding-right: 20px;
         -webkit-transition: .3s;
         -o-transition: .3s;
         transition: .3s;
+        box-shadow: none;
+        width: 70vmin;
     }
     
     ::placeholder{
@@ -191,19 +192,21 @@
     }
     .btn_login{
         background: transparent;
-        background: #9ccc6579;
+        background: #FFB547;
         border: 5px solid transparent;
         border: 3px;
         font-size: 20px;
-        border-radius: 40px;
+        border-radius: 20px;
         text-decoration: none; 
         color: #ffffff;
         padding-top: 13px;
         padding-bottom: 13px;
         padding-left: 30px;
         padding-right: 30px;
-        background-color: #689F38;
+        background-color: #FFB547;
         font-weight: bold;
+        cursor: pointer;
+        box-shadow: none;
     }
     
     .text-color{
