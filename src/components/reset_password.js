@@ -3,10 +3,10 @@ import { recoverPasswordWithEmail } from "../firebase/auth.js";
 export const resetPassword = () => {
   const formTemplateResetPassword = `
     <div class = 'view-desktop views'>
-    </div>
-    <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
+      </div>
+    <!-- Nombre  <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
         <img class ='logo-img-reset'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
-    </div>
+    </div>-->
         <form id='form-forget-password' class ='form-forget-password'>
         <div class ='text-login'>
             <p>RECUPERAR CONTRASEÑA</p>
@@ -24,7 +24,7 @@ export const resetPassword = () => {
             <button type="submit" id="btn-recover-password" class="reset-button">Recuperar Contraseña</button>
         </div>
         <div class="div-form-forget-password div-form-forget-password-href">
-            <a class = 'text-color href-create-account' href="/#/registro">Crear cuenta nueva</a>
+            <a class = 'text-color href-create-account' href="/#/register">Crear cuenta nueva</a>
             <a class = 'text-color' href="/#/login">Volver al inicio de sesión</a>
         </div>
     </form>`;
@@ -46,7 +46,7 @@ async function recoverPassword() {
     console.log(error)
     console.log('Cuenta no registrada');
     if (error = 'error'){
-      console.log('ta mal')
+      console.log('')
       document.querySelector('.div-emailwhitoutregister').style.display = "block";
     }
   }
