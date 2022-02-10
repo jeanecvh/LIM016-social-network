@@ -16,10 +16,10 @@ export const componentsViews = (hash) => {
             loginGoogle();
             loginBotton();
             break;
-        case '#/registro':
+        case '#/register':
             main.appendChild(components.Registro());
             register();
-            header.appendChild(components.Header());
+            main.appendChild(components.Header());
             break;
         case '#/resetPassword':
             main.appendChild(components.ResetPassword());

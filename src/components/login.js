@@ -27,12 +27,11 @@ export const login = () => {
         <div class= 'forget-password'>
           <a class='text-color' id='forget-password-redirectioanary' href='/#/resetPassword'>Olvidé contraseña</a>
         </div>
-        <div class= 'forget-password'>
-          <input type="checkbox" name="remember" id="remember" class="form-check-input"/>
-          <label class='text-color' for="remember-me">Recordarme</label>
-        </div>
         <div class = "div-form-login">
           <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
+        </div>
+        <div class = "div-form-login">
+          <a class = 'text-color' href="/#/register">Crear cuenta nueva</a>
         </div>
         <div class = "div-form-login">
           <p class = 'text-color'>O inicie la sesión con</p>
