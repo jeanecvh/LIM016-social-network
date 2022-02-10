@@ -2,6 +2,7 @@ import { recoverPasswordWithEmail } from "../firebase/auth.js";
 
 export const resetPassword = () => {
   const formTemplateResetPassword = `
+
     <div class = 'view-desktop views'>
       </div>
     <!-- Nombre  <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
@@ -28,6 +29,7 @@ export const resetPassword = () => {
             <a class = 'text-color' href="/#/login">Volver al inicio de sesión</a>
         </div>
     </form>`;
+
   const divFormResetPassword = document.createElement("section");
   divFormResetPassword.setAttribute("id", "reset-password");
   divFormResetPassword.classList.add("reset-password'");
@@ -45,7 +47,7 @@ async function recoverPassword() {
   } catch (error) {
     console.log(error)
     console.log('Cuenta no registrada');
-    if (error = 'error'){
+    if (error = 'error') {
       console.log('')
       document.querySelector('.div-emailwhitoutregister').style.display = "block";
     }
