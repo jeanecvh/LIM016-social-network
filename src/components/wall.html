@@ -11,6 +11,68 @@
     <title>Document</title>
 </head>
 <style>
+    body{
+        font-family: 'Roboto', sans-serif;
+        margin: 0%;
+        padding: 0%;
+        min-height: 100vh;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    
+    .wall {
+    display: grid; 
+    grid-template-columns: 0.2fr 1.5fr 1.2fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "menu wall-area utils"
+        "menu wall-area utils"
+        "menu wall-area utils";
+     
+    }
+    .menu { 
+        grid-area: menu;
+        background-color: #00BCB4;
+     }
+
+     .icons-menu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+     }
+
+     .divs-menu{
+        margin: 25%;
+     }
+     .div-logo{
+        display: flex;
+        justify-content: center;
+     }
+     .logo-wall{
+         width: 80%;
+         padding-top: 20%;
+         cursor: pointer;
+     }
+
+     .fafa-menu{
+         color: white;
+         font-size: 35px;
+         cursor: pointer;
+     }
+    .wall-area { 
+
+        background-color: rgba(255, 228, 196, 0.274);
+        padding-left: 5%;
+        border: 1px solid transparent;
+        border-color: rgba(0, 92, 128, 0.411);
+     }
+    .utils { 
+        grid-area: utils;
+        background-color: black;
+     }
     .user-photo-wall {
         display: inline-block;
         position: relative;
@@ -37,12 +99,14 @@
         flex-direction: row;
         justify-content: space-between;
         margin-top: 5%;
+        margin-bottom: 5%;
     }
     .fa-image{
         color: #FFB547;
         font-size: 30px;
         size: 100%;
         padding-left: 1%;
+        cursor: pointer;
     }
 
     .div-user-name-wall p{
@@ -59,34 +123,63 @@
         font-size: medium;
         font-weight: bold;
         margin-right: 16%;
+        cursor: pointer;
     }
 
     .text-area-publication{
         border: transparent;
         color: gray;
         width: auto;
+        background-color: transparent;
     }
 
 </style>
 <body>
-    <section>
-        <div>
-            <div id = "user-descript" class = "user-descript">
-                <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img id= "user-photo"src="../images/background/bola.jpg" alt="">
+    <section id="wall" class="wall">
+        <div id="menu" class="menu">
+            <div id="icons-menu" class="icons-menu">
+                <div id="div-logo divs-menu" class="div-logo">
+                    <img class="logo-wall" src="../images/logos/favicon.png" alt="">
                 </div>
-                <div id = "div-user-name-wall" class= "div-user-name-wall">
-                    <p>Nombre de usuario</p>
-                </div>
+                <span class="divs-menu">
+                    <i class="fa-solid fa-address-book fafa-menu"></i>
+                </span>
+                <span class="divs-menu" >
+                    <i class="fa-solid fa-bell fafa-menu"></i>
+                </span>
+                <span class="divs-menu" >
+                    <i class="fa-solid fa-house fafa-menu"></i>
+                </span>
+                <span class="divs-menu" >
+                    <i class="fa-solid fa-gear fafa-menu"></i>
+                </span>
+                <span class="divs-menu" >
+                    <i class="fa-solid fa-arrow-right-to-bracket fafa-menu"></i>
+                </span>
             </div>
+            
+        </div>
+        <div id="wall-area" class = "wall-area">
+            <div id="box-post" class="box-post">
+                <div id = "user-descript" class = "user-descript">
+                    <div id = "user-photo-wall" class = "user-photo-wall">
+                        <img id= "user-photo"src="../images/background/bola.jpg" alt="">
+                    </div>
+                    <div id = "div-user-name-wall" class= "div-user-name-wall">
+                        <p>Nombre de usuario</p>
+                    </div>
+                </div>
+                <div>
+                    <textarea id="text-area-publication" class="text-area-publication" name="comentarios" rows="10" cols="45" placeholder="¿Qué estás pensando?"></textarea>
+                </div>
+                <div id="btns-share" class="btns-share">
+                    <i class="fa-solid fa-image"></i>
+                    <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
+                </div>
+                </div>
+            </div>       
+        <div id="utils" class="utils">
 
-            <div>
-                <textarea id="text-area-publication" class="text-area-publication" name="comentarios" rows="10" cols="45" placeholder="¿Qué estás pensando?"></textarea>
-            </div>
-            <div id="btns-share" class="btns-share">
-                <i class="fa-solid fa-image"></i>
-                <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
-            </div>
         </div>
     </section>
 </body>
