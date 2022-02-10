@@ -17,8 +17,12 @@ export const timeline = () => {
             <i class="fa-solid fa-image"></i>
             <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
         </div>
-    </div>`
-
+    </div>
+    <div id="posts" class = "posts">
+        <p>las publicaciones deben ir aquí</p>
+    </div>
+    `
+    
     const sectionWall = document.createElement("section");
     sectionWall.setAttribute("id", "wall");
     sectionWall.classList.add("wall");
