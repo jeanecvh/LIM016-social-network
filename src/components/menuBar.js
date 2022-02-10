@@ -19,11 +19,7 @@ export const menuBar = () => {
         <span class="divs-menu" >
             <i class="fa-solid fa-arrow-right-to-bracket fafa-menu"></i>
         </span>
-    </div>`
-
-    const divMenu = document.createElement('div');
-    divMenu.setAttribute("id","menu");
-    divMenu.classList.add("menu");
-    divMenu.innerHTML = templateMenuBar
-
+    </div>
+        `
+    return templateMenuBar
 }
