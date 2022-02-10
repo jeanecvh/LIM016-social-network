@@ -1,3 +1,14 @@
+.wall {
+    display: grid; 
+    grid-template-columns: 0.2fr 1.5fr 1.2fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "menu wall-area utils"
+        "menu wall-area utils"
+        "menu wall-area utils";
+     
+}
 .user-photo-wall {
     display: inline-block;
     position: relative;
@@ -24,12 +35,14 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 .fa-image{
     color: #FFB547;
     font-size: 30px;
     size: 100%;
     padding-left: 1%;
+    cursor: pointer;
 }
 
 .div-user-name-wall p{
@@ -46,10 +59,12 @@
     font-size: medium;
     font-weight: bold;
     margin-right: 16%;
+    cursor: pointer;
 }
 
 .text-area-publication{
     border: transparent;
     color: gray;
     width: auto;
+    background-color: transparent;
 }
