@@ -8,6 +8,8 @@ export const headerTemplate = (section) => {
 ${section}`
 
 const divHeader = document.createElement('header');
+divHeader.setAttribute("id", "header");
+divHeader.classList.add("header");
 divHeader.innerHTML = header;
 
 return divHeader
