@@ -53,7 +53,7 @@ async function recoverPassword() {
       document.querySelector('.div-emailwhitoutregister').style.display = "block";
     }
   }
-}
+};
 
 export const functionBtnReset = () => {
   const btnForgetPassword = document.getElementById("btn-recover-password");
