@@ -1,0 +1,55 @@
+.user-photo-wall {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5%;
+}
+.user-photo-wall img{
+    width: 100%;
+    height: 100%;
+}
+
+.user-descript{
+    display: flex;
+    align-items: center;
+    margin-bottom: 6%;
+
+}
+
+.btns-share{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+.fa-image{
+    color: #FFB547;
+    font-size: 30px;
+    size: 100%;
+    padding-left: 1%;
+}
+
+.div-user-name-wall p{
+    color: #FFB547;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.btn-share-publication{
+    background: #00BCB4;
+    color: white;
+    border: 5px solid transparent;
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: bold;
+    margin-right: 16%;
+}
+
+.text-area-publication{
+    border: transparent;
+    color: gray;
+    width: auto;
+}
