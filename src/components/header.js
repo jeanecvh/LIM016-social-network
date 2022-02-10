@@ -10,5 +10,6 @@ ${section}`
 const divHeader = document.createElement('header');
 divHeader.innerHTML = header;
 
-return divHeader}
+return divHeader
+}
 

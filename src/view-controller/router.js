@@ -5,7 +5,6 @@ import {functionBtnReset} from '../components/reset_password.js';
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
-    const header = document.getElementById('header');
     main.innerHTML = ''
     // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
@@ -25,10 +24,13 @@ export const componentsViews = (hash) => {
             main.appendChild(components.ResetPassword());
             functionBtnReset()
             break;
-        case '#/verificacion':
-              main.appendChild(components.Message());
-              header.appendChild(components.Header());
-             break;
+        case '#/verification':
+            main.appendChild(components.Message());
+            main.appendChild(components.Header());
+            break;
+        case '#/timeline':
+            main.appendChild(components.Timeline());
+            break;
         default:
             main.innerHTML = 'Página No Encontrada';
             break;
