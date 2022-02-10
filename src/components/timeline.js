@@ -1,6 +1,10 @@
-export const timeline = () => {
-    const wallTemplate = 
-    `<div>
+export const timeline = (sectionMenuBar,sectionUtils) => {
+    const wallTemplate =
+    `<div id="menu" class="menu">
+        ${sectionMenuBar}
+    </div>
+    
+    <div>
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
                 <img id= "user-photo"src="../images/background/bola.jpg" alt="">
@@ -21,6 +25,7 @@ export const timeline = () => {
     <div id="posts" class = "posts">
         <p>las publicaciones deben ir aquí</p>
     </div>
+    ${sectionUtils}
     `
     
     const sectionWall = document.createElement("section");

@@ -1,0 +1,37 @@
+.menu { 
+    grid-area: menu;
+    background-color: #00BCB4;
+ }
+
+ .icons-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ .divs-menu{
+    margin: 25%;
+ }
+ .div-logo{
+    display: flex;
+    justify-content: center;
+ }
+ .logo-wall{
+     width: 80%;
+     padding-top: 20%;
+     cursor: pointer;
+ }
+
+ .fafa-menu{
+     color: white;
+     font-size: 35px;
+     cursor: pointer;
+ }
+.wall-area { 
+
+    background-color: rgba(255, 228, 196, 0.274);
+    padding-left: 5%;
+    border: 1px solid transparent;
+    border-color: rgba(0, 92, 128, 0.411);
+ }
