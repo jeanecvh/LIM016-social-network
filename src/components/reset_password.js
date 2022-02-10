@@ -8,6 +8,7 @@ export const resetPassword = () => {
     <!-- Nombre  <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
         <img class ='logo-img-reset'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
     </div>-->
+    <br>
         <form id='form-forget-password' class ='form-forget-password'>
         <div class ='text-login'>
             <p>RECUPERAR CONTRASEÑA</p>
