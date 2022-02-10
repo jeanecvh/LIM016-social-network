@@ -4,6 +4,8 @@ import { formTemplateRegister } from './registerForm.js';
 import { resetPassword } from './reset_password.js';
 import{headerTemplate} from './header.js'
 import { emailConfirm } from './confirmEmail.js'
+import { timeline } from './timeline.js'
+import { menuBar } from './menuBar.js';
 
 
 export const components = {
@@ -12,6 +14,8 @@ export const components = {
     ResetPassword: resetPassword,
     Header: headerTemplate,
     Message: emailConfirm,
+    Timeline: timeline,
+    MenuBar: menuBar,
 }
 
 
