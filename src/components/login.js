@@ -16,17 +16,16 @@ export const login = () => {
           <p>INICIAR SESIÓN </p>
         </div>
         <div class="div-form-login div-form-login-input">
-          <input class ='login-input data-login' type="text" id="email-login" placeholder="Usuario" required>
+          <input class ='login-input data-login' type="text" id="email-login" placeholder="Correo" required>
         </div>
         <div class= 'div-form-login div-form-login-input '>
           <input class ='login-input data-login' type="password" id="password" placeholder="Contraseña" required>
         </div>
         <div class= div-wrongpassword>
-  
           <p> <i class="fas fa-exclamation-triangle"></i> Usuario o contraseña incorrecto</p>
         </div>
         <div class= 'forget-password'>
-          <a class='text-color' href='/#'>Olvidé contraseña</a>
+          <a class='text-color' id='forget-password-redirectioanary' href='/#/resetPassword'>Olvidé contraseña</a>
         </div>
         <div class= 'forget-password'>
           <input type="checkbox" name="remember" id="remember" class="form-check-input"/>
@@ -72,7 +71,6 @@ export const loginGoogle = () => {
 async function loginUser() {
   const emailValue = document.getElementById("email-login").value;
   const passwordValue = document.getElementById("password").value;
-
   try {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log(emailValue, passwordValue, "Buenas");
