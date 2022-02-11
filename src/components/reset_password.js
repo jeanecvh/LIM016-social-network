@@ -3,32 +3,34 @@ import { recoverPasswordWithEmail } from "../firebase/auth.js";
 export const resetPassword = () => {
   const formTemplateResetPassword = `
 
-    <div class = 'view-desktop views'>
+    
       </div>
     <!-- Nombre  <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
         <img class ='logo-img-reset'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
     </div>-->
     <br>
         <form id='form-forget-password' class ='form-forget-password'>
-        <div class ='text-login'>
-            <p>RECUPERAR CONTRASEÑA</p>
-        </div>
-        <div class='div-form-forget-password information-reset'>
-            <p class = 'text-form-forget-password'>Ingresa tu correo electrónico asociado, y te enviaremos un enlace para poder recuperar tu cuenta</p>
-        </div>
-        <div class="div-form-forget-password div-form-forget-password-input">
-            <input class ='reset-input login-data' type="text" id="email-send" placeholder="Ingresa@correo.com" required>
-        </div>
-        <div class= div-emailwhitoutregister>
-          <p> <i class="fas fa-exclamation-triangle"> </i>  Usuario no registrado</p>
-        </div>
-        <div class="div-form-forget-password div-form-forget-password-button">
-            <button type="submit" id="btn-recover-password" class="reset-button">Recuperar Contraseña</button>
-        </div>
-        <div class="div-form-forget-password div-form-forget-password-href">
-            <a class = 'text-color href-create-account' href="/#/register">Crear cuenta nueva</a>
-            <a class = 'text-color' href="/#/login">Volver al inicio de sesión</a>
-        </div>
+          <div class ='text-login'>
+              <p>RECUPERAR CONTRASEÑA</p>
+          </div>
+          <div class='div-form-forget-password information-reset'>
+              <p class = 'text-form-forget-password'>Ingresa tu correo electrónico asociado, y te enviaremos un enlace para poder recuperar tu cuenta</p>
+          </div>
+          <div class="container-email-button">
+              <div class="div-form-forget-password div-form-forget-password-input">
+                  <input class ='reset-input login-data' type="text" id="email-send" placeholder="Ingresa@correo.com" required>
+              </div>
+              <div class= div-emailwhitoutregister>
+                <p> <i class="fas fa-exclamation-triangle"> </i>  Usuario no registrado</p>
+              </div>
+              <div class="div-form-forget-password div-form-forget-password-button">
+                  <button type="submit" id="btn-recover-password" class="reset-button">Recuperar Contraseña</button>
+              </div>
+          </div>    
+          <div class="div-form-forget-password div-form-forget-password-href">
+              <a class = 'text-color href-create-account' href="/#/register">Crear cuenta nueva</a>
+              <a class = 'text-color' href="/#/login">Volver al inicio de sesión</a>
+          </div>
     </form>`;
 
   const divFormResetPassword = document.createElement("section");
