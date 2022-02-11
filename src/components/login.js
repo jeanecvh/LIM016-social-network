@@ -62,6 +62,8 @@ export const loginGoogle = () => {
         id: user.uid
       };
       await userDataBase(userToCreate);
+      window.location.hash = '#/timeline';
+      return;
 
     } catch (error) { }
   });
@@ -73,6 +75,7 @@ async function loginUser() {
   try {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log(emailValue, passwordValue, "Buenas");
+    
     return login;
   } catch (error) {
     if (error = 'auth/wrong-password') {
@@ -88,6 +91,8 @@ export const loginBotton = () => {
     e.preventDefault();
     console.log("funciona");
     loginUser();
+    window.location.hash = '#/timeline';
+    return;
   });
 };
 

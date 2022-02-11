@@ -1,7 +1,17 @@
+<<<<<<< HEAD
 import { insertData, dataDocument } from "../firebase/feed.js";
 export const timeline = () => {
     const wallTemplate = 
     `<div>
+=======
+export const timeline = (sectionMenuBar,sectionUtils) => {
+    const wallTemplate =
+    `<div id="menu" class="menu">
+        ${sectionMenuBar}
+    </div>
+    
+    <div>
+>>>>>>> b71f9ea17b697331644c9656b01d293bdb583577
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
                 <img id= "user-photo"src="./images/background/bola.jpg" alt="">
@@ -22,6 +32,7 @@ export const timeline = () => {
     <div id="posts" class = "posts">
       
     </div>
+    ${sectionUtils}
     `
     
     const sectionWall = document.createElement("section");
