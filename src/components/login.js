@@ -62,7 +62,7 @@ export const loginGoogle = () => {
         id: user.uid
       };
       await userDataBase(userToCreate);
-      window.location.hash = '#/muro';
+      window.location.hash = '#/timeline';
       return;
 
     } catch (error) { }
@@ -91,7 +91,7 @@ export const loginBotton = () => {
     e.preventDefault();
     console.log("funciona");
     loginUser();
-    window.location.hash = '#/muro';
+    window.location.hash = '#/timeline';
     return;
   });
 };
