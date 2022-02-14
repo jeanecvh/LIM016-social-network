@@ -1,5 +1,5 @@
+//import { userDataBase} from "../firebase/firestore.js"
 export const timeline = (sectionMenuBar,sectionUtils) => {
-    const wallTemplate =
     `<div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
@@ -34,6 +34,18 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
     sectionWall.innerHTML = wallTemplate;
 
     return sectionWall;
-
-
 }
+
+/*
+export const printUserinTimeLine = (user) => {
+    const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+    const querySnapshot = await userDataBase(userToCreate);
+    querySnapshot.forEach(doc => {
+        console.log(querySnapshot)
+    });
+}*/

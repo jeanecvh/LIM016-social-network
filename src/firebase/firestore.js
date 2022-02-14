@@ -4,6 +4,7 @@ import { collection, doc, getDoc, setDoc } from "https://www.gstatic.com/firebas
 
 const collectionUser = collection(db, 'usuario');
 
+
 //preguntando a firebase si el usuario existe
 export const findingUser = async (userId) => {
     try {
@@ -13,7 +14,6 @@ export const findingUser = async (userId) => {
     } catch (error) {
         throw new Error(error);
     }
-
 };
 
 export const userDataBase = async (user) => {
@@ -36,6 +36,9 @@ export const userDataBase = async (user) => {
 
     }
 };
+
+//export const  getUserForTimeLine = (user ) => collection(db, 'usuario').get();
+
 
 
 
