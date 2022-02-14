@@ -1,20 +1,12 @@
-<<<<<<< HEAD
 import { insertData, dataDocument } from "../firebase/feed.js";
-export const timeline = () => {
-    const wallTemplate = 
-    `<div>
-=======
 export const timeline = (sectionMenuBar,sectionUtils) => {
-    const wallTemplate =
-    `<div id="menu" class="menu">
+   const wallTemplate = `<div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    
     <div>
->>>>>>> b71f9ea17b697331644c9656b01d293bdb583577
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
-                <img id= "user-photo"src="./images/background/bola.jpg" alt="">
+                <img id= "user-photo"src="../images/background/bola.jpg" alt="">
             </div>
             <div id = "div-user-name-wall" class= "div-user-name-wall">
                 <p>Nombre de usuario</p>
@@ -30,7 +22,7 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
         </div>
     </div>
     <div id="posts" class = "posts">
-      
+        <p>las publicaciones deben ir aquí</p>
     </div>
     ${sectionUtils}
     `
@@ -41,6 +33,22 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
     sectionWall.innerHTML = wallTemplate;
     return sectionWall;
 }
+
+
+/*
+export const printUserinTimeLine = (user) => {
+    const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+    const querySnapshot = await userDataBase(userToCreate);
+    querySnapshot.forEach(doc => {
+        console.log(querySnapshot)
+    });
+}*/
+
 
 /*document.getElementById("btn-up").addEventListener("click", scrollUp);
 function scrollUp(){
@@ -101,3 +109,4 @@ export const btnPostShare = () =>{
     dataDocument()
   });
 }
+

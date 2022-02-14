@@ -51,7 +51,8 @@ export const login = () => {
 };
 export const loginGoogle = () => {
 
-  const googleId = document.getElementById("imgGoogle");
+  
+const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async (e) => {
     try {
       const user = await loginWithGoogle();
@@ -62,6 +63,7 @@ export const loginGoogle = () => {
         id: user.uid
       };
       await userDataBase(userToCreate);
+      console.log(userToCreate)
       window.location.hash = '#/timeline';
       return;
 
