@@ -5,7 +5,7 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
         ${sectionMenuBar}
     </div>
     <div>
-        <div id = "wall-area" class = "wall-area" >
+        <form id = "wall-area" class = "wall-area" >
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
                     <img id= "user-photo"src="../images/background/bola.jpg" alt="">
@@ -22,7 +22,7 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
                 <i class="fa-solid fa-image"></i>
                 <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
             </div>
-        </div> 
+        </form> 
         <div id="posts" class = "posts">
         </div>
     </div> 
@@ -79,21 +79,21 @@ const feed = (post) => {
     })
 };
 
-const btnDetele = ()  =>{
+const functionBtnDetele = ()  =>{
     btnDetele = document.getElementById("delete");
     btnDetele.addEventListener("click", async (e)=> {
         e.preventDefault();
 
     })
 }
-const btnLike = ()  =>{
-    let btnLile = document.getElementById("like");
+const functionBtnLike = ()  =>{
+    let btnLike = document.getElementById("like");
     btnLike.addEventListener("click", async (e)=> {
         e.preventDefault();
         
     })
 }
-const btnEdit = ()  =>{
+const functionBtnEdit = ()  =>{
     let btnEdit = document.getElementById("post-edit");
     btnEdit .addEventListener("click", async (e)=> {
         e.preventDefault();
@@ -104,11 +104,12 @@ const btnEdit = ()  =>{
 export const btnPostShare = () =>{ 
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
+    const wallArea = document.getElementById("wall-area");
     btnPost.addEventListener("click", async (e)=> {
     e.preventDefault();
     await insertData(post),
     feed(post.value)
-  
+    wallArea.reset()    
   });
 }
 
