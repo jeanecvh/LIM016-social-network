@@ -1,9 +1,8 @@
-//import { userDataBase} from "../firebase/firestore.js"
+import { insertData, dataDocument } from "../firebase/feed.js";
 export const timeline = (sectionMenuBar,sectionUtils) => {
-    `<div id="menu" class="menu">
+   const wallTemplate = `<div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    
     <div>
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
@@ -32,9 +31,9 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
     sectionWall.setAttribute("id", "wall");
     sectionWall.classList.add("wall");
     sectionWall.innerHTML = wallTemplate;
-
     return sectionWall;
 }
+
 
 /*
 export const printUserinTimeLine = (user) => {
@@ -49,3 +48,65 @@ export const printUserinTimeLine = (user) => {
         console.log(querySnapshot)
     });
 }*/
+
+
+/*document.getElementById("btn-up").addEventListener("click", scrollUp);
+function scrollUp(){
+    let scroll = document.documentElement.scrollTop
+    if( scroll >0 ){
+        window.requestAnimationFrame(scrollUp);
+        window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
+    }
+}*/
+const feed = (post) => {
+    const containPost= {
+   userPost: "nombre de usuario",
+   newPost: post,
+   btnLike:` <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p> `,
+   btnDelete: ` <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p> `,
+   btnEdit: ` <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p> `,
+    }    
+    Object.values(containPost).forEach( val => {
+    let div = document.createElement("div");
+    div.setAttribute("id", "newPost");
+    div.classList.add("post");
+    div.innerHTML = val;
+    console.log(val)
+    const app = document.getElementById("posts")
+   app.appendChild(div);
+    })
+};
+
+const btnDetele = ()  =>{
+    btnDetele = document.getElementById("delete");
+    btnDetele.addEventListener("click", async (e)=> {
+        e.preventDefault();
+
+    })
+}
+const btnLike = ()  =>{
+    let btnLile = document.getElementById("like");
+    btnLike.addEventListener("click", async (e)=> {
+        e.preventDefault();
+        
+    })
+}
+const btnEdit = ()  =>{
+    let btnEdit = document.getElementById("post-edit");
+    btnEdit .addEventListener("click", async (e)=> {
+        e.preventDefault();
+        
+    })
+}
+
+export const btnPostShare = () =>{ 
+    const post = document.getElementById("text-area-publication");
+    const btnPost = document.getElementById("btn-share-publication");
+    btnPost.addEventListener("click", async (e)=> {
+    e.preventDefault();
+    await insertData(post),
+    feed(post.value)
+    dataDocument()
+  });
+}
+
