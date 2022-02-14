@@ -2,7 +2,7 @@ export const menuBar = () => {
     const templateMenuBar = `
     <div id="icons-menu" class="icons-menu">
         <div id="div-logo divs-menu" class="div-logo">
-            <img class="logo-wall" src="../images/logos/favicon.png" alt="">
+            <img class="logo-wall" src="./images/logos/favicon.png" alt="">
         </div>
         <span class="divs-menu">
             <i class="fa-solid fa-address-book fafa-menu"></i>

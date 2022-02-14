@@ -31,12 +31,10 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
-<<<<<<< HEAD
-            main.appendChild(components.Timeline());
+          //  main.appendChild(components.Timeline());
+            
+            main.appendChild(components.Timeline(components.MenuBar()));
             btnPostShare()
-=======
-            muro.appendChild(components.Timeline(components.MenuBar()));
->>>>>>> b71f9ea17b697331644c9656b01d293bdb583577
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
