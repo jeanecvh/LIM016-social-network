@@ -4,7 +4,7 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
         ${sectionMenuBar}
     </div>
     
-    <div>
+    <div id = "wall-area" class = "wall-area" >
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
                 <img id= "user-photo"src="../images/background/bola.jpg" alt="">
@@ -21,9 +21,9 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
             <i class="fa-solid fa-image"></i>
             <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
         </div>
-    </div>
-    <div id="posts" class = "posts">
-        <p>las publicaciones deben ir aquí</p>
+        <div id="posts" class = "posts">
+            <p>las publicaciones deben ir aquí</p>
+        </div>
     </div>
     ${sectionUtils}
     `
