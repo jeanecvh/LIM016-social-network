@@ -1,9 +1,8 @@
 //import { userDataBase} from "../firebase/firestore.js"
 export const timeline = (sectionMenuBar,sectionUtils) => {
-    `<div id="menu" class="menu">
+    const wallTemplate = `<div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    
     <div>
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
