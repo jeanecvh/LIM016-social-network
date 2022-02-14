@@ -2,9 +2,11 @@ import { components } from '../components/components.js';
 import {loginGoogle, loginBotton} from '../components/login.js';
 import {register} from "../components/registerForm.js"
 import {functionBtnReset} from '../components/reset_password.js';
+import { btnPostShare } from '../components/timeline.js';
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
+    const muro =  document.getElementById('muro');
     main.innerHTML = ''
     // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
@@ -29,10 +31,14 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
+          //  main.appendChild(components.Timeline());
+            
             main.appendChild(components.Timeline(components.MenuBar()));
+            btnPostShare()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
+            muro.innerHTML = 'Página No Encontrada';
             break;
     }
 }
