@@ -7,7 +7,7 @@ import { insertData, dataDocument } from "../firebase/feed.js";
         <div id="wall-area" class = "wall-area">
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
-                <img id= "user-photo"src="./images/background/bola.jpg" alt="">
+                <img id= "user-photo"src="../images/background/bola.jpg" alt="">
             </div>
             <div id = "div-user-name-wall" class= "div-user-name-wall">
                 <p>Nombre de usuario</p>
@@ -35,6 +35,22 @@ import { insertData, dataDocument } from "../firebase/feed.js";
     sectionWall.innerHTML = wallTemplate;
     return sectionWall;
 }
+
+
+/*
+export const printUserinTimeLine = (user) => {
+    const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+    const querySnapshot = await userDataBase(userToCreate);
+    querySnapshot.forEach(doc => {
+        console.log(querySnapshot)
+    });
+}*/
+
 
 /*document.getElementById("btn-up").addEventListener("click", scrollUp);
 function scrollUp(){
@@ -95,3 +111,4 @@ export const btnPostShare = () =>{
   
   });
 }
+
