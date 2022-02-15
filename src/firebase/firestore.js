@@ -4,8 +4,7 @@ import { collection, doc, getDoc, setDoc } from "https://www.gstatic.com/firebas
 
 const collectionUser = collection(db, 'usuario');
 
-
-//preguntando a firebase si el usuario existe
+// Obtén un documento:se muestra cómo recuperar el contenido de un solo documento  preguntando a firebase si el usuario existe-
 export const findingUser = async (userId) => {
     try {
         const documentUserRef = await doc(collectionUser, userId);
@@ -26,7 +25,7 @@ export const userDataBase = async (user) => {
         }
         console.log('usuario no existe, vamos a guardarlo : ', user);
 
-        const documentToSave = doc(collectionUser, user.id);
+        const documentToSave = doc(collectionUser, user.id);//documento para guardar
 
          await setDoc(documentToSave, user);
         console.log('usuario guardado: exitosamente');

@@ -1,3 +1,4 @@
+
 import { app } from "./config.js";
 import{db} from "./config.js";
 import {collection, doc, getDoc, setDoc, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
@@ -18,13 +19,14 @@ export const insertData = async (post) => {
 };
 // queria jalar los datos del usuario en firestorage no me funciono
 
+// queria jalar los datos del usuario en firestorage no me funciono
 /*export const dataDocument = async () => {
-    let ref = collection (db,"usuario");
-    const  docSnap = await getDocs(ref);
-    if(docSnap.exists()){
+    let ref = collection(db, "usuario");
+    const docSnap = await getDocs(ref);
+    if (docSnap.exists()) {
         console.log(docSnap)
     }
-    else{
+    else {
         console.log("no funciono")
     }
 }*/

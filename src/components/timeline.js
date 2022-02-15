@@ -29,7 +29,7 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
     </div> 
     ${sectionUtils}
     `
-    
+
     const sectionWall = document.createElement("section");
     sectionWall.setAttribute("id", "wall");
     sectionWall.classList.add("wall");
@@ -83,27 +83,30 @@ const feed = (post) => {
 
 const functionBtnDetele = ()  =>{
     btnDetele = document.getElementById("delete");
-    btnDetele.addEventListener("click", async (e)=> {
+    btnDetele.addEventListener("click", async (e) => {
         e.preventDefault();
 
     })
 }
+
 const functionBtnLike = ()  =>{
     let btnLike = document.getElementById("like");
     btnLike.addEventListener("click", async (e)=> {
         e.preventDefault();
         
-    })
-}
-const functionBtnEdit = ()  =>{
-    let btnEdit = document.getElementById("post-edit");
-    btnEdit .addEventListener("click", async (e)=> {
-        e.preventDefault();
-        
+
     })
 }
 
-export const btnPostShare = () =>{ 
+const functionBtnEdit = ()  =>{
+    let btnEdit = document.getElementById("post-edit");
+    btnEdit.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+    })
+}
+
+export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
     const wallArea = document.getElementById("wall-area");
