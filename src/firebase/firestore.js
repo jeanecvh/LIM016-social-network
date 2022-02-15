@@ -13,7 +13,6 @@ export const findingUser = async (userId) => {
     } catch (error) {
         throw new Error(error);
     }
-
 };
 
 export const userDataBase = async (user) => {
@@ -36,6 +35,9 @@ export const userDataBase = async (user) => {
 
     }
 };
+
+//export const  getUserForTimeLine = (user ) => collection(db, 'usuario').get();
+
 
 
 
