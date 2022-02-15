@@ -1,15 +1,17 @@
 import { db } from "./config.js";
 import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
+import { userDataLocally } from "../components/sessionStorage.js";
 //inserto un new post en firestorage
-//quiero hacer una funcion para acceder al id de los usuarios creados y jalar nombre y foto y agregarlo al post
 export const insertData = async (post) => {
     let ref = collection(db, "post_user");
+    let user = userDataLocally()
     try {
         const docRef = await addDoc(
             ref, {
             newPost: post.value,
-
-
+            id: user.id,
+            photo: user.foto,
+            name: user.nombre
         })
         console.log('Funciona');
         return docRef

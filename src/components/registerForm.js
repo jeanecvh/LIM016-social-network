@@ -78,7 +78,7 @@ export const formTemplateRegister = () => {
       const userToCreate = {
         nombre: userName,
         correo: userEmail,
-        foto: '',
+        foto: "./images/logos/favicon.png",
         id: login.user.uid
       };
       userDataBase(userToCreate);

@@ -33,7 +33,7 @@ export const login = () => {
           <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
         </div>
         <div class = "div-form-login">
-          <a class = 'text-color' href="/#/register">Crear cuenta nueva</a>
+          <a class = 'text-color' href="#/register">Crear cuenta nueva</a>
         </div>
         <div class = "div-form-login">
           <p class = 'text-color'>O inicie la sesión con</p>

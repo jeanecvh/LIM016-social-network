@@ -2,6 +2,7 @@
 import { insertData, dataDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
 const user = userDataLocally();
+
 export const timeline = (sectionMenuBar, sectionUtils) => {
 
     const wallTemplate = `<div id="menu" class="menu">
@@ -14,7 +15,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
                 <img class= "user-photo" id="user-photo" src=" ${user.foto}"></img>
                 </div> 
                 <div id = "div-user-name-wall" class= "div-user-name-wall">
-                    <p>Nombre de usuario</p>
+                    <p>${user.nombre}</p>
                 </div>
 
             </div>
@@ -114,15 +115,16 @@ export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
         const querySnapshot = await dataDocument()
+
         let html = ""
         console.log('Tiene que cargar la publicación aquí', querySnapshot)
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
             const dataPost = doc.data()
             html += `<div>
                 <div id = "user-photo-wall" class = "user-photo-wall">
-                <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
+                <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
                 </div>
-                    <p>NombreDelUsuario</p>
+                    <p>${dataPost.name}</p>
                     <p>${dataPost.newPost}</p>
                     <div id = "btns-posts" class = "btns-posts">
                         <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
