@@ -11,5 +11,6 @@ export const emailConfirm = () => {
     `
     const divMessage = document.createElement('div');
     divMessage.innerHTML = emailConfirm;
+    //window.location.hash = '#/timeline';
     
     return divMessage}

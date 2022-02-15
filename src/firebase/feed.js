@@ -4,7 +4,7 @@ import { collection, getDoc, addDoc } from "https://www.gstatic.com/firebasejs/9
 //inserto un new post en firestorage
 //quiero hacer una funcion para acceder al id de los usuarios creados y jalar nombre y foto y agregarlo al post
 export const insertData = async (post) => {
-    let ref = collection(db, "usuario");
+    let ref = collection(db, "post_user");
     try {
         const docRef = await addDoc(
             ref, {
@@ -22,7 +22,7 @@ export const insertData = async (post) => {
 };
 // queria jalar los datos del usuario en firestorage no me funciono
 export const dataDocument = async () => {
-    let ref = collection(db, "usuario");
+    let ref = collection(db, "post_user");
     const docSnap = await getDoc(ref);
     if (docSnap.exists()) {
         console.log(docSnap)
