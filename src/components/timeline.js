@@ -61,6 +61,7 @@ function scrollUp(){
         window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
     }
 }*/
+
 const feed = (post) => {
     const containPost= {
    userPost: "nombre de usuario",
@@ -123,8 +124,16 @@ export const windowsTimeline = async () => {
             querySnapshot.forEach(doc => {
                 const dataPost = doc.data()
                 html += `<div>
-                    <h3>NombreDelUsuario</h3>
-                    <h4>${dataPost.newPost}</h4>
+                <div id = "user-photo-wall" class = "user-photo-wall">
+                    <img id= "user-photo"src="../images/background/bola.jpg" alt="">
+                </div>
+                    <p>NombreDelUsuario</p>
+                    <p>${dataPost.newPost}</p>
+                    <div id = "btns-posts" class = "btns-posts">
+                        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
+                        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
+                        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
+                    </div>   
                 </div>`
                 console.log('docs',doc.data())
                 postsContainer.innerHTML = html
