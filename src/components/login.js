@@ -90,7 +90,9 @@ async function loginUser() {
     if (error = 'auth/wrong-password') {
       console.log('ta mal')
       document.querySelector('.div-wrongpassword').style.display = "block";
-    }
+    } /*if else (emailValue.value == "" && passwordValue == ""){
+      console.log("don't be here")
+    }*/
   }
 };
 
