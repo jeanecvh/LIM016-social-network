@@ -38,7 +38,7 @@ export const componentsViews = (hash) => {
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
-            muro.innerHTML = 'Página No Encontrada';
+            main.innerHTML = 'Página No Encontrada';
             break;
     }
 }

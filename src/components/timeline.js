@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+
+import { insertData, dataDocument } from "../firebase/feed.js";
+
+export const timeline = (sectionMenuBar, sectionUtils) => {
+    const wallTemplate =
+        `<div id="menu" class="menu">
+        ${sectionMenuBar}
+    </div>
+    
+    <div>
+=======
 import { insertData, dataDocument } from "../firebase/feed.js";
     export const timeline = (sectionMenuBar,sectionUtils) => {
         const wallTemplate =
@@ -5,6 +17,7 @@ import { insertData, dataDocument } from "../firebase/feed.js";
         ${sectionMenuBar}
     </div>
         <div id="wall-area" class = "wall-area">
+>>>>>>> upstream/main
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
                 <img id= "user-photo"src="../images/background/bola.jpg" alt="">
@@ -28,7 +41,7 @@ import { insertData, dataDocument } from "../firebase/feed.js";
    
     
     `
-    
+
     const sectionWall = document.createElement("section");
     sectionWall.setAttribute("id", "wall");
     sectionWall.classList.add("wall");
@@ -61,47 +74,48 @@ function scrollUp(){
     }
 }*/
 const feed = (post) => {
-    const containPost= {
-   userPost: "nombre de usuario",
-   newPost: post,
-   btnLike:` <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p> `,
-   btnDelete: ` <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p> `,
-   btnEdit: ` <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p> `,
-    }    
-    Object.values(containPost).forEach( val => {
-    let div = document.createElement("div");
-    div.setAttribute("id", "newPost");
-    div.classList.add("post");
-    div.innerHTML = val;
-    console.log(val)
-    const app = document.getElementById("posts")
-   app.appendChild(div);
+    const containPost = {
+        userPost: "nombre de usuario",
+        newPost: post,
+        btnLike: ` <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p> `,
+        btnDelete: ` <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p> `,
+        btnEdit: ` <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p> `,
+    }
+    Object.values(containPost).forEach(val => {
+        let div = document.createElement("div");
+        div.setAttribute("id", "newPost");
+        div.classList.add("post");
+        div.innerHTML = val;
+        console.log(val)
+        const app = document.getElementById("posts")
+        app.appendChild(div);
     })
 };
 
-const btnDetele = ()  =>{
+const btnDetele = () => {
     btnDetele = document.getElementById("delete");
-    btnDetele.addEventListener("click", async (e)=> {
+    btnDetele.addEventListener("click", async (e) => {
         e.preventDefault();
 
     })
 }
-const btnLike = ()  =>{
+const btnLike = () => {
     let btnLile = document.getElementById("like");
-    btnLike.addEventListener("click", async (e)=> {
+    btnLike.addEventListener("click", async (e) => {
         e.preventDefault();
         
+
     })
 }
-const btnEdit = ()  =>{
+const btnEdit = () => {
     let btnEdit = document.getElementById("post-edit");
-    btnEdit .addEventListener("click", async (e)=> {
+    btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
-        
+
     })
 }
 
-export const btnPostShare = () =>{ 
+export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
     btnPost.addEventListener("click", async (e)=> {

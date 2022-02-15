@@ -81,6 +81,10 @@ export const formTemplateRegister = () => {
         id: login.user.uid
       };
       userDataBase(userToCreate);
+      const sesion = sessionStorage.setItem('user', JSON.stringify(userToCreate));
+      console.log('datos locales de formulario: ', sesion);
+      const datoGuardado = userDataLocally();
+      console.log('usuario guardado en formulario: ', datoGuardado);
       return login.user
     }
     catch(err){

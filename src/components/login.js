@@ -1,8 +1,10 @@
-import { userDataBase} from "../firebase/firestore.js"
+import { userDataBase } from "../firebase/firestore.js"
 import {
   loginWithGoogle,
   loginWithEmailAndPassword,
 } from "../firebase/auth.js";
+
+import { userDataLocally } from "./sessionStorage.js"
 
 
 export const login = () => {
@@ -49,6 +51,8 @@ export const login = () => {
 
   return divFormLogin;
 };
+
+
 export const loginGoogle = () => {
 
   
@@ -63,7 +67,10 @@ const googleId = document.getElementById("imgGoogle");
         id: user.uid
       };
       await userDataBase(userToCreate);
-      console.log(userToCreate)
+      const sesion = sessionStorage.setItem('user', JSON.stringify(userToCreate));
+      console.log('datos locales: ', sesion);
+      const datoGuardado = userDataLocally();
+      console.log('usuario guardado: ', datoGuardado);
       window.location.hash = '#/timeline';
       return;
 
@@ -77,7 +84,7 @@ async function loginUser() {
   try {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log(emailValue, passwordValue, "Buenas");
-    
+
     return login;
   } catch (error) {
     if (error = 'auth/wrong-password') {
