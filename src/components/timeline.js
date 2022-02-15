@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-import { insertData, dataDocument } from "../firebase/feed.js";
-
-export const timeline = (sectionMenuBar, sectionUtils) => {
-    const wallTemplate =
-        `<div id="menu" class="menu">
-        ${sectionMenuBar}
-    </div>
-    
-    <div>
-=======
 import { insertData, dataDocument } from "../firebase/feed.js";
     export const timeline = (sectionMenuBar,sectionUtils) => {
         const wallTemplate =
@@ -17,7 +5,6 @@ import { insertData, dataDocument } from "../firebase/feed.js";
         ${sectionMenuBar}
     </div>
         <div id="wall-area" class = "wall-area">
->>>>>>> upstream/main
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
                 <img id= "user-photo"src="../images/background/bola.jpg" alt="">
