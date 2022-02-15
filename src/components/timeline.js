@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { insertData, dataDocument } from "../firebase/feed.js";
 
@@ -8,9 +9,18 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     </div>
     
     <div>
+=======
+import { insertData, dataDocument } from "../firebase/feed.js";
+    export const timeline = (sectionMenuBar,sectionUtils) => {
+        const wallTemplate =
+    `<div id="menu" class="menu">
+        ${sectionMenuBar}
+    </div>
+        <div id="wall-area" class = "wall-area">
+>>>>>>> upstream/main
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
-                <img id= "user-photo"src="./images/background/bola.jpg" alt="">
+                <img id= "user-photo"src="../images/background/bola.jpg" alt="">
             </div>
             <div id = "div-user-name-wall" class= "div-user-name-wall">
                 <p>Nombre de usuario</p>
@@ -24,11 +34,12 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
             <i class="fa-solid fa-image"></i>
             <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
         </div>
-    </div>
-    <div id="posts" class = "posts">
+        <div id="posts" class = "posts">
       
+        </div>
     </div>
-    ${sectionUtils}
+   
+    
     `
 
     const sectionWall = document.createElement("section");
@@ -37,6 +48,22 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     sectionWall.innerHTML = wallTemplate;
     return sectionWall;
 }
+
+
+/*
+export const printUserinTimeLine = (user) => {
+    const userToCreate = {
+        nombre: user.displayName,
+        correo: user.email,
+        foto: user.photoURL,
+        id: user.uid
+      };
+    const querySnapshot = await userDataBase(userToCreate);
+    querySnapshot.forEach(doc => {
+        console.log(querySnapshot)
+    });
+}*/
+
 
 /*document.getElementById("btn-up").addEventListener("click", scrollUp);
 function scrollUp(){
@@ -91,10 +118,11 @@ const btnEdit = () => {
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
-    btnPost.addEventListener("click", async (e) => {
-        e.preventDefault();
-        await insertData(post),
-            feed(post.value)
-        dataDocument()
-    });
+    btnPost.addEventListener("click", async (e)=> {
+    e.preventDefault();
+    await insertData(post),
+    feed(post.value)
+  
+  });
 }
+

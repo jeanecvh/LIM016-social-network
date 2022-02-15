@@ -55,7 +55,8 @@ export const login = () => {
 
 export const loginGoogle = () => {
 
-  const googleId = document.getElementById("imgGoogle");
+  
+const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async (e) => {
     try {
       const user = await loginWithGoogle();

@@ -31,7 +31,10 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
+          //  main.appendChild(components.Timeline());
+            
             main.appendChild(components.Timeline(components.MenuBar()));
+            btnPostShare()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
