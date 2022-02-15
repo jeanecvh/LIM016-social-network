@@ -1,5 +1,5 @@
 //import { userDataBase} from "../firebase/firestore.js"
-import { insertData } from "../firebase/feed.js"
+import { insertData, dataDocument, itemsProfie } from "../firebase/feed.js"
 export const timeline = (sectionMenuBar,sectionUtils) => {
     const wallTemplate = `<div id="menu" class="menu">
         ${sectionMenuBar}
@@ -23,7 +23,8 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
                 <button id ="btn-share-publication" class ="btn-share-publication">Compartir</button>
             </div>
         </form> 
-        <div id="posts" class = "posts">
+        <div id="posts-container" class = "posts-container">
+        <p>Aquí van los post</p>
         </div>
     </div> 
     ${sectionUtils}
@@ -74,7 +75,7 @@ const feed = (post) => {
     div.classList.add("post");
     div.innerHTML = val;
     console.log(val)
-    const app = document.getElementById("posts")
+    const app = document.getElementById("posts-container")
    app.appendChild(div);
     })
 };
@@ -112,4 +113,27 @@ export const btnPostShare = () =>{
     wallArea.reset()    
   });
 }
+
+export const windowsTimeline = async () => {
+    const postsContainer = document.getElementById("posts-container")
+        if (window.location.hash = '#/timeline'){
+            const querySnapshot = await dataDocument()
+            let html = ""
+            console.log('Tiene que cargar la publicación aquí', querySnapshot)
+            querySnapshot.forEach(doc => {
+                const dataPost = doc.data()
+                html += `<div>
+                    <h3>NombreDelUsuario</h3>
+                    <h4>${dataPost.newPost}</h4>
+                </div>`
+                console.log('docs',doc.data())
+                postsContainer.innerHTML = html
+            })
+
+        } 
+}
+
+
+
+
 
