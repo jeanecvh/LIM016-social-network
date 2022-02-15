@@ -68,3 +68,8 @@
     width: auto;
     background-color: transparent;
 }
+
+.btns-posts{
+    display: flex;
+    justify-content: space-evenly;
+}
