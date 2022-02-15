@@ -1,7 +1,8 @@
 //import { userDataBase} from "../firebase/firestore.js"
 import { insertData, dataDocument, itemsProfie } from "../firebase/feed.js"
 export const timeline = (sectionMenuBar,sectionUtils) => {
-    const wallTemplate = `<div id="menu" class="menu">
+    const wallTemplate = 
+    `<div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
     <div>

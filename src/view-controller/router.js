@@ -24,6 +24,7 @@ export const componentsViews = (hash) => {
             register();
             break;
         case '#/resetPassword':
+            main.appendChild(components.Header());
             main.appendChild(components.ResetPassword());
             functionBtnReset()
             break;
