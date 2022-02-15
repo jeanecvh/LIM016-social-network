@@ -3,8 +3,6 @@ import { recoverPasswordWithEmail } from "../firebase/auth.js";
 export const resetPassword = () => {
   const formTemplateResetPassword = `
 
-    
-      </div>
     <!-- Nombre  <div id ='logo-scoobygram' class='logo-scoobygram div-logo-reset'>
         <img class ='logo-img-reset'src="./images/logos/Logo_ScoobyGram.png" alt="ScoobyGramInit">
     </div>-->
