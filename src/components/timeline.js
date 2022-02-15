@@ -6,7 +6,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     const wallTemplate =
         `<div id="menu" class="menu">
         ${sectionMenuBar}
-    </div>
+        </div>
         <div id="wall-area" class = "wall-area">
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
