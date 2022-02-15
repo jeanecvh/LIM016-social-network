@@ -1,13 +1,16 @@
 import { insertData, dataDocument } from "../firebase/feed.js";
-    export const timeline = (sectionMenuBar,sectionUtils) => {
-        const wallTemplate =
-    `<div id="menu" class="menu">
+import { userDataLocally } from "./sessionStorage.js"
+export const timeline = (sectionMenuBar, sectionUtils) => {
+    
+    const user = userDataLocally();
+    const wallTemplate =
+        `<div id="menu" class="menu">
         ${sectionMenuBar}
-    </div>
+        </div>
         <div id="wall-area" class = "wall-area">
         <div id = "user-descript" class = "user-descript">
             <div id = "user-photo-wall" class = "user-photo-wall">
-                <img id= "user-photo"src="../images/background/bola.jpg" alt="">
+            <img src="${user.foto}"></img>
             </div>
             <div id = "div-user-name-wall" class= "div-user-name-wall">
                 <p>Nombre de usuario</p>
@@ -61,8 +64,10 @@ function scrollUp(){
     }
 }*/
 const feed = (post) => {
+    const user = userDataLocally();
     const containPost = {
-        userPost: "nombre de usuario",
+        foto: `<img src="${user.foto}"></img>`,
+        userPost: user.nombre,
         newPost: post,
         btnLike: ` <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p> `,
         btnDelete: ` <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p> `,
@@ -90,7 +95,7 @@ const btnLike = () => {
     let btnLile = document.getElementById("like");
     btnLike.addEventListener("click", async (e) => {
         e.preventDefault();
-        
+
 
     })
 }
@@ -105,11 +110,11 @@ const btnEdit = () => {
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
-    btnPost.addEventListener("click", async (e)=> {
-    e.preventDefault();
-    await insertData(post),
-    feed(post.value)
-  
-  });
+    btnPost.addEventListener("click", async (e) => {
+        e.preventDefault();
+        await insertData(post),
+            feed(post.value)
+
+    });
 }
 
