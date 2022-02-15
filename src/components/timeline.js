@@ -12,7 +12,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
                 <img class= "user-photo" id="user-photo" src=" ${user.foto}"></img>
-                </div>
+                </div> 
                 <div id = "div-user-name-wall" class= "div-user-name-wall">
                     <p>Nombre de usuario</p>
                 </div>
@@ -49,7 +49,6 @@ function scrollUp(){
         window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
     }
 }*/
-
 
 const functionBtnDetele = () => {
     btnDetele = document.getElementById("delete");
