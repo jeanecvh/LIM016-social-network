@@ -1,5 +1,6 @@
 import {userCreate,emailVerificate} from "../firebase/auth.js"
 import {userDataBase} from "../firebase/firestore.js"
+import { userDataLocally } from "./sessionStorage.js"
 
 export const formTemplateRegister = () => {
   const viewForm =
@@ -77,14 +78,14 @@ export const formTemplateRegister = () => {
       const userToCreate = {
         nombre: userName,
         correo: userEmail,
-        foto: '',
+        foto: "./images/logos/favicon.png",
         id: login.user.uid
       };
       userDataBase(userToCreate);
-      const sesion = sessionStorage.setItem('user', JSON.stringify(userToCreate));
-      console.log('datos locales de formulario: ', sesion);
+      sessionStorage.setItem('user', JSON.stringify(userToCreate));
       const datoGuardado = userDataLocally();
       console.log('usuario guardado en formulario: ', datoGuardado);
+      
       return login.user
     }
     catch(err){
@@ -98,14 +99,18 @@ export const formTemplateRegister = () => {
       formBtn.addEventListener('click', (e) => {
         e.preventDefault()
         loginSubmit()
+      
         if (valid.name && valid.email && valid.password == true){
           document.getElementById('messageFormValid').style.display = "block"
           document.getElementById('formAlert').style.display ='none'
-          form.reset()
+          
+          //form.reset();
+          window.location.hash = '#/verification';
         }else{
           document.getElementById('formAlert').style.display ='block'
           console.log('campos invalidos')
         }
+
   });
   };
  

@@ -1,19 +1,24 @@
-//import { userDataBase} from "../firebase/firestore.js"
-import { insertData, dataDocument, itemsProfie } from "../firebase/feed.js"
-export const timeline = (sectionMenuBar,sectionUtils) => {
-    const wallTemplate = 
-    `<div id="menu" class="menu">
+import { insertData, dataDocument } from "../firebase/feed.js";
+import { userDataLocally } from "./sessionStorage.js"
+const user = userDataLocally();
+
+export const timeline = (sectionMenuBar, sectionUtils) => {
+
+    const wallTemplate = `
+    
+    <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
     <div>
         <form id = "wall-area" class = "wall-area" >
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img id= "user-photo"src="../images/background/bola.jpg" alt="">
-                </div>
+                <img class= "user-photo" id="user-photo" src=" ${user.foto}"></img>
+                </div> 
                 <div id = "div-user-name-wall" class= "div-user-name-wall">
-                    <p>Nombre de usuario</p>
+                    <p>${user.nombre}</p>
                 </div>
+
             </div>
 
             <div>
@@ -38,22 +43,6 @@ export const timeline = (sectionMenuBar,sectionUtils) => {
     return sectionWall;
 }
 
-
-/*
-export const printUserinTimeLine = (user) => {
-    const userToCreate = {
-        nombre: user.displayName,
-        correo: user.email,
-        foto: user.photoURL,
-        id: user.uid
-      };
-    const querySnapshot = await userDataBase(userToCreate);
-    querySnapshot.forEach(doc => {
-        console.log(querySnapshot)
-    });
-}*/
-
-
 /*document.getElementById("btn-up").addEventListener("click", scrollUp);
 function scrollUp(){
     let scroll = document.documentElement.scrollTop
@@ -63,26 +52,7 @@ function scrollUp(){
     }
 }*/
 
-const feed = (post) => {
-    const containPost= {
-   userPost: "nombre de usuario",
-   newPost: post,
-   btnLike:` <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p> `,
-   btnDelete: ` <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p> `,
-   btnEdit: ` <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p> `,
-    }    
-    Object.values(containPost).forEach( val => {
-    let div = document.createElement("div");
-    div.setAttribute("id", "newPost");
-    div.classList.add("post");
-    div.innerHTML = val;
-    console.log(val)
-    const app = document.getElementById("posts-container")
-   app.appendChild(div);
-    })
-};
-
-const functionBtnDetele = ()  =>{
+const functionBtnDetele = () => {
     btnDetele = document.getElementById("delete");
     btnDetele.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -90,48 +60,72 @@ const functionBtnDetele = ()  =>{
     })
 }
 
-const functionBtnLike = ()  =>{
+const functionBtnLike = () => {
     let btnLike = document.getElementById("like");
-    btnLike.addEventListener("click", async (e)=> {
+    btnLike.addEventListener("click", async (e) => {
         e.preventDefault();
-        
+
 
     })
 }
 
-const functionBtnEdit = ()  =>{
+const functionBtnEdit = () => {
     let btnEdit = document.getElementById("post-edit");
     btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
 
     })
 }
+const feed = (post) => {
+    const containPost = {
+        foto: `<div id = "user-photo-wall" class = "user-photo-wall">
+        <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
+        </div>`,
+        userPost: user.nombre,
+        newPost: post,
+        btn: `<div id = "btns-posts" class = "btns-posts">
+        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
+        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
+        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
+        </div>  `
+
+    }
+    Object.values(containPost).forEach(val => {
+        let div = document.createElement("div");
+        div.setAttribute("id", "newPost");
+        div.innerHTML = val;
+        console.log(val)
+        const app = document.getElementById("posts-container")
+        app.appendChild(div);
+    })
+};
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
     const wallArea = document.getElementById("wall-area");
-    btnPost.addEventListener("click", async (e)=> {
-    e.preventDefault();
-    await insertData(post),
-    feed(post.value)
-    wallArea.reset()    
-  });
+    btnPost.addEventListener("click", async (e) => {
+        e.preventDefault();
+        await insertData(post),
+        feed(post.value)
+        wallArea.reset()
+    });
 }
+
 
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
-        if (window.location.hash = '#/timeline'){
-            const querySnapshot = await dataDocument()
-            let html = ""
-            console.log('Tiene que cargar la publicación aquí', querySnapshot)
-            querySnapshot.forEach(doc => {
-                const dataPost = doc.data()
-                html += `<div>
+    if (window.location.hash = '#/timeline') {
+        const querySnapshot = await dataDocument()
+        let html = ""
+        console.log('Tiene que cargar la publicación aquí', querySnapshot)
+        querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+            const dataPost = doc.data()
+            html += `<div>
                 <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img id= "user-photo"src="../images/background/bola.jpg" alt="">
+                <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
                 </div>
-                    <p>NombreDelUsuario</p>
+                    <p>${dataPost.name}</p>
                     <p>${dataPost.newPost}</p>
                     <div id = "btns-posts" class = "btns-posts">
                         <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
@@ -139,11 +133,11 @@ export const windowsTimeline = async () => {
                         <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
                     </div>   
                 </div>`
-                console.log('docs',doc.data())
-                postsContainer.innerHTML = html
-            })
+            console.log('docs', doc.data())
+            postsContainer.innerHTML = html
+        })
 
-        } 
+    }
 }
 
 

@@ -7,7 +7,6 @@ import { btnPostShare, windowsTimeline } from '../components/timeline.js';
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
-    const muro =  document.getElementById('muro');
     main.innerHTML = ''
     // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
@@ -33,7 +32,6 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
-          //  main.appendChild(components.Timeline());
             main.appendChild(components.Timeline(components.MenuBar()));
             windowsTimeline()
             btnPostShare()
