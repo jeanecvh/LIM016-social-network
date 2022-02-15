@@ -12,7 +12,6 @@ const firebaseConfig = {
   messagingSenderId: "404715742099",
   appId: "1:404715742099:web:8bf48dc1a6dbb76c7ffe66",
   measurementId: "G-09VF7PKESR",
-  databaseURL: "https://scoobygram-1b462-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase

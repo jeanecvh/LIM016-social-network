@@ -2,6 +2,7 @@ import { components } from '../components/components.js';
 import {loginGoogle, loginBotton} from '../components/login.js';
 import {register} from "../components/registerForm.js"
 import {functionBtnReset} from '../components/reset_password.js';
+import { btnPostShare } from '../components/timeline.js';
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
@@ -30,11 +31,11 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
-            muro.appendChild(components.Timeline(components.MenuBar()));
+            main.appendChild(components.Timeline(components.MenuBar()));
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
-            muro.innerHTML = 'Página No Encontrada';
+            main.innerHTML = 'Página No Encontrada';
             break;
     }
 }
