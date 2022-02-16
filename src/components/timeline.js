@@ -1,9 +1,8 @@
-import { insertData, dataDocument,onDataDocument,deletePost } from "../firebase/feed.js";
+import { insertData, onDataDocument, deletePost } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
-const user = userDataLocally();
-
+  const user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
-
+  
     const wallTemplate = `
     
     <div id="menu" class="menu">
