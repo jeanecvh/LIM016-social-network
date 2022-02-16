@@ -2,7 +2,7 @@ import { components } from '../components/components.js';
 import {loginGoogle, loginBotton} from '../components/login.js';
 import {register} from "../components/registerForm.js"
 import {functionBtnReset} from '../components/reset_password.js';
-import { btnPostShare, windowsTimeline } from '../components/timeline.js';
+import { btnPostShare, windowsTimeline,  } from '../components/timeline.js';
 
 
 export const componentsViews = (hash) => {
@@ -35,7 +35,7 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Timeline(components.MenuBar()));
             windowsTimeline()
             btnPostShare()
-
+            //functionbtnDelete()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
