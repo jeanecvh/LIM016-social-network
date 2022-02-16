@@ -62,13 +62,7 @@ const functionBtnLike = () => {
     })
 }
 
-const functionBtnEdit = () => {
-    let btnEdit = document.getElementById("post-edit");
-    btnEdit.addEventListener("click", async (e) => {
-        e.preventDefault();
 
-    })
-}
 
 /*
 const feed = (post) => {
@@ -124,22 +118,30 @@ export const windowsTimeline = async () => {
                         <p>${dataPost.name}</p>
                         <p>${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-                            <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
-                            <p class="delete" id="delete" data-id="${dataPost.id}"><i class="fa-solid fa-trash-can"></i></p>
+                            <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
+                            <button class="delete" id="delete" data-id="${doc.id}"><i class="fa-solid fa-trash-can"></i></button>
                             <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
                         </div>   
                     </div>`
-                console.log('docs', doc.data())
+  
                 postsContainer.innerHTML = html
 
             const btnDelete = document.querySelectorAll(".delete");
-            console.log('BOTON BORRAR',btnDelete)
             btnDelete.forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    console.log(e)
-                    console.log('se eliminó')
+                    e.preventDefault();
+                    deletePost(e.target.dataset.id)
+                    console.log(e.target.dataset.id)
                 })
             })
+            /*
+            let btnEdit = document.getElementById("post-edit");
+            console.log('boton', btnEdit)
+            btnEdit.forEach(btn => {
+                console.log(btn)
+            })*/
+                
+        
         })
         })
         
@@ -158,4 +160,4 @@ export const functionbtnDelete = () => {
 
 
 
-
+//<i class="fa-solid fa-trash-can">
