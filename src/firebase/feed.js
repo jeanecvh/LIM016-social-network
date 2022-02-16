@@ -1,5 +1,5 @@
 import { db } from "./config.js";
-import { collection, addDoc, getDocs, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
+import { collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
 import { userDataLocally } from "../components/sessionStorage.js";
 //inserto un new post en firestorage
 export const insertData = async (post) => {
@@ -24,3 +24,4 @@ export const dataDocument = () => getDocs(collection(db, "post_user"))
 export const itemsProfie = () => getDocs(collection(db, "usuario"))
 export const onDataDocument = (callback) => onSnapshot(collection(db,"post_user"),callback)
 export const deletePost = (id) =>  deleteDoc(doc(db,"post_user",id))
+export const getDocument = (id) => getDoc(doc(db,"post_user",id))

@@ -1,4 +1,4 @@
-import { insertData, dataDocument,onDataDocument,deletePost } from "../firebase/feed.js";
+import { insertData, dataDocument,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
 const user = userDataLocally();
 
@@ -120,7 +120,7 @@ export const windowsTimeline = async () => {
                         <div id = "btns-posts" class = "btns-posts">
                             <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
                             <button class="delete" id="delete" data-id="${doc.id}"><i class="fa-solid fa-trash-can"></i></button>
-                            <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
+                            <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
                         </div>   
                     </div>`
   
@@ -134,12 +134,17 @@ export const windowsTimeline = async () => {
                     console.log(e.target.dataset.id)
                 })
             })
-            /*
-            let btnEdit = document.getElementById("post-edit");
-            console.log('boton', btnEdit)
-            btnEdit.forEach(btn => {
-                console.log(btn)
-            })*/
+            
+            let btnEdit = document.querySelectorAll(".edit");
+            btnEdit.forEach( btn => {
+                btn.addEventListener('click', async (e) =>{
+                    e.preventDefault();
+                    console.log('works')
+                    const doc = await getDocument(e.target.dataset.id)
+                    const dataPost = doc.data()
+                })
+                
+            })
                 
         
         })
@@ -160,4 +165,4 @@ export const functionbtnDelete = () => {
 
 
 
-//<i class="fa-solid fa-trash-can">
+//<i class="fa-solid fa-pen-to-square"></i>
