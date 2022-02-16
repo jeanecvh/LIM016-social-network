@@ -2,12 +2,11 @@ import { components } from '../components/components.js';
 import {loginGoogle, loginBotton} from '../components/login.js';
 import {register} from "../components/registerForm.js"
 import {functionBtnReset} from '../components/reset_password.js';
-import { btnPostShare, windowsTimeline } from '../components/timeline.js';
+import { btnPostShare, windowsTimeline,  } from '../components/timeline.js';
 
 
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
-    const muro =  document.getElementById('muro');
     main.innerHTML = ''
     // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
@@ -24,6 +23,7 @@ export const componentsViews = (hash) => {
             register();
             break;
         case '#/resetPassword':
+            main.appendChild(components.Header());
             main.appendChild(components.ResetPassword());
             functionBtnReset()
             break;
@@ -35,7 +35,7 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Timeline(components.MenuBar()));
             windowsTimeline()
             btnPostShare()
-
+            //functionbtnDelete()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
