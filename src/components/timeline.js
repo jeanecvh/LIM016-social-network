@@ -52,13 +52,6 @@ function scrollUp(){
     }
 }*/
 
-const functionBtnDetele = () => {
-    btnDetele = document.getElementById("delete");
-    btnDetele.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-    })
-}
 
 const functionBtnLike = () => {
     let btnLike = document.getElementById("like");
@@ -135,11 +128,29 @@ export const windowsTimeline = async () => {
                 </div>`
             console.log('docs', doc.data())
             postsContainer.innerHTML = html
+            let btnDelete = document.querySelectorAll(".delete");
+            console.log('BOTON BORRAR',btnDelete)
+            btnDelete.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    console.log('se eliminó')
+                })
+            })
         })
 
     }
 }
 
+const viewTimelineHtml = document.getElementById('wall')
+console.log(viewTimelineHtml)
+
+/*
+export const functionbtnDelete = () => {
+    
+    btnDelete.addEventListener("click", async (e) => {
+        e.preventDefault();
+        console.log('BOTON BORRAR',viewTimelineHtml)
+    })
+}*/
 
 
 
