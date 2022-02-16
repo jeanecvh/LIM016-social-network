@@ -35,7 +35,6 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Timeline(components.MenuBar()));
             windowsTimeline()
             btnPostShare()
-            //functionbtnDelete()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
