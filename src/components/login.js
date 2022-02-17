@@ -124,6 +124,7 @@ async function loginUser() {
 
 export const loginBotton =  () => {
   const bottonLogin = document.getElementById("btn_login");
+
   bottonLogin.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("funciona");     

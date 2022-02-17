@@ -1,3 +1,4 @@
+
 import { insertData, onDataDocument, deletePost } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
   const user = userDataLocally();
@@ -52,6 +53,12 @@ const functionBtnLike = () => {
     })
 }
 
+const functionBtnEdit = () => {
+    let btnEdit = document.getElementById("post-edit");
+    btnEdit.addEventListener("click", async (e) => {
+        e.preventDefault();
+    })
+}
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -69,49 +76,29 @@ export const btnPostShare = () => {
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
-        onDataDocument((querySnapshot) => {
+        const querySnapshot = await dataDocument()
         let html = ""
-        console.log('Tiene que cargar la publicación aquí')
+        console.log('Tiene que cargar la publicación aquí', querySnapshot)
         querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
             const dataPost = doc.data()
-                html += `<div>
-                    <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
-                    </div>
-                        <p>${dataPost.name}</p>
-                        <p>${dataPost.newPost}</p>
-                        <div id = "btns-posts" class = "btns-posts">
-                            <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
-                            <button class="delete" id="delete" data-id="${doc.id}"><i class="fa-solid fa-trash-can"></i></button>
-                            <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
-                        </div>   
-                    </div>`
-  
-                postsContainer.innerHTML = html
-
-            const btnDelete = document.querySelectorAll(".delete");
-            btnDelete.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    deletePost(e.target.dataset.id)
-                    console.log(e.target.dataset.id)
-                })
-            })
-            /*
-            let btnEdit = document.getElementById("post-edit");
-            console.log('boton', btnEdit)
-            btnEdit.forEach(btn => {
-                console.log(btn)
-            })*/
-                
-        
+            html += `<div>
+                <div id = "user-photo-wall" class = "user-photo-wall">
+                <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+                </div>
+                    <p>${dataPost.name}</p>
+                    <p>${dataPost.newPost}</p>
+                    <div id = "btns-posts" class = "btns-posts">
+                        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
+                        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
+                        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
+                    </div>   
+                </div>`
+            console.log('docs', doc.data())
+            postsContainer.innerHTML = html
         })
-        })
-        
-
     }
 }
-// una linea para que funcione
+
 
 /*
 export const functionbtnDelete = () => {
@@ -125,3 +112,4 @@ export const functionbtnDelete = () => {
 
 
 //<i class="fa-solid fa-trash-can">
+
