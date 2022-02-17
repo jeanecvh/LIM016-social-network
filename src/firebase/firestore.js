@@ -14,7 +14,8 @@ export const findingUser = async (userId) => {
         throw new Error(error);
     }
 };
-
+/* refactorizando findingUser puedo usarla para obtener el el documento poust y tambien el id del usuario, para luego guardarlo
+en la coleccion que debo crear de likes*/ 
 export const userDataBase = async (user) => {
     try {
 
@@ -34,7 +35,7 @@ export const userDataBase = async (user) => {
         throw new Error(error);
 
     }
-};
+};//esta tambien ls puedo refactorizar para poder guardar al click de usuario dentro de la coleccion desada CREO
 
 //export const  getUserForTimeLine = (user ) => collection(db, 'usuario').get();
 
