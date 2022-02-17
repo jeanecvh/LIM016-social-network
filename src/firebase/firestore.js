@@ -9,7 +9,7 @@ export const findingUser = async (userId) => {
     try {
         const documentUserRef = await doc(collectionUser, userId);
         const userDocument = await getDoc(documentUserRef);
-        return userDocument;
+        return userDocument.data();
     } catch (error) {
         throw new Error(error);
     }

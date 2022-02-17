@@ -86,10 +86,10 @@ async function loginUser() {
      console.log('que retorna ? : ', user);
      
        const userToCreate = {
-        nombre: user.data().nombre,
-        correo: user.data().correo,
-        foto: user.data().foto,
-        id: user.data().id
+        nombre: user.nombre,
+        correo: user.correo,
+        foto: user.foto,
+        id: user.id
         
       }
 
