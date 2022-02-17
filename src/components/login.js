@@ -1,10 +1,12 @@
 import { userDataBase } from "../firebase/firestore.js"
 import {
   loginWithGoogle,
-  loginWithEmailAndPassword,
+  loginWithEmailAndPassword, auth
 } from "../firebase/auth.js";
-
+import { doc, getDoc }from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
+import { db } from "../firebase/config.js";
 import { userDataLocally } from "./sessionStorage.js"
+//import { itemsProfie } from "../firebase/feed.js";
 
 
 export const login = () => {
@@ -82,29 +84,52 @@ async function loginUser() {
   const emailValue = document.getElementById("email-login").value;
   const passwordValue = document.getElementById("password").value;
   try {
-    const login = await loginWithEmailAndPassword(emailValue, passwordValue);
+      let ke = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log(emailValue, passwordValue, "Buenas");
-
-    return login;
-  } catch (error) {
-    if (error = 'auth/wrong-password') {
+    const docRef = doc(db, "usuario", ke.user.uid);
+  const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      let userCollection={
+        id: docSnap.data().id,
+        nombre: docSnap.data().nombre,
+        correo: docSnap.data().correo,
+        foto: docSnap.data().foto
+      }
+      sessionStorage.setItem('user', JSON.stringify(userCollection));
+      const datoGuardado = userDataLocally();
+      console.log('usuario guardado: ', datoGuardado);
+      console.log("Document data:", userCollection);
+  } else {
+  // doc.data() will be undefined in this case
+  console.log("No such document!");
+  }
+    await itemsProfie((querySnapshot)=>{
+      querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+        const userData = doc.data()
+        console.log(userData, "datos")
+       if(userData.correo == emailValue){
+       console.log("quiero ese email")}
+    })
+  })
+    if(error = 'auth/wrong-password') {
       console.log('ta mal')
       document.querySelector('.div-wrongpassword').style.display = "block";
     } /*if else (emailValue.value == "" && passwordValue == ""){
       console.log("don't be here")
     }*/
-  }
-};
+  }catch{
 
-export const loginBotton = () => {
+  }
+}
+
+export const loginBotton =  () => {
   const bottonLogin = document.getElementById("btn_login");
-  bottonLogin.addEventListener("click", (e) => {
-    
-    console.log("funciona");
+
+  bottonLogin.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("funciona");     
     loginUser();
     window.location.hash = '#/timeline';
     return;
   });
 };
-
-

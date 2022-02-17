@@ -1,10 +1,12 @@
-import { insertData, dataDocument } from "../firebase/feed.js";
+
+import { insertData, onDataDocument, deletePost } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
-const user = userDataLocally();
-
+  const user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
-
-    const wallTemplate = `<div id="menu" class="menu">
+  
+    const wallTemplate = `
+    
+    <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
     <div>
@@ -41,22 +43,6 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     return sectionWall;
 }
 
-/*document.getElementById("btn-up").addEventListener("click", scrollUp);
-function scrollUp(){
-    let scroll = document.documentElement.scrollTop
-    if( scroll >0 ){
-        window.requestAnimationFrame(scrollUp);
-        window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
-    }
-}*/
-
-const functionBtnDetele = () => {
-    btnDetele = document.getElementById("delete");
-    btnDetele.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-    })
-}
 
 const functionBtnLike = () => {
     let btnLike = document.getElementById("like");
@@ -71,7 +57,6 @@ const functionBtnEdit = () => {
     let btnEdit = document.getElementById("post-edit");
     btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
-
     })
 }
 
@@ -82,33 +67,11 @@ export const btnPostShare = () => {
     btnPost.addEventListener("click", async (e) => {
         e.preventDefault();
         await insertData(post),
-            feed(post.value)
+        //feed(post.value)
         wallArea.reset()
     });
 }
-const feed = (post) => {
-    const containPost = {
-        foto: `<div id = "user-photo-wall" class = "user-photo-wall">
-        <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
-        </div>`,
-        userPost: user.nombre,
-        newPost: post,
-        btn: `<div id = "btns-posts" class = "btns-posts">
-        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
-        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
-        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
-        </div>  `
 
-    }
-    Object.values(containPost).forEach(val => {
-        let div = document.createElement("div");
-        div.setAttribute("id", "newPost");
-        div.innerHTML = val;
-        console.log(val)
-        const app = document.getElementById("posts-container")
-        app.appendChild(div);
-    })
-};
 
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
@@ -135,3 +98,18 @@ export const windowsTimeline = async () => {
         })
     }
 }
+
+
+/*
+export const functionbtnDelete = () => {
+    
+    btnDelete.addEventListener("click", async (e) => {
+        e.preventDefault();
+        console.log('BOTON BORRAR',viewTimelineHtml)
+    })
+}*/
+
+
+
+//<i class="fa-solid fa-trash-can">
+
