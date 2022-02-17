@@ -14,7 +14,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
                 <img class= "user-photo" id="user-photo" src=" ${user.foto}"></img>
                 </div>
                 <div id = "div-user-name-wall" class= "div-user-name-wall">
-                    <p>Nombre de usuario</p>
+                    <p>${user.nombre}</p>
                 </div>
 
             </div>
