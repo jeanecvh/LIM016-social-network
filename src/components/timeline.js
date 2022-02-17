@@ -1,10 +1,13 @@
 
-import { insertData, dataDocument } from "../firebase/feed.js";
+import { insertData, onDataDocument,deletePost } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
+
 const user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
 
-    const wallTemplate = `<div id="menu" class="menu">
+    const wallTemplate = `
+    
+    <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
     <div>
@@ -12,7 +15,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
                 <img class= "user-photo" id="user-photo" src=" ${user.foto}"></img>
-                </div>
+                </div> 
                 <div id = "div-user-name-wall" class= "div-user-name-wall">
                     <p>${user.nombre}</p>
                 </div>
@@ -41,24 +44,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     return sectionWall;
 }
 
-/*document.getElementById("btn-up").addEventListener("click", scrollUp);
-function scrollUp(){
-    let scroll = document.documentElement.scrollTop
-    if( scroll >0 ){
-        window.requestAnimationFrame(scrollUp);
-        window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
-    }
-}*/
-
-
-const functionBtnDetele = () => {
-    btnDetele = document.getElementById("delete");
-    btnDetele.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-    })
-}
-
+/*
 const functionBtnLike = () => {
     let btnLike = document.getElementById("like");
     btnLike.addEventListener("click", async (e) => {
@@ -72,9 +58,8 @@ const functionBtnEdit = () => {
     let btnEdit = document.getElementById("post-edit");
     btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
-
     })
-}
+}*/
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -83,62 +68,44 @@ export const btnPostShare = () => {
     btnPost.addEventListener("click", async (e) => {
         e.preventDefault();
         await insertData(post),
-            feed(post.value)
-        wallArea.reset()
+            wallArea.reset()
     });
 }
-const feed = (post) => {
-    const containPost = {
-        foto: `<div id = "user-photo-wall" class = "user-photo-wall">
-        <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
-        </div>`,
-        userPost: user.nombre,
-        newPost: post,
-        btn: `<div id = "btns-posts" class = "btns-posts">
-        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
-        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
-        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
-        </div>  `
 
-    }
-    Object.values(containPost).forEach(val => {
-        let div = document.createElement("div");
-        div.setAttribute("id", "newPost");
-        div.innerHTML = val;
-        console.log(val)
-        const app = document.getElementById("posts-container")
-        app.appendChild(div);
-    })
-};
 
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
-        const querySnapshot = await dataDocument()
-        let html = ""
-        console.log('Tiene que cargar la publicación aquí', querySnapshot)
-        querySnapshot.forEach(doc => {
-            const dataPost = doc.data()
-            html += `<div>
-                <div id = "user-photo-wall" class = "user-photo-wall">
-                <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
-                </div>
-                    <p>NombreDelUsuario</p>
-                    <p>${dataPost.newPost}</p>
-                    <div id = "btns-posts" class = "btns-posts">
-                        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
-                        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
-                        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
-                    </div>   
-                </div>`
-            console.log('docs', doc.data())
-            postsContainer.innerHTML = html
-        })
+        onDataDocument((querySnapshot) => {
+            let html = ""
+            console.log('Tiene que cargar la publicación aquí')
+            querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+                const dataPost = doc.data()
+                html += `<div>
+                    <div id = "user-photo-wall" class = "user-photo-wall">
+                    <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+                    </div>
+                        <p>${dataPost.name}</p>
+                        <p>${dataPost.newPost}</p>
+                        <div id = "btns-posts" class = "btns-posts">
+                            <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
+                            <button class="delete" id="delete" data-id="${doc.id}"><i class="fa-solid fa-trash-can"></i></button>
+                            <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
+                        </div>   
+                    </div>`
 
-    }
-}
+                postsContainer.innerHTML = html
 
-
-
-
-
+                const btnDelete = document.querySelectorAll(".delete");
+                btnDelete.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        deletePost(e.target.dataset.id)
+                        console.log(e.target.dataset.id)
+                    });
+                });
+            });        
+                
+        });
+    };
+};       

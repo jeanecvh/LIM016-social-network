@@ -75,14 +75,14 @@ export const formTemplateRegister = () => {
     const login = await  userCreate(userEmail, userPassword);
       console.log(login.user ,'que tal')
       emailVerificate();
-      const userToCreate = {
+      const userToCreateForm = {
         nombre: userName,
         correo: userEmail,
-        foto: '',
+        foto: "./images/logos/favicon.png",
         id: login.user.uid
       };
-      userDataBase(userToCreate);
-      sessionStorage.setItem('user', JSON.stringify(userToCreate));
+      userDataBase(userToCreateForm);
+      sessionStorage.setItem('user', JSON.stringify(userToCreateForm));
       const datoGuardado = userDataLocally();
       console.log('usuario guardado en formulario: ', datoGuardado);
       

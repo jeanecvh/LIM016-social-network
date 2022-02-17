@@ -81,9 +81,11 @@ async function loginUser() {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log('user : ', login.user);
     if (login.user.emailVerified === true) {
+
      const user = await findingUser(login.user.uid);
+     console.log('que retorna ? : ', user);
      
-       const objSession = {
+       const userToCreate = {
         nombre: user.nombre,
         correo: user.correo,
         foto: user.foto,
@@ -91,7 +93,7 @@ async function loginUser() {
         
       }
 
-      sessionStorage.setItem('user', JSON.stringify(objSession));
+      sessionStorage.setItem('user', JSON.stringify(userToCreate));
       window.location.hash = '#/timeline';
 
     } else { console.log("HAY ERROR"); }
