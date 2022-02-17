@@ -1,9 +1,10 @@
 
-import { insertData, onDataDocument, deletePost } from "../firebase/feed.js";
+import { insertData, onDataDocument,deletePost } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
-  const user = userDataLocally();
+
+const user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
-  
+
     const wallTemplate = `
     
     <div id="menu" class="menu">
@@ -43,7 +44,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     return sectionWall;
 }
 
-
+/*
 const functionBtnLike = () => {
     let btnLike = document.getElementById("like");
     btnLike.addEventListener("click", async (e) => {
@@ -58,7 +59,7 @@ const functionBtnEdit = () => {
     btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
     })
-}
+}*/
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -67,8 +68,7 @@ export const btnPostShare = () => {
     btnPost.addEventListener("click", async (e) => {
         e.preventDefault();
         await insertData(post),
-        //feed(post.value)
-        wallArea.reset()
+            wallArea.reset()
     });
 }
 
@@ -77,10 +77,10 @@ export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
         onDataDocument((querySnapshot) => {
-        let html = ""
-        console.log('Tiene que cargar la publicación aquí')
-        querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
-            const dataPost = doc.data()
+            let html = ""
+            console.log('Tiene que cargar la publicación aquí')
+            querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+                const dataPost = doc.data()
                 html += `<div>
                     <div id = "user-photo-wall" class = "user-photo-wall">
                     <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
@@ -93,31 +93,19 @@ export const windowsTimeline = async () => {
                             <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
                         </div>   
                     </div>`
-  
+
                 postsContainer.innerHTML = html
 
-            const btnDelete = document.querySelectorAll(".delete");
-            btnDelete.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    deletePost(e.target.dataset.id)
-                    console.log(e.target.dataset.id)
-                })
-            })
-        })
-    })
-}
-}
-/*
-export const functionbtnDelete = () => {
-    
-    btnDelete.addEventListener("click", async (e) => {
-        e.preventDefault();
-        console.log('BOTON BORRAR',viewTimelineHtml)
-    })
-}*/
-
-
-
-//<i class="fa-solid fa-trash-can">
-
+                const btnDelete = document.querySelectorAll(".delete");
+                btnDelete.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        deletePost(e.target.dataset.id)
+                        console.log(e.target.dataset.id)
+                    });
+                });
+            });        
+                
+        });
+    };
+};       
