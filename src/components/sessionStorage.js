@@ -1,6 +1,6 @@
 export const userDataLocally = () => {
     const userSession = sessionStorage.getItem('user');
-    const userSessionOBjet = JSON.parse(userSession);
-    return userSessionOBjet;
+    const userSessionObjet = JSON.parse(userSession);
+    return userSessionObjet;
   }
   
