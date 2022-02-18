@@ -1,9 +1,5 @@
-import { userDataBase } from "../firebase/firestore.js"
-import {
-  loginWithGoogle,
-  loginWithEmailAndPassword,
-} from "../firebase/auth.js";
-
+import { userDataBase,findingUser } from "../firebase/firestore.js"
+import {loginWithGoogle, loginWithEmailAndPassword} from "../firebase/auth.js";
 import { userDataLocally } from "./sessionStorage.js"
 
 
@@ -33,7 +29,7 @@ export const login = () => {
           <button type="submit" id="btn_login" class="btn_login">INGRESAR</button>
         </div>
         <div class = "div-form-login">
-          <a class = 'text-color' href="#/register">Crear cuenta nueva</a>
+          <a class = 'text-color' href="/#/register">Crear cuenta nueva</a>
         </div>
         <div class = "div-form-login">
           <p class = 'text-color'>O inicie la sesión con</p>
@@ -55,8 +51,8 @@ export const login = () => {
 
 export const loginGoogle = () => {
 
-  
-const googleId = document.getElementById("imgGoogle");
+
+  const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async (e) => {
     try {
       const user = await loginWithGoogle();
@@ -83,8 +79,25 @@ async function loginUser() {
   const passwordValue = document.getElementById("password").value;
   try {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
-    console.log(emailValue, passwordValue, "Buenas");
+    console.log('user : ', login.user);
+    if (login.user.emailVerified === true) {
 
+     const user = await findingUser(login.user.uid);
+     console.log('que retorna ? : ', user);
+     
+       const userToCreate = {
+        nombre: user.nombre,
+        correo: user.correo,
+        foto: user.foto,
+        id: user.id
+        
+      }
+
+      sessionStorage.setItem('user', JSON.stringify(userToCreate));
+      window.location.hash = '#/timeline';
+
+    } else { console.log("HAY ERROR"); }
+    
     return login;
   } catch (error) {
     if (error = 'auth/wrong-password') {
@@ -102,7 +115,7 @@ export const loginBotton = () => {
     e.preventDefault();
     console.log("funciona");
     loginUser();
-    window.location.hash = '#/timeline';
+    
     return;
   });
 };
