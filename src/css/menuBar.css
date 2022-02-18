@@ -29,10 +29,3 @@
      font-size: 35px;
      cursor: pointer;
  }
-.wall-area { 
-
-    background-color: rgba(255, 228, 196, 0.274);
-    padding-left: 5%;
-    border: 1px solid transparent;
-    border-color: rgba(0, 92, 128, 0.411);
- }

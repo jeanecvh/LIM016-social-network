@@ -10,6 +10,13 @@
     overflow: hidden;
      
 }
+
+.wall-area { 
+    padding-left: 5%;
+    border-bottom: 1px solid transparent;
+    border-color: rgba(0, 92, 128, 0.411);
+    padding-top: 10px;
+ }
 .user-photo-wall {
     display: inline-block;
     position: relative;
@@ -68,6 +75,7 @@
     color: gray;
     width: auto;
     background-color: transparent;
+    outline: none;
 }
 
 .btns-posts{
@@ -163,4 +171,32 @@
     font-size: medium;
     line-height: 10px;
     font-weight: bold;
+}
+
+.publication-area{
+    border: 2px;
+    border-right: 1px solid rgba(0, 92, 128, 0.41);
+}
+
+.instant-post{
+    margin-top: 15px;
+    padding-left: 5%;
+    border-bottom: 1px solid rgba(0, 92, 128, 0.41);
+}
+
+.contact-data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.data-post{
+    
+    padding-left: 15%;
+    padding-bottom: 5%;
+}
+
+.data-name{
+    font-weight: bold;
+    color: #FFB547;
 }
