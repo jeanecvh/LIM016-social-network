@@ -32,7 +32,7 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Header());
             break;
         case '#/timeline':
-            main.appendChild(components.Timeline(components.MenuBar()));
+            main.appendChild(components.Timeline(components.MenuBar(),components.SectionUtils()));
             windowsTimeline()
             btnPostShare()
             break;
