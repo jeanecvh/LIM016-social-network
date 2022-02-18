@@ -21,7 +21,8 @@ export const insertData = async (post) => {
 };
 
 export const dataDocument = () => getDocs(collection(db, "post_user"))
-export const itemsProfie = () => getDocs(collection(db, "usuario"))
+export const itemsProfie = (callback) => onSnapshot(collection(db, "usuario"),callback)
 export const onDataDocument = (callback) => onSnapshot(collection(db,"post_user"),callback)
 export const deletePost = (id) =>  deleteDoc(doc(db,"post_user",id))
 export const getDocument = (id) => getDoc(doc(db,"post_user",id))
+
