@@ -1,11 +1,8 @@
 import { insertData, dataDocument,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
 const user = userDataLocally();
-
 export const timeline = (sectionMenuBar, sectionUtils) => {
-
     const wallTemplate = `
-    
     <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
@@ -31,7 +28,9 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
         <p>Aquí van los post</p>
         </div>
     </div> 
-    ${sectionUtils}
+    <div id="utils" class="utils">
+        ${sectionUtils}
+    </div>
     `
 
     const sectionWall = document.createElement("section");

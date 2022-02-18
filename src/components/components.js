@@ -6,6 +6,7 @@ import{headerTemplate} from './header.js'
 import { emailConfirm } from './confirmEmail.js'
 import { timeline } from './timeline.js'
 import { menuBar } from './menuBar.js';
+import { sectionUtils } from './sectionUtils-timeline.js'
 
 
 export const components = {
@@ -16,6 +17,7 @@ export const components = {
     Message: emailConfirm,
     Timeline: timeline,
     MenuBar: menuBar,
+    SectionUtils: sectionUtils
 }
 
 
