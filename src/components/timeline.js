@@ -1,7 +1,11 @@
-import { insertData, dataDocument,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
+
+import { insertData,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
-const user = userDataLocally();
+import { findingUser, collectionPost, updatePost } from "../firebase/firestore.js"
+
+let user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
+    user = userDataLocally();
     const wallTemplate = `
     <div id="menu" class="menu">
         ${sectionMenuBar}
@@ -39,25 +43,31 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     sectionWall.innerHTML = wallTemplate;
     return sectionWall;
 }
-
-/*document.getElementById("btn-up").addEventListener("click", scrollUp);
-function scrollUp(){
-    let scroll = document.documentElement.scrollTop
-    if( scroll >0 ){
-        window.requestAnimationFrame(scrollUp);
-        window.scrollTo (0, scroll -(scroll / 5)); //hasta donde sube, a que velocidad sube
-    }
-}*/
-
-
-const functionBtnLike = () => {
-    let btnLike = document.getElementById("like");
-    btnLike.addEventListener("click", async (e) => {
+/*
+const functionBtnEdit = () => {
+    let btnEdit = document.getElementById("post-edit");
+    btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
-
-
     })
-}
+}*/
+const likeThePost = async (idPost) => {
+
+    const docPost = await findingUser(idPost, collectionPost);
+    const dataPost = docPost.data();
+    console.log('dataPost: {}', dataPost);
+    if (dataPost.like?.includes(user.id)) {
+        updatePost(idPost, collectionPost, {
+            like: dataPost.like.filter(userLike => userLike !== user.id)
+        });
+    } else {
+        updatePost(idPost, collectionPost, {
+            like: [...dataPost.like, user.id]
+        });
+    };
+
+
+
+};
 
 
 export const btnPostShare = () => {
@@ -67,8 +77,7 @@ export const btnPostShare = () => {
     btnPost.addEventListener("click", async (e) => {
         e.preventDefault();
         await insertData(post),
-        //feed(post.value)
-        wallArea.reset()
+            wallArea.reset()
     });
 }
 
@@ -78,6 +87,7 @@ export const windowsTimeline = async () => {
     let editStatus = false;
     if (window.location.hash = '#/timeline') {
         onDataDocument((querySnapshot) => {
+
         let html = ""
         console.log('Tiene que cargar la publicación aquí')
         querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
@@ -88,10 +98,9 @@ export const windowsTimeline = async () => {
                             <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
                         </div>
                         <p class="data-name">${dataPost.name}</p>
-                    </div>
-                        <p id="data-post class="data-post">${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-                            <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
+
+                           <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
                             <span class="cta"><i class="fa-solid fa-trash-can"></i></span>
                             <span class="cta-edit"><i class="fa-solid fa-pen-to-square"></i></span>
                         </div>
@@ -118,8 +127,17 @@ export const windowsTimeline = async () => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     deletePost(e.target.dataset.id)
-                })
-            })
+                });
+            });
+          
+            const btnLike = document.querySelectorAll(".like-post");
+                btnLike.forEach(btnL => {
+                    btnL.addEventListener('click', (event) => {
+
+                        likeThePost(event.target.dataset.id)
+
+                    });
+                });
             
             let btnEdit = document.querySelectorAll(".edit");
             btnEdit.forEach( btn => {
@@ -136,7 +154,7 @@ export const windowsTimeline = async () => {
                     */
                 })
                 
-            })
+            });
 
             let closeModal = document.querySelectorAll(".close")[0]
             let openModal = document.querySelectorAll(".cta")[0]
@@ -149,14 +167,14 @@ export const windowsTimeline = async () => {
                 modalConteiner.style.visibility = "visible";
                 modal.classList.toggle("modal-close")
 
-            })
+            });
 
             closeModal.addEventListener("click", () => {
                 modal.classList.toggle("modal-close");
                 modalConteiner.style.opacity = "0";
                 modalConteiner.style.visibility = "hidden";
             
-            })
+            });
 
             window.addEventListener("click", (e) => {
                 if(e.target == modalConteiner){
@@ -195,12 +213,12 @@ export const windowsTimeline = async () => {
             })
                     
         
-        })
-        })
+        });
+        });
         
 
-    }
-}
+    };
+};
 
 /*
 export const functionbtnDelete = () => {

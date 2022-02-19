@@ -1,5 +1,5 @@
 import {userCreate,emailVerificate} from "../firebase/auth.js"
-import {userDataBase} from "../firebase/firestore.js"
+import {userDataBase,collectionUser} from "../firebase/firestore.js"
 import { userDataLocally } from "./sessionStorage.js"
 
 export const formTemplateRegister = () => {
@@ -75,14 +75,14 @@ export const formTemplateRegister = () => {
     const login = await  userCreate(userEmail, userPassword);
       console.log(login.user ,'que tal')
       emailVerificate();
-      const userToCreate = {
+      const userToCreateForm = {
         nombre: userName,
         correo: userEmail,
         foto: "./images/logos/favicon.png",
         id: login.user.uid
       };
-      userDataBase(userToCreate);
-      sessionStorage.setItem('user', JSON.stringify(userToCreate));
+      await userDataBase(userToCreateForm,collectionUser);
+      sessionStorage.setItem('user', JSON.stringify(userToCreateForm));
       const datoGuardado = userDataLocally();
       console.log('usuario guardado en formulario: ', datoGuardado);
       
