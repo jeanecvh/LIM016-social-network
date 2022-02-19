@@ -1,6 +1,7 @@
 .menu { 
     grid-area: menu;
     background-color: #00BCB4;
+    overflow: hidden;
  }
 
  .icons-menu{

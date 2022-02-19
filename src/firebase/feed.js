@@ -1,5 +1,5 @@
 import { db } from "./config.js";
-import { collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, serverTimestamp, orderBy } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
+import { collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"
 import { userDataLocally } from "../components/sessionStorage.js";
 //inserto un new post en firestorage
 export const insertData = async (post) => {
@@ -13,7 +13,7 @@ export const insertData = async (post) => {
             photo: user.foto,
             name: user.nombre,
             like: [],
-            timestamp: serverTimestamp()
+            //timestamp: serverTimestamp() no borrar!
         })
         console.log('Funciona');
         return docRef
@@ -25,6 +25,6 @@ export const insertData = async (post) => {
 
 export const dataDocument = () => getDocs(collection(db, "post_user"))
 export const itemsProfie = (callback) => onSnapshot(collection(db, "usuario"), callback)
-export const orderByPost = () => query(collection(db, "post_user"), orderBy('timestamp'));
+//export const orderByPost = () => query(collection(db, "post_user"), orderBy('timestamp')); necesito saber donde insertarlo (recuerda que lo dejaste de importar)
 export const onDataDocument = (callback) => onSnapshot(collection(db, "post_user"), callback)
 export const deletePost = (id) => deleteDoc(doc(db, "post_user", id))
