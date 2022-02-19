@@ -1,9 +1,11 @@
 
-import { insertData, dataDocument,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
+import { insertData,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
+import { findingUser, collectionPost, updatePost } from "../firebase/firestore.js"
 
-const user = userDataLocally();
+let user = userDataLocally();
 export const timeline = (sectionMenuBar, sectionUtils) => {
+    user = userDataLocally();
     const wallTemplate = `
     <div id="menu" class="menu">
         ${sectionMenuBar}
@@ -41,23 +43,30 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     sectionWall.innerHTML = wallTemplate;
     return sectionWall;
 }
-
 /*
-const functionBtnLike = () => {
-    let btnLike = document.getElementById("like");
-    btnLike.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-
-    })
-}
-
 const functionBtnEdit = () => {
     let btnEdit = document.getElementById("post-edit");
     btnEdit.addEventListener("click", async (e) => {
         e.preventDefault();
     })
 }*/
+const likeThePost = async (idPost) => {
+
+    const docPost = await findingUser(idPost, collectionPost);
+    const dataPost = docPost.data();
+    console.log('dataPost: {}', dataPost);
+    if (dataPost.like?.includes(user.id)) {
+        updatePost(idPost, collectionPost, {
+            like: dataPost.like.filter(userLike => userLike !== user.id)
+        });
+    } else {
+        updatePost(idPost, collectionPost, {
+            like: [...dataPost.like, user.id]
+        });
+    };
+
+
+};
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -86,7 +95,9 @@ export const windowsTimeline = async () => {
                         <p>${dataPost.name}</p>
                         <p>${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-                            <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
+
+                            <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
+                            <p class="like" >${dataPost.like?.length}</p>
                             <span class="cta""><i class="fa-solid fa-trash-can"></i></span>
                             <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
                         </div>
@@ -97,6 +108,7 @@ export const windowsTimeline = async () => {
                                 <img src="../images/ramdom_pictures/img-modal.png" alt="">
                                 <button class="delete" id="delete" data-id="${doc.id}">Eliminar</button>
                             </div>
+
                         </div>   
                     </div>`
 
@@ -109,8 +121,16 @@ export const windowsTimeline = async () => {
                     e.preventDefault();
                     deletePost(e.target.dataset.id)
                     console.log(e.target.dataset.id)
-                })
-            })
+                });
+            });
+            const btnLike = document.querySelectorAll(".like-post");
+                btnLike.forEach(btnL => {
+                    btnL.addEventListener('click', (event) => {
+
+                        likeThePost(event.target.dataset.id)
+
+                    });
+                });
             
             let btnEdit = document.querySelectorAll(".edit");
             btnEdit.forEach( btn => {
@@ -119,9 +139,9 @@ export const windowsTimeline = async () => {
                     console.log('works')
                     const doc = await getDocument(e.target.dataset.id)
                     const dataPost = doc.data()
-                })
+                });
                 
-            })
+            });
 
             let closeModal = document.querySelectorAll(".close")[0]
             let openModal = document.querySelectorAll(".cta")[0]
@@ -134,14 +154,14 @@ export const windowsTimeline = async () => {
                 modalConteiner.style.visibility = "visible";
                 modal.classList.toggle("modal-close")
 
-            })
+            });
 
             closeModal.addEventListener("click", () => {
                 modal.classList.toggle("modal-close");
                 modalConteiner.style.opacity = "0";
                 modalConteiner.style.visibility = "hidden";
             
-            })
+            });
 
             window.addEventListener("click", (e) => {
                 console.log(e.target)
@@ -150,15 +170,15 @@ export const windowsTimeline = async () => {
                     modalConteiner.style.opacity = "0";
                     modalConteiner.style.visibility = "hidden";
                 }
-            })
+            });
                     
         
-        })
-        })
+        });
+        });
         
 
-    }
-}
+    };
+};
 
 /*
 export const functionbtnDelete = () => {
