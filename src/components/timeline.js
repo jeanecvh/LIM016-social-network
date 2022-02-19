@@ -10,7 +10,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    <div>
+    <div id="publication-area" class="publication-area">
         <form id = "wall-area" class = "wall-area" >
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
@@ -66,7 +66,9 @@ const likeThePost = async (idPost) => {
     };
 
 
+
 };
+
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -82,47 +84,52 @@ export const btnPostShare = () => {
 
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
+    let editStatus = false;
     if (window.location.hash = '#/timeline') {
         onDataDocument((querySnapshot) => {
-            let html = ""
-            console.log('Tiene que cargar la publicación aquí')
-            querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
-                const dataPost = doc.data()
-                html += `<div>
-                    <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
-                    </div>
-                        <p>${dataPost.name}</p>
-                        <p>${dataPost.newPost}</p>
+
+        let html = ""
+        console.log('Tiene que cargar la publicación aquí')
+        querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+            const dataPost = doc.data()
+                html += `<div id="instant-post" class="instant-post" >
+                    <div class="contact-data"">
+                        <div id = "user-photo-wall" class = "user-photo-wall">
+                            <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+                        </div>
+                        <p class="data-name">${dataPost.name}</p>
                         <div id = "btns-posts" class = "btns-posts">
 
-                            <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
-                            <p class="like" >${dataPost.like?.length}</p>
-                            <span class="cta""><i class="fa-solid fa-trash-can"></i></span>
-                            <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
+                           <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
+                            <span class="cta"><i class="fa-solid fa-trash-can"></i></span>
+                            <span class="cta-edit"><i class="fa-solid fa-pen-to-square"></i></span>
                         </div>
                         <div class = "modal-container">
-                            <div class ="modal moda-close">
+                            <div class ="modal modal-close">
                                 <p class ="close">X</p>
                                 <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
                                 <img src="../images/ramdom_pictures/img-modal.png" alt="">
                                 <button class="delete" id="delete" data-id="${doc.id}">Eliminar</button>
                             </div>
-
-                        </div>   
+                        </div>
+                        <div class = "modal-container-edit">
+                            <div class ="div-modal-edit modal-close-edit">
+                                <p class ="close-edit">X</p>
+                                <textarea name="edit-text-area" id="edit-text-area" class="edit-text-area" cols="30" rows="10"></textarea>
+                                <button class="edit" id="edit" data-id="${doc.id}">Editar</button>
+                            </div>
+                        </div>     
                     </div>`
-
                 postsContainer.innerHTML = html
 
-
-            const btnDelete = document.querySelectorAll(".delete");
+            const btnDelete = document.querySelectorAll(".cta");
             btnDelete.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     deletePost(e.target.dataset.id)
-                    console.log(e.target.dataset.id)
                 });
             });
+          
             const btnLike = document.querySelectorAll(".like-post");
                 btnLike.forEach(btnL => {
                     btnL.addEventListener('click', (event) => {
@@ -137,9 +144,15 @@ export const windowsTimeline = async () => {
                 btn.addEventListener('click', async (e) =>{
                     e.preventDefault();
                     console.log('works')
-                    const doc = await getDocument(e.target.dataset.id)
-                    const dataPost = doc.data()
-                });
+                    const getDoc = await getDocument(e.target.dataset.id)
+                    console.log(getDoc)
+                    console.log(doc.data())
+                    /*
+                    const inputPostSave = document.getElementById('data-post').value
+                    inputPostSave.value = dataPost.newPost
+                    editStatus = true
+                    */
+                })
                 
             });
 
@@ -164,13 +177,40 @@ export const windowsTimeline = async () => {
             });
 
             window.addEventListener("click", (e) => {
-                console.log(e.target)
                 if(e.target == modalConteiner){
                     modal.classList.toggle("modal-close");
                     modalConteiner.style.opacity = "0";
                     modalConteiner.style.visibility = "hidden";
                 }
-            });
+            })
+
+            let closeModalEdit = document.querySelectorAll(".close-edit")[0]
+            let openModalEdit = document.querySelectorAll(".cta-edit")[0]
+            let modalEdit = document.querySelectorAll(".div-modal-edit")[0]
+            let modalConteinerEdit = document.querySelectorAll(".modal-container-edit")[0]
+
+            openModalEdit.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalConteinerEdit.style.opacity = "1";
+                modalConteinerEdit.style.visibility = "visible";
+                modal.classList.toggle("modal-close-edit")
+
+            })
+
+            closeModalEdit.addEventListener("click", () => {
+                modalEdit.classList.toggle("modal-close");
+                modalConteinerEdit.style.opacity = "0";
+                modalConteinerEdit.style.visibility = "hidden";
+            
+            })
+
+            window.addEventListener("click", (e) => {
+                if(e.target == modalConteiner){
+                    modalEdit.classList.toggle("modal-close");
+                    modalConteinerEdit.style.opacity = "0";
+                    modalConteinerEdit.style.visibility = "hidden";
+                }
+            })
                     
         
         });
