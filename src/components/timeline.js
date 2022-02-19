@@ -60,33 +60,6 @@ const functionBtnLike = () => {
 }
 
 
-
-/*
-const feed = (post) => {
-    const containPost = {
-        foto: `<div id = "user-photo-wall" class = "user-photo-wall">
-        <img class= "user-photo" id="user-photo" src="${user.foto}"></img>
-        </div>`,
-        userPost: user.nombre,
-        newPost: post,
-        btn: `<div id = "btns-posts" class = "btns-posts">
-        <p class="like" id="like"><i class="fa-solid fa-thumbs-up"></i></p>
-        <p class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></p>
-        <p class="edit" id="post-edit"><i class="fa-solid fa-pen-to-square"></i></p>
-        </div>  `
-
-    }
-    Object.values(containPost).forEach(val => {
-        let div = document.createElement("div");
-        div.setAttribute("id", "newPost");
-        div.innerHTML = val;
-        console.log(val)
-        const app = document.getElementById("posts-container")
-        app.appendChild(div);
-    })
-};
-*/
-
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
     const btnPost = document.getElementById("btn-share-publication");
@@ -102,6 +75,7 @@ export const btnPostShare = () => {
 
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
+    let editStatus = false;
     if (window.location.hash = '#/timeline') {
         onDataDocument((querySnapshot) => {
         let html = ""
@@ -115,30 +89,35 @@ export const windowsTimeline = async () => {
                         </div>
                         <p class="data-name">${dataPost.name}</p>
                     </div>
-                        <p class="data-post">${dataPost.newPost}</p>
+                        <p id="data-post class="data-post">${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
                             <p class="like" ><i class="fa-solid fa-thumbs-up" id="like"></i></p>
-                            <span class="cta""><i class="fa-solid fa-trash-can"></i></span>
-                            <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
+                            <span class="cta"><i class="fa-solid fa-trash-can"></i></span>
+                            <span class="cta-edit"><i class="fa-solid fa-pen-to-square"></i></span>
                         </div>
                         <div class = "modal-container">
-                            <div class ="modal moda-close">
+                            <div class ="modal modal-close">
                                 <p class ="close">X</p>
                                 <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
                                 <img src="../images/ramdom_pictures/img-modal.png" alt="">
                                 <button class="delete" id="delete" data-id="${doc.id}">Eliminar</button>
                             </div>
-                        </div>   
+                        </div>
+                        <div class = "modal-container-edit">
+                            <div class ="div-modal-edit modal-close-edit">
+                                <p class ="close-edit">X</p>
+                                <textarea name="edit-text-area" id="edit-text-area" class="edit-text-area" cols="30" rows="10"></textarea>
+                                <button class="edit" id="edit" data-id="${doc.id}">Editar</button>
+                            </div>
+                        </div>     
                     </div>`
-  
                 postsContainer.innerHTML = html
 
-            const btnDelete = document.querySelectorAll(".delete");
+            const btnDelete = document.querySelectorAll(".cta");
             btnDelete.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     deletePost(e.target.dataset.id)
-                    console.log(e.target.dataset.id)
                 })
             })
             
@@ -147,8 +126,14 @@ export const windowsTimeline = async () => {
                 btn.addEventListener('click', async (e) =>{
                     e.preventDefault();
                     console.log('works')
-                    const doc = await getDocument(e.target.dataset.id)
-                    const dataPost = doc.data()
+                    const getDoc = await getDocument(e.target.dataset.id)
+                    console.log(getDoc)
+                    console.log(doc.data())
+                    /*
+                    const inputPostSave = document.getElementById('data-post').value
+                    inputPostSave.value = dataPost.newPost
+                    editStatus = true
+                    */
                 })
                 
             })
@@ -174,11 +159,38 @@ export const windowsTimeline = async () => {
             })
 
             window.addEventListener("click", (e) => {
-                console.log(e.target)
                 if(e.target == modalConteiner){
                     modal.classList.toggle("modal-close");
                     modalConteiner.style.opacity = "0";
                     modalConteiner.style.visibility = "hidden";
+                }
+            })
+
+            let closeModalEdit = document.querySelectorAll(".close-edit")[0]
+            let openModalEdit = document.querySelectorAll(".cta-edit")[0]
+            let modalEdit = document.querySelectorAll(".div-modal-edit")[0]
+            let modalConteinerEdit = document.querySelectorAll(".modal-container-edit")[0]
+
+            openModalEdit.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalConteinerEdit.style.opacity = "1";
+                modalConteinerEdit.style.visibility = "visible";
+                modal.classList.toggle("modal-close-edit")
+
+            })
+
+            closeModalEdit.addEventListener("click", () => {
+                modalEdit.classList.toggle("modal-close");
+                modalConteinerEdit.style.opacity = "0";
+                modalConteinerEdit.style.visibility = "hidden";
+            
+            })
+
+            window.addEventListener("click", (e) => {
+                if(e.target == modalConteiner){
+                    modalEdit.classList.toggle("modal-close");
+                    modalConteinerEdit.style.opacity = "0";
+                    modalConteinerEdit.style.visibility = "hidden";
                 }
             })
                     

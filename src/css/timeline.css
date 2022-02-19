@@ -81,6 +81,7 @@
 .btns-posts{
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 3%;
 }
 
 .modal > img{
@@ -92,7 +93,8 @@
     margin-left: 34%;
 }
 
-.modal-container{
+.modal-container,
+.modal-container-edit{
     opacity: 0;
     visibility: hidden;
     position: fixed;
@@ -118,7 +120,8 @@
     color: black;
     background: #fff;
 }
-.modal{
+.modal,
+.div-modal-edit{
     width: 40%;
     height: 60%;
     background: #fff;
@@ -133,11 +136,13 @@
     border-radius: 10px;
 }
 
-.modal-close{
+.modal-close,
+.modal-close-edit{
     /*transform: translateY(-200%);*/
 }
 
-.close{
+.close,
+.close-edit{
     position: absolute;
     top: 0px;
     right: 0px;
@@ -159,7 +164,8 @@
     margin-top: 40px;
 }
 
-.modal > button{
+.modal > button,
+.div-modal-edit > button{
     width: 20%;
     height: 25px;
     margin-left: 42%;
