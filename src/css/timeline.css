@@ -7,6 +7,7 @@
         "menu wall-area utils"
         "menu wall-area utils"
         "menu wall-area utils";
+    overflow: hidden;
      
 }
 .user-photo-wall {
@@ -72,4 +73,94 @@
 .btns-posts{
     display: flex;
     justify-content: space-evenly;
+}
+
+.modal > img{
+    height: 60%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 34%;
+}
+
+.modal-container{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cta {
+    display: inline-block;
+    padding: 7px 0;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background: #fff;
+}
+.modal{
+    width: 40%;
+    height: 60%;
+    background: #fff;
+    /*overflow: hidden;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    transition: transform 3s;
+    transform: translateY(0%);
+    border-radius: 10px;
+}
+
+.modal-close{
+    /*transform: translateY(-200%);*/
+}
+
+.close{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    background: #00BCB4;
+    color: #fff;
+    line-height: 30px;
+    cursor: pointer;
+    /* border-radius: 5px; */
+    text-align: end;
+    padding-right: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.text-confirmation{
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.modal > button{
+    width: 20%;
+    height: 25px;
+    margin-left: 42%;
+    border-radius: 10px;
+    border: 2px solid #FFB547;
+    background: FFB547;
+    background-color: #FFB547;
+    color: white;
+    font-size: medium;
+    line-height: 10px;
+    font-weight: bold;
 }
