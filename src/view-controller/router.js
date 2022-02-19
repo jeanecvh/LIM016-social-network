@@ -8,7 +8,6 @@ import { btnPostShare, windowsTimeline,  } from '../components/timeline.js';
 export const componentsViews = (hash) => {
     const main = document.getElementById('main');
     main.innerHTML = ''
-    // devuelve la parte de anclaje de la URL(ruta)
     switch (hash) {
         case '': 
         case '#/': 
@@ -35,7 +34,6 @@ export const componentsViews = (hash) => {
             main.appendChild(components.Timeline(components.MenuBar(),components.SectionUtils()));
             windowsTimeline()
             btnPostShare()
-            //functionbtnDelete()
             break;
         default:
             main.innerHTML = 'Página No Encontrada';
