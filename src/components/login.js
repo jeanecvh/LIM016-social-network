@@ -81,16 +81,13 @@ async function loginUser() {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log('user : ', login.user);
     if (login.user.emailVerified === true) {
-
      const user = await findingUser(login.user.uid);
-     console.log('que retorna ? : ', user);
-     
+     console.log('que retorna ? : ', user);     
        const userToCreate = {
         nombre: user.nombre,
         correo: user.correo,
         foto: user.foto,
-        id: user.id
-        
+        id: user.id        
       }
 
       sessionStorage.setItem('user', JSON.stringify(userToCreate));
