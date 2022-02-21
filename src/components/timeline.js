@@ -10,7 +10,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    <div>
+    <div id="publication-area" class="publication-area">
         <form id = "wall-area" class = "wall-area" >
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
@@ -84,16 +84,18 @@ export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
         onDataDocument((querySnapshot) => {
-            let html = ""
-            console.log('Tiene que cargar la publicación aquí')
-            querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
-                const dataPost = doc.data()
-                html += `<div>
-                    <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+        let html = ""
+        console.log('Tiene que cargar la publicación aquí')
+        querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
+            const dataPost = doc.data()
+                html += `<div id="instant-post" class="instant-post" >
+                    <div class="contact-data"">
+                        <div id = "user-photo-wall" class = "user-photo-wall">
+                            <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+                        </div>
+                        <p class="data-name">${dataPost.name}</p>
                     </div>
-                        <p>${dataPost.name}</p>
-                        <p>${dataPost.newPost}</p>
+                        <p class="data-post">${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
 
                             <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
