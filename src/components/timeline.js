@@ -79,6 +79,7 @@ export const btnPostShare = () => {
     });
 }
 
+
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
@@ -97,30 +98,29 @@ export const windowsTimeline = async () => {
 
                             <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
                             <p class="like" >${dataPost.like?.length}</p>
-                            <button data-id="${doc.id}" class="fa-solid fa-trash-can cta"></button>
+                            <span class="cta""><i class="fa-solid fa-trash-can"></i></span>
                             <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
                         </div>
-                         
+                        <div class = "modal-container">
+                            <div class ="modal moda-close">
+                                <p class ="close">X</p>
+                                <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
+                                <img src="../images/ramdom_pictures/img-modal.png" alt="">
+                                <button class="delete" id="delete" data-id="${doc.id}">Eliminar</button>
+                            </div>
+
+                        </div>   
                     </div>`
 
-                
+                postsContainer.innerHTML = html
 
-                const modalDelete = `<div class = "modal-container">
-                <div class ="modal moda-close">
-                    <p class ="close">X</p>
-                    <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
-                    <img src="../images/ramdom_pictures/img-modal.png" alt="">
-                    <button class="delete"  data-id="${doc.id}" id="delete">Eliminar</button>
-                </div>
 
-            </div>  `
-            postsContainer.innerHTML = html+modalDelete
             const btnDelete = document.querySelectorAll(".delete");
             btnDelete.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     deletePost(e.target.dataset.id)
-                    console.log('que es dilete: ', e.target.dataset.id)
+                    console.log(e.target.dataset.id)
                 });
             });
             const btnLike = document.querySelectorAll(".like-post");
@@ -144,18 +144,15 @@ export const windowsTimeline = async () => {
             });
 
             let closeModal = document.querySelectorAll(".close")[0]
-            let openModal = document.querySelectorAll(".cta")
+            let openModal = document.querySelectorAll(".cta")[0]
             let modal = document.querySelectorAll(".modal")[0]
             let modalConteiner = document.querySelectorAll(".modal-container")[0]
 
-            openModal.forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    modalConteiner.style.opacity = "1";
-                    modalConteiner.style.visibility = "visible";
-                    modal.classList.toggle("modal-close")
-                    console.log("este es el modal de que? " , e.target.data.id);
-            })
+            openModal.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalConteiner.style.opacity = "1";
+                modalConteiner.style.visibility = "visible";
+                modal.classList.toggle("modal-close")
 
             });
 
@@ -166,7 +163,15 @@ export const windowsTimeline = async () => {
             
             });
 
-       
+            window.addEventListener("click", (e) => {
+                console.log(e.target)
+                if(e.target == modalConteiner){
+                    modal.classList.toggle("modal-close");
+                    modalConteiner.style.opacity = "0";
+                    modalConteiner.style.visibility = "hidden";
+                }
+            });
+                    
         
         });
         });
@@ -174,9 +179,6 @@ export const windowsTimeline = async () => {
 
     };
 };
-
-
-
 
 /*
 export const functionbtnDelete = () => {
