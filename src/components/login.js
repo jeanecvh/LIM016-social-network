@@ -1,6 +1,6 @@
-import { userDataBase,findingUser } from "../firebase/firestore.js"
-import {loginWithGoogle, loginWithEmailAndPassword} from "../firebase/auth.js";
-import { userDataLocally } from "./sessionStorage.js"
+import { userDataBase , findingUser, collectionUser } from "../firebase/firestore.js"
+import {loginWithGoogle , loginWithEmailAndPassword} from "../firebase/auth.js";
+import {userDataLocally} from "./sessionStorage.js"
 
 
 export const login = () => {
@@ -51,9 +51,8 @@ export const login = () => {
 
 export const loginGoogle = () => {
 
-
   const googleId = document.getElementById("imgGoogle");
-  googleId.addEventListener("click", async (e) => {
+  googleId.addEventListener("click", async () => {
     try {
       const user = await loginWithGoogle();
       const userToCreate = {
@@ -62,7 +61,7 @@ export const loginGoogle = () => {
         foto: user.photoURL,
         id: user.uid
       };
-      await userDataBase(userToCreate);
+       userDataBase(userToCreate,collectionUser);
       const sesion = sessionStorage.setItem('user', JSON.stringify(userToCreate));
       console.log('datos locales: ', sesion);
       const datoGuardado = userDataLocally();
@@ -70,7 +69,9 @@ export const loginGoogle = () => {
       window.location.hash = '#/timeline';
       return;
 
-    } catch (error) { }
+    } catch (error) {
+      throw new Error(error, "error manita");
+     }
   });
 };
 
@@ -81,15 +82,18 @@ async function loginUser() {
     const login = await loginWithEmailAndPassword(emailValue, passwordValue);
     console.log('user : ', login.user);
     if (login.user.emailVerified === true) {
-     const user = await findingUser(login.user.uid);
-     console.log('que retorna ? : ', user);     
-       const userToCreate = {
-        nombre: user.nombre,
-        correo: user.correo,
-        foto: user.foto,
-        id: user.id        
-      }
 
+     const user = await findingUser(login.user.uid, collectionUser);
+     console.log('que retorna ? : ', user);
+     
+       const userToCreate = {
+        nombre: user.data().nombre,
+        correo: user.data().correo,
+        foto: user.data().foto,
+        id: user.data().id
+        
+      }
+      sessionStorage.clear();
       sessionStorage.setItem('user', JSON.stringify(userToCreate));
       window.location.hash = '#/timeline';
 
@@ -100,9 +104,7 @@ async function loginUser() {
     if (error = 'auth/wrong-password') {
       console.log('ta mal')
       document.querySelector('.div-wrongpassword').style.display = "block";
-    } /*if else (emailValue.value == "" && passwordValue == ""){
-      console.log("don't be here")
-    }*/
+    } 
   }
 };
 
@@ -116,5 +118,3 @@ export const loginBotton = () => {
     return;
   });
 };
-
-
