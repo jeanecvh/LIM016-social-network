@@ -70,7 +70,8 @@
     cursor: pointer;
 }
 
-.text-area-publication{
+.text-area-publication,
+.edit-text-area{
     border: transparent;
     color: gray;
     width: auto;
@@ -78,11 +79,16 @@
     outline: none;
 }
 
+.edit-text-area {
+    padding: 5%;
+}
+
+
 .btns-posts{
     display: flex;
-    justify-content: space-evenly;
-
     margin-bottom: 3%;
+    align-items: center;
+    justify-content: space-between;
 
 }
 
@@ -189,6 +195,7 @@
 .instant-post{
     margin-top: 15px;
     padding-left: 5%;
+    padding-right: 5%;
     border-bottom: 1px solid rgba(0, 92, 128, 0.41);
 }
 
@@ -208,3 +215,31 @@
     font-weight: bold;
     color: #FFB547;
 }
+
+.area-likes{
+    display: flex;
+    flex-direction: row;
+}
+
+.like{
+    margin-right: 23%;
+}
+
+.user-buttons{
+    display: flex;
+    align-items: center;
+    margin-left: 4%;
+}
+
+.user-buttons div {
+    margin-left: 4%;
+}
+
+.save-post{
+    cursor: pointer;
+}
+
+.fa-solid{
+    cursor: pointer;
+}
+

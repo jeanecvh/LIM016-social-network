@@ -78,7 +78,7 @@ export const formTemplateRegister = () => {
       const userToCreateForm = {
         nombre: userName,
         correo: userEmail,
-        foto: "./images/logos/favicon.png",
+        foto: "./images/ramdom_pictures/img-modal.png",
         id: login.user.uid
       };
       await userDataBase(userToCreateForm,collectionUser);

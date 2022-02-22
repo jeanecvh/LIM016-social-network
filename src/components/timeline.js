@@ -10,7 +10,7 @@ export const timeline = (sectionMenuBar, sectionUtils) => {
     <div id="menu" class="menu">
         ${sectionMenuBar}
     </div>
-    <div>
+    <div id="publication-area" class ="publication-area">
         <form id = "wall-area" class = "wall-area" >
             <div id = "user-descript" class = "user-descript">
                 <div id = "user-photo-wall" class = "user-photo-wall">
@@ -71,8 +71,15 @@ const likeThePost = async (idPost) => {
 
 function showDeleteButtonOnlyIfOwnerUser(postUserId, postDocumentId) {    
     if (user.id === postUserId) {
-        return `<span class="cta"><i class="fa-solid fa-trash-can delete-btn" data-id="${postDocumentId}"></i></span> 
-        <button class="edit edit-btn" id="post-edit edit-btn" data-id="${postDocumentId}">EDITAR</button>`;
+        return `
+            <div class="delete-area">
+                <span class="cta"><i class="fa-solid fa-trash-can delete-btn" data-id="${postDocumentId}"></i></span> 
+            </div>
+            <div class="edit-area">
+                <span><i class="fa-solid fa-pen-to-square edit edit-btn" data-id="${postDocumentId}"></i></span> 
+            </div>
+     
+            `;
     }
     else return '';
 }
@@ -117,7 +124,7 @@ const modalEditPost = (idPost) => {
     <div id="div-modal-edit" class ="div-modal-edit modal-close-edit">
         <p id="close-edit" class ="close-edit">X</p>
         <textarea name="edit-text-area" id="edit-text-area" class="edit-text-area" cols="30" rows="10"></textarea>
-        <button class="edit" id="save-post" data-id="${idPost}">Guardar</button>
+        <button class="edit save-post" id="save-post" data-id="${idPost}">Guardar</button>
     </div>`
     
     modalContainerEdit.innerHTML = modalEditHtml;
@@ -165,15 +172,21 @@ export const windowsTimeline = async () => {
             console.log('Tiene que cargar la publicación aquí')
             querySnapshot.forEach(doc => { // meter la informacion de la coleccion pos_user
                 const dataPost = doc.data()
-                html += `<div>
-                    <div id = "user-photo-wall" class = "user-photo-wall">
-                    <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
-                    </div>
-                        <p>${dataPost.name}</p>
-                        <p>${dataPost.newPost}</p>
+                html += `<div id="instant-post" class="instant-post">
+                        <div class="contact-data">
+                            <div id = "user-photo-wall" class = "user-photo-wall">
+                            <img class= "user-photo" id="user-photo" src="${dataPost.photo}"></img>
+                            </div>
+                            <p class="data-name">${dataPost.name}</p>
+                        </div>
+    
+                        <p class="data-post">${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-                            <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
+                        <div class="area-likes">
                             <p class="like" >${dataPost.like?.length}</p>
+                            <i class="like-post fa-solid fa-heart" data-id=${doc.id} id="like"></i>
+                        </div>
+                            
                             ${showDeleteButtonOnlyIfOwnerUser(dataPost.id, doc.id)}                            
                         </div>
                         <div id="modal-container" class = "modal-container">    
