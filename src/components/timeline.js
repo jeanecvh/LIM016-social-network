@@ -114,6 +114,17 @@ export const btnPostShare = () => {
             wallArea.reset()
     });
 }
+const templateDeleteAndEdit = async (idUser, postUserId) => {
+    
+    if (user.id == postUserId){
+        modalDeletePost(postUserId);
+        return `<span class="cta"><i class="fa-solid fa-trash-can"></i></span>
+         <button class="edit" id="post-edit" data-id="${idUser}">EDITAR</button>
+        `   
+    } else {
+        return "";
+    } 
+}
 
 
 export const windowsTimeline = async () => {
@@ -134,7 +145,7 @@ export const windowsTimeline = async () => {
 
                             <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
                             <p class="like" >${dataPost.like?.length}</p>
-                            ${showDeleteButtonOnlyIfOwnerUser(dataPost.id, doc.id)}                            
+                            ${templateDeleteAndEdit (dataPost.id, doc.id)}                            
                         </div>
                         <div id="modal-container" class = "modal-container">    
 
@@ -209,13 +220,7 @@ export const windowsTimeline = async () => {
     };
 };
 
-function showDeleteButtonOnlyIfOwnerUser(postUserId, postDocumentId) {    
-    if (user.id === postUserId) {
-        return `<span class="cta""><i class="fa-solid fa-trash-can delete-btn" data-id="${postDocumentId}"></i></span> 
-        <button class="edit" id="post-edit" data-id="${postDocumentId}">EDITAR</button>`;
-    }
-    else return '';
-}
+
 
 
 /*
