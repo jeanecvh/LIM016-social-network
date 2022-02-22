@@ -56,5 +56,3 @@ export const userDataBase = async (user, collection) => {
 //export const  getUserForTimeLine = (user ) => collection(db, 'usuario').get();
 
 
-
-
