@@ -24,11 +24,10 @@ export const insertData = async (post) => {
 
 
 export const dataDocument = () => getDocs(collection(db, "post_user"))
-export const itemsProfie = (callback) => onSnapshot(collection(db, "usuario"), callback)
-  
+export const deletePost = (id) =>  deleteDoc(doc(db,"post_user",id))
+export const itemsProfie = (callback) => onSnapshot(collection(db, "usuario"), callback)  
 export const onDataDocument = async (callback) =>{
     const q = query(collection(db, "post_user"), orderBy('timestamp',"desc"));
     await onSnapshot(q, callback)
 } 
-export const deletePost = (id) => deleteDoc(doc(db, "post_user", id))
 export const getDocument = (id) => getDoc(doc(db,"post_user",id))
