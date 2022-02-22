@@ -8,6 +8,7 @@ import {
     sendEmailVerification,
     signInWithEmailAndPassword,
     sendPasswordResetEmail,
+    signOut
   } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 
@@ -43,16 +44,5 @@ export const loginWithEmailAndPassword = (email, password) => signInWithEmailAnd
 export const recoverPasswordWithEmail = (email) => sendPasswordResetEmail(auth, email);
 
 
-
-
-
-
-
-
-
-// cierre de sesion
-/*
-export const logut = () => {
-    signOut(auth);
-}*/
+export const logut = () =>signOut(auth)
 

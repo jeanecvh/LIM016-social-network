@@ -1,8 +1,9 @@
-import { insertData,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
+import { insertData,onDataDocument,deletePost,} from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
 import { findingUser, collectionPost, updatePost } from "../firebase/firestore.js"
 
 let user = userDataLocally();
+
 export const timeline = (sectionMenuBar, sectionUtils) => {
     user = userDataLocally();
     const wallTemplate = `
@@ -68,16 +69,24 @@ const likeThePost = async (idPost) => {
 };
 
 
+function showDeleteButtonOnlyIfOwnerUser(postUserId, postDocumentId) {    
+    if (user.id === postUserId) {
+        return `<span class="cta"><i class="fa-solid fa-trash-can delete-btn" data-id="${postDocumentId}"></i></span> 
+        <button class="edit edit-btn" id="post-edit edit-btn" data-id="${postDocumentId}">EDITAR</button>`;
+    }
+    else return '';
+}
 
 const modalDeletePost =  (idPost) => {
     const modalContainer = document.getElementById("modal-container");
     //aqui inseeto mi html
-    const htmlModal = `<div id="modal" class="modal modal-close">
-                                <p id="close-modal" class ="close">X</p>
-                                <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
-                                <img src="../images/ramdom_pictures/img-modal.png" alt="">
-                                <button class="delete" id="btn-modal-delete" data-id="${idPost}">Eliminar</button>
-                            </div>`;
+    const htmlModal = `
+    <div id="modal" class="modal modal-close">
+        <p id="close-modal" class ="close">X</p>
+         <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
+         <img src="../images/ramdom_pictures/img-modal.png" alt="">
+          <button class="delete" id="btn-modal-delete" data-id="${idPost}">Eliminar</button>
+    </div>`;
     
 
     modalContainer.innerHTML = htmlModal;
@@ -98,11 +107,43 @@ const modalDeletePost =  (idPost) => {
 
     btnDelete.addEventListener("click", (e) => {
         deletePost(e.target.dataset.id);
-    });
-    
-
+    });   
 
 };
+
+const modalEditPost = (idPost) => {
+    const modalContainerEdit = document.getElementById("modal-container-edit");
+    const modalEditHtml = `
+    <div id="div-modal-edit" class ="div-modal-edit modal-close-edit">
+        <p id="close-edit" class ="close-edit">X</p>
+        <textarea name="edit-text-area" id="edit-text-area" class="edit-text-area" cols="30" rows="10"></textarea>
+        <button class="edit" id="save-post" data-id="${idPost}">Guardar</button>
+    </div>`
+    
+    modalContainerEdit.innerHTML = modalEditHtml;
+    modalContainerEdit.style.opacity = "1";
+    modalContainerEdit.style.visibility = "visible";
+
+    const closeModalEdit = document.getElementById("close-edit");
+    const modalEdit = document.getElementById("div-modal-edit");
+    const btnEdit =document.getElementById("save-post");
+    const textArea = document.getElementById("edit-text-area")
+    modalEdit.classList.toggle("modal-close-edit");
+    
+    closeModalEdit.addEventListener("click", () => {
+        modalEdit.classList.toggle("modal-close-edit");
+        modalContainerEdit.style.opacity = "0";
+        modalContainerEdit.style.visibility = "hidden";
+    });
+    btnEdit.addEventListener("click",async (e) => {
+        const docPost = await findingUser(idPost, collectionPost);
+    const dataPost = docPost.data();
+    console.log('dataPost: {}', dataPost);
+        updatePost(idPost, collectionPost, {
+            newPost: textArea.value
+    });
+})
+}
 
 export const btnPostShare = () => {
     const post = document.getElementById("text-area-publication");
@@ -131,16 +172,15 @@ export const windowsTimeline = async () => {
                         <p>${dataPost.name}</p>
                         <p>${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-
                             <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
                             <p class="like" >${dataPost.like?.length}</p>
                             ${showDeleteButtonOnlyIfOwnerUser(dataPost.id, doc.id)}                            
                         </div>
                         <div id="modal-container" class = "modal-container">    
-
-                        </div>   
+                        </div>
+                        <div id="modal-container-edit" class = "modal-container-edit">    
+                        </div>      
                     </div>`
-
                 postsContainer.innerHTML = html
 
 
@@ -152,95 +192,32 @@ export const windowsTimeline = async () => {
                     console.log(e.target.dataset.id)
                 });
             });
+
             const btnLike = document.querySelectorAll(".like-post");
                 btnLike.forEach(btnL => {
                     btnL.addEventListener('click', (event) => {
-
                         likeThePost(event.target.dataset.id)
 
                     });
                 });
             
-            let btnEdit = document.querySelectorAll(".edit");
+            let btnEdit = document.querySelectorAll(".edit-btn");
             btnEdit.forEach( btn => {
                 btn.addEventListener('click', async (e) =>{
                     e.preventDefault();
-                    console.log('works')
-                    const doc = await getDocument(e.target.dataset.id)
-                    const dataPost = doc.data()
+                    console.log("works")
+                    modalEditPost(e.target.dataset.id)
+                    
                 });
                 
             });
-
-            // let closeModal = document.querySelectorAll(".close")[0]
-            // let openModal = document.querySelectorAll(".cta")[0]
-            // let modal = document.querySelectorAll(".modal")[0]
-            // let modalConteiner = document.querySelectorAll(".modal-container")[0]
-
-            // openModal.addEventListener("click", (e) => {
-            //     e.preventDefault();
-            //     modalConteiner.style.opacity = "1";
-            //     modalConteiner.style.visibility = "visible";
-            //     modal.classList.toggle("modal-close")
-
-            // });
-
-            // closeModal.addEventListener("click", () => {
-            //     modal.classList.toggle("modal-close");
-            //     modalConteiner.style.opacity = "0";
-            //     modalConteiner.style.visibility = "hidden";
-            
-            // });
-
-            // window.addEventListener("click", (e) => {
-            //     console.log(e.target)
-            //     if(e.target == modalConteiner){
-            //         modal.classList.toggle("modal-close");
-            //         modalConteiner.style.opacity = "0";
-            //         modalConteiner.style.visibility = "hidden";
-            //     }
-            // });
-                    
+        
         
         });
         });
         
 
     };
+   
 };
 
-function showDeleteButtonOnlyIfOwnerUser(postUserId, postDocumentId) {    
-    if (user.id === postUserId) {
-        return `<span class="cta""><i class="fa-solid fa-trash-can delete-btn" data-id="${postDocumentId}"></i></span> 
-        <button class="edit" id="post-edit" data-id="${postDocumentId}">EDITAR</button>`;
-    }
-    else return '';
-}
-
-
-/*
-export const functionbtnDelete = () => {
-    
-    btnDelete.addEventListener("click", async (e) => {
-        e.preventDefault();
-        console.log('BOTON BORRAR',viewTimelineHtml)
-    })
-}*/
-
-
-
-//<i class="fa-solid fa-pen-to-square"></i>
-
-
-/*
-export const functionbtnDelete = () => {
-    
-    btnDelete.addEventListener("click", async (e) => {
-        e.preventDefault();
-        console.log('BOTON BORRAR',viewTimelineHtml)
-    })
-}*/
-
-
-
-//<i class="fa-solid fa-pen-to-square"></i>
