@@ -1,9 +1,10 @@
 
-import { insertData,onDataDocument,deletePost, getDocument } from "../firebase/feed.js";
+import { insertData,onDataDocument,deletePost, getDocument,dataDocument } from "../firebase/feed.js";
 import { userDataLocally } from "./sessionStorage.js"
 import { findingUser, collectionPost, updatePost } from "../firebase/firestore.js"
 
 let user = userDataLocally();
+
 export const timeline = (sectionMenuBar, sectionUtils) => {
     user = userDataLocally();
     const wallTemplate = `
@@ -80,6 +81,51 @@ export const btnPostShare = () => {
 }
 
 
+const modalDeletePost = (postUserId) => {
+    const modalConteinerTimline = document.getElementById("function-modal-container")
+    const htmlModal = `
+    <div id = "modal-container" class = "modal-container"> 
+        <div id="modal" class ="modal moda-close">
+            <p id=""close" class ="close">X</p>
+            <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
+            <img src="../images/ramdom_pictures/img-modal.png" alt="">
+            <button class="delete" id="delete" data-id="${postUserId}">Eliminar</button>
+        </div>
+    </div>
+        `
+
+            let closeModal = document.getElementById("close")
+            let openModal = document.getElementById("cta")
+            let modal = document.getElementById("modal")
+            let modalConteiner = document.getElementById("modal-container")
+
+            openModal.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalConteiner.style.opacity = "1";
+                modalConteiner.style.visibility = "visible";
+                modal.classList.toggle("modal-close");
+            });
+
+            closeModal.addEventListener("click", () => {
+                modal.classList.toggle("modal-close");
+                modalConteiner.style.opacity = "0";
+                modalConteiner.style.visibility = "hidden";
+
+            });
+
+        return modalConteinerTimline.innerHTML = htmlModal
+}
+
+const templateDeleteAndEdit = (idUser, postUserId) => {
+    modalDeletePost(postUserId)
+    if (user.id == postUserId){
+        return `<span class="cta"><i class="fa-solid fa-trash-can"></i></span>
+         <button class="edit" id="post-edit" data-id="${idUser}">EDITAR</button>`   
+    } else {
+        return "";
+    } 
+}
+
 export const windowsTimeline = async () => {
     const postsContainer = document.getElementById("posts-container")
     if (window.location.hash = '#/timeline') {
@@ -97,38 +143,30 @@ export const windowsTimeline = async () => {
                     </div>
                         <p class="data-post">${dataPost.newPost}</p>
                         <div id = "btns-posts" class = "btns-posts">
-
                             <i class="like-post fa-solid fa-thumbs-up" data-id=${doc.id} id="like"></i>
                             <p class="like" >${dataPost.like?.length}</p>
-                            <span class="cta""><i class="fa-solid fa-trash-can"></i></span>
-                            <button class="edit" id="post-edit" data-id="${doc.id}">EDITAR</button>
+                            ${templateDeleteAndEdit(doc.id,dataPost.id)}
                         </div>
-                        <div class = "modal-container">
-                            <div class ="modal moda-close">
-                                <p class ="close">X</p>
-                                <p class="text-confirmation">¿Estás seguro o segura que quieres eliminar el comentario?</p>
-                                <img src="../images/ramdom_pictures/img-modal.png" alt="">
-                                <button class="delete" id="delete" data-id="${doc.id}">Eliminar</button>
-                            </div>
-
-                        </div>   
+                        <div id="function-modal-container"></div>
                     </div>`
 
                 postsContainer.innerHTML = html
 
 
             const btnDelete = document.querySelectorAll(".delete");
-            btnDelete.forEach(btn => {
-                btn.addEventListener('click', (e) => {
+            btnDelete.forEach((btn) => {
+                btn.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    deletePost(e.target.dataset.id)
-                    console.log(e.target.dataset.id)
+                    const deletePostForID = e.target.dataset.id
+                    //deletePost(deletePostForID)
+                    modalDeletePost(deletePostForID)
+                    
                 });
             });
+
             const btnLike = document.querySelectorAll(".like-post");
                 btnLike.forEach(btnL => {
                     btnL.addEventListener('click', (event) => {
-
                         likeThePost(event.target.dataset.id)
 
                     });
@@ -141,38 +179,20 @@ export const windowsTimeline = async () => {
                     console.log('works')
                     const doc = await getDocument(e.target.dataset.id)
                     const dataPost = doc.data()
+                    
                 });
                 
             });
 
-            let closeModal = document.querySelectorAll(".close")[0]
-            let openModal = document.querySelectorAll(".cta")[0]
-            let modal = document.querySelectorAll(".modal")[0]
-            let modalConteiner = document.querySelectorAll(".modal-container")[0]
-
-            openModal.addEventListener("click", (e) => {
-                e.preventDefault();
-                modalConteiner.style.opacity = "1";
-                modalConteiner.style.visibility = "visible";
-                modal.classList.toggle("modal-close")
-
-            });
-
-            closeModal.addEventListener("click", () => {
-                modal.classList.toggle("modal-close");
-                modalConteiner.style.opacity = "0";
-                modalConteiner.style.visibility = "hidden";
             
-            });
-
+            /*
             window.addEventListener("click", (e) => {
-                console.log(e.target)
                 if(e.target == modalConteiner){
                     modal.classList.toggle("modal-close");
                     modalConteiner.style.opacity = "0";
                     modalConteiner.style.visibility = "hidden";
                 }
-            });
+            });*/
                     
         
         });
