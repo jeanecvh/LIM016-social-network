@@ -1,0 +1,202 @@
+
+main {
+	height: 100vh;}
+* {
+	box-sizing: border-box;
+	margin: 0;
+    padding: 0;
+	
+}
+.fondGif{
+	font-family: 'Roboto', sans-serif;
+	background: white;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	width: 100%;
+    min-height: 100%;
+    height: auto !important;
+	position: fixed;
+	top:10vh;
+	left:0;
+}
+
+.formFond{
+	width: 90vw;
+	height: 84vh;
+	margin-left: 5.5vw;
+	display: flex;
+	align-items: center;
+}
+
+.form{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: 1.2em;}
+
+.h1Form{
+	font-size: 1.2em;
+	color: rgb(255 181 71);
+	width: 14em; 
+	font-family: 'roboto';
+	text-transform:uppercase;
+}
+.form-group{
+	font-size: 3.8vw;
+	color: rgb(6 6 6 / 62%);
+	margin-top: 0.5em;
+	font-family: 'roboto';
+}
+
+.form-label {
+	display: block;
+	font-weight: 700;
+	padding-top: 10px;
+    padding-bottom: 5px;
+	cursor: pointer;
+}
+.form-group-input{ 
+	position: relative;  /* me servira para mas adelante colocar solo el boton en position absolut y se me meta dentro del imput */
+}
+.form-input {
+	width: 100%;
+	background: #ffb5474a;
+	border: 3px solid transparent;
+	border-radius: 1.5vw;
+	height: 30px;
+	line-height: 45px;
+	padding: 0 40px 0 20px;
+    transition: .3s ease all;
+	font-family: 'roboto';
+	font-size: 4vw;
+}
+.form-input:focus {
+	border: 3px solid #FFB547;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+}
+.form-input-err {
+	font-size: 3vw;
+	display: none;
+	font-family: 'roboto';
+	font-weight: bold;
+	position: absolute; 
+	margin: auto;
+	padding: 3px;
+	color: rgb(184, 0, 0);
+}
+.form-input-err-active {
+	display: block;
+}
+.form-validate {
+	position: absolute;
+	right: 10px;
+	bottom: 8px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+.form-alert {
+	height: 1.8em;
+	background: #F66060;
+	border-radius: 5px;
+	display: none;
+	margin-top: 1.5em;
+	width: 100%; 
+	height: 30px;
+	position: relative;  
+}
+.submitErr{
+	font-size: 3vw;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+	margin-left: 3vw;
+}
+.form-alert-active {
+	display: block;
+}
+.form-group-btn-send {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.form-btn {
+	background: #000;
+	color: rgb(255, 255, 255);
+	text-decoration: none; 
+	border: none;
+	border-radius: 1.5vw;
+	cursor: pointer;
+	transition: .1s ease all;
+	background-color: #00bcb4;
+	font-size: 1em;
+	padding: 1vh 2vh;
+	margin-top: 30px;
+	font-family: 'roboto';
+	position: absolute;  
+}
+
+.form-btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+.form-message-valid {
+	font-size: 3vw;
+	margin-top: 1em;
+	color: #00BCB4;
+	display: none;
+	font-family: 'roboto';
+	font-weight: bold;
+}
+
+.form-message-valid-active {
+	display: block;
+}
+/* ----- -----  Estilos para Validacion ----- ----- */
+.form-group-valid .form-validate{
+	color: #1ed12d;
+	opacity: 1;
+}
+.form-group-fail .form-label {
+	color: #bb2929;
+    
+}
+.form-group-fail .form-validate{
+	color: #bb2929;
+    opacity: 1;   
+    
+}
+.form-group-fail .form-input {
+	border: 3px solid #bb2929;
+}
+
+@media (min-width: 768px){
+	.form{		
+		width: 60vmin;
+		height: 100%;
+		}
+		.h1Form{
+			font-size: 4.4vmin;
+		}
+		.form-group{
+			font-size: 3vmin;
+		}
+		.form-input {
+			font-size: 3vmin;
+		}
+		.form-input-err {
+			font-size: 2vmin;
+		}
+		.submitErr{
+			font-size: 2.1vmin;
+			margin-left: 0.4vw;
+		}
+		.form-message-valid {
+			font-size: 2vmin;
+		}
+		.form-btn {
+				border-radius: 8px;
+			}
+}
