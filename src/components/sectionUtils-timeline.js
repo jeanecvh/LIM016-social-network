@@ -28,6 +28,6 @@ export const sectionUtils = () => {
             <div id="friends-container" class="friends-container">
             </div>
         </div>
-        `
-    return templateMenuBar
+        `;
+    return templateMenuBar;
 }

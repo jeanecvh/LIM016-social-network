@@ -1,6 +1,12 @@
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-import {  getFirestore } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";//SDK base de datos
+import { 
+  initializeApp
+
+ } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+import {  
+  getFirestore 
+
+} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";//SDK base de datos
 
 
 

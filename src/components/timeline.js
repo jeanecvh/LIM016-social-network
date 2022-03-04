@@ -210,7 +210,6 @@ export const windowsTimeline = async () => {
                 btnLike.forEach(btnL => {
                     btnL.addEventListener('click', (event) => {
                         likeThePost(event.target.dataset.id)
-
                     });
                 });
             
