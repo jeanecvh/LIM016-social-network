@@ -15,7 +15,7 @@ describe('loginWithEmailAndPassword', () => {
     res.then(() =>{
       console.log(loginUser.mock);
       expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('email');
-      expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('password');
+      expect(signInWithEmailAndPassword.mock.calls[0][2]).toBe('password');
       done();
     })
   })

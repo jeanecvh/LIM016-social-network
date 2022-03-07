@@ -50,7 +50,6 @@ export const login = () => {
 
 
 export const loginGoogle = () => {
-
   const googleId = document.getElementById("imgGoogle");
   googleId.addEventListener("click", async () => {
     try {

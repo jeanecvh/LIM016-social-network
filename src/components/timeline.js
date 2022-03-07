@@ -50,6 +50,15 @@ const functionBtnEdit = () => {
         e.preventDefault();
     })
 }*/
+const obj = {
+    a: "b",
+    c: "b"
+};
+
+Object.keys(obj).forEach((key) =>{
+    console.log(obj[key]);
+});
+
 const likeThePost = async (idPost) => {
 
     const docPost = await findingUser(idPost, collectionPost);
